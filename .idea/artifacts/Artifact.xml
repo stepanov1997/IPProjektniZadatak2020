@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Artifact">
+    <output-path>$PROJECT_DIR$/out/artifacts/Artifact</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="IPProjektniZadatak2020/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="IPProjektniZadatak2020" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Biblioteke" />
+        </element>
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/WebContent/register.xhtml" />
+      <element id="file-copy" path="$PROJECT_DIR$/WebContent/WEB-INF/scripts/ajaxCall.js" />
+    </root>
+  </artifact>
+</component>
