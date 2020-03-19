@@ -9,8 +9,8 @@ import java.io.IOException;
 public class Controller extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 
     @Override
@@ -24,9 +24,14 @@ public class Controller extends HttpServlet {
                     request.getRequestDispatcher("AccountController").forward(request, response);
                 }
                 break;
+                case "upload":
+                {
+                    request.getRequestDispatcher("FileUploadController").forward(request, response);
+                }
+                break;
                 default:
                 {
-
+                    response.getOutputStream().println("Hello world");
                 }
                 break;
             }

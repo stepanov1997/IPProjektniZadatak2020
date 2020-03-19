@@ -1,32 +1,21 @@
 package controller;
 
-import model.dto.AccountBean;
+import com.google.gson.Gson;
+import model.beans.AccountBean;
+import util.SHA1;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-@ManagedBean(name = "accountController")
-@ApplicationScoped
 public class AccountController extends HttpServlet implements Serializable {
-    private List<AccountBean> accounts = new ArrayList<AccountBean>();
-    private AccountBean accountBean = new AccountBean();
     private String emailPattern = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
-
-    public AccountBean getAccountBean() {
-        return accountBean;
-    }
-
-    public void setAccountBean(AccountBean accountBean) {
-        this.accountBean = accountBean;
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -65,74 +54,51 @@ public class AccountController extends HttpServlet implements Serializable {
                         result += "Email format is not correct (Example: email@gmail.com) <br>";
                     }
 
+                    AccountBean accountBean = new AccountBean();
+                    accountBean.setUsernameKey(username);
+
+                    if (accountBean.existsByUsername()) {
+                        result += "Username already exists <br>";
+                    }
+
+                    accountBean.setEmailKey(email);
+                    if (accountBean.existsByEmail()) {
+                        result += "Email already exists. <br>";
+                    }
+
+                    PrintWriter out = response.getWriter();
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+
+                    Gson gson = new Gson();
                     if (!"".equals(result)) {
-                        response.getOutputStream().println(result);
+                        Map<String, Object> inputMap = new HashMap<>();
+                        inputMap.put("redirect", false);
+                        inputMap.put("message", result);
+                        // convert map to JSON String
+                        String json = gson.toJson(inputMap);
+                        out.print(json);
                         return;
                     }
-                    AccountBean accountBean = new AccountBean();
-                    accountBean.setName(name);
-                    accountBean.setSurname(surname);
-                    accountBean.setUsername(username);
-                    accountBean.setPassword(password);
-                    accountBean.setEmail(email);
-                    this.accountBean = accountBean;
-                    addAccount();
 
-                    response.getOutputStream().println("Uspjesno ste registrovali novog korisnika");
-                    return;
+                    accountBean.getAccount().setName(name);
+                    accountBean.getAccount().setSurname(surname);
+                    accountBean.getAccount().setUsername(username);
+                    accountBean.getAccount().setPassword(SHA1.encryptPassword(password));
+                    accountBean.getAccount().setEmail(email);
+                    request.getSession().setAttribute("accountBean", accountBean);
+                    accountBean.addAccount();
+
+
+                    Map<String, Object> inputMap = new HashMap<>();
+                    inputMap.put("redirect", true);
+                    inputMap.put("message", "You are successfully registered.");
+                    String json = gson.toJson(inputMap);
+                    out.print(json);
                 }
                 //break;
+                break;
             }
         }
-    }
-
-    //    {
-//        accounts = Arrays.asList(new AccountBean(0,"Kristijan", "Stepanov", "kiki", "kiki", "kristijan.stepanov95@gmail.com"),
-//                new AccountBean(1,"Milan", "Medic", "medo", "medo", "milan.medic@gmail.com"),
-//                new AccountBean(2,"Gorana", "Golubović", "goca", "goca", "gorana.golubovic@gmail.com"),
-//                new AccountBean(3,"Milica", "Milakovic", "cimi", "cimi", "milica.milakovic@gmail.com"),
-//                new AccountBean(4,"Petar", "Mihajlović", "pero", "pero", "petar.mihajlovic@gmail.com"));
-//
-//    }
-
-    public String addAccount()
-    {
-        accounts.add(accountBean);
-        for (var account: accounts) {
-            System.out.println(account);
-        }
-        return "Uspjesno dodat nalog";
-    }
-    public String removeAccount()
-    {
-        accounts.remove(accountBean);
-        return "Uspjesno obrisan nalog";
-    }
-
-    public String submited()
-    {
-        System.out.println("Submited form!!");
-        return "Submited form!!";
-    }
-
-    public boolean updateAccount()
-    {
-        AccountBean found = findAccount(accountBean.getId());
-        if(found!=null) {
-            if (accountBean.getName() != null) accountBean.setName(accountBean.getName());
-            if(accountBean.getSurname() !=null) accountBean.setName(accountBean.getSurname());
-            if(accountBean.getUsername()!=null) accountBean.setName(accountBean.getUsername());
-            if(accountBean.getPassword()!=null) accountBean.setName(accountBean.getPassword());
-            if(accountBean.getEmail()!=null) accountBean.setName(accountBean.getEmail());
-            return true;
-        }
-        return false;
-    }
-
-    private AccountBean findAccount(int id)
-    {
-        if(accounts.stream().anyMatch(e -> e.getId() == id))
-            return accounts.stream().filter(e -> e.getId() == id).findFirst().get();
-        return null;
     }
 }

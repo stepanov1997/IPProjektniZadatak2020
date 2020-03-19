@@ -15,12 +15,25 @@
             const xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
-                    document.getElementById("result").innerHTML = this.responseText;
-                    setTimeout(function () {
-                        document.getElementById("result").innerHTML = "";
-                    }, 3000);
+                    debugger;
+                    var result = JSON.parse(this.responseText);
+                    if(result.redirect)
+                    {
+                        $("#result").html(result.message);
+                        setTimeout(function () {
+                            window.location = "editProfile.jsp";
+                        }, 2000);
+                    }
+                    else
+                    {
+                        $("#result").html(result.message);
+                        setTimeout(function () {
+                            $("#result").html("");
+                        }, 5000);
+                    }
                 }
             };
+            debugger;
             let url = "Controller?controller=account&action=register";
             url += "&name=" + $('[name$="name"]').val();
             url += "&surname=" + $('[name$="surname"]').val();

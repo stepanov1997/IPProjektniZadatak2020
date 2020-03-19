@@ -28,7 +28,6 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" name="Biblioteke" level="project" />
-    <orderEntry type="library" name="jquery-1.9.1" level="application" />
+    <orderEntry type="library" exported="" name="Biblioteke" level="project" />
   </component>
 </module>
