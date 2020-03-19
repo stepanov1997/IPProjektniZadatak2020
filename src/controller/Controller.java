@@ -26,7 +26,9 @@ public class Controller extends HttpServlet {
                 break;
                 case "upload":
                 {
-                    request.getRequestDispatcher("FileUploadController").forward(request, response);
+                    var elem = request.getRequestDispatcher("FileUploadController");
+                    elem.forward(request, response);
+                    System.out.println(322);
                 }
                 break;
                 default:

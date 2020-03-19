@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Projekat" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="22ef2966-7319-4202-8540-bc7dd2873c9f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/JAX_RS_2_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Database/creationScript.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Database/ip2020.mwb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Database/ip2020.mwb.bak" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebContent/WEB-INF/lib/java-json.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebContent/WEB-INF/lib/jedis-2.9.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebContent/WEB-INF/lib/mysql-connector-java-8.0.18.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javax.ws.rs-api-2.1.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/PicturesServletService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/dao/PictureDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/util/ConnectionPool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/util/ConnectionPool.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Projekat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Projekat.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IPProjektniZadatak2020.iml" beforeDir="false" afterPath="$PROJECT_DIR$/IPProjektniZadatak2020.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/lib/mysql-connector-java-8.0.13.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/editProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/editProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/register.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/controller/AccountController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/controller/FileUploadController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/controller/FileUploadController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/beans/AccountBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/model/beans/AccountBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/dao/AccountDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/model/dao/AccountDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/dto/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/model/dto/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/AccountController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/FileUploadController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/FileUploadController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/beans/AccountBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/beans/AccountBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dao/AccountDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dao/AccountDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dto/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dto/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/editProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/editProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/register.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/FileUploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/FileUploadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/beans/AccountBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/beans/AccountBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/dao/AccountDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/dao/AccountDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/dto/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/dto/Account.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="autoscrollToSource" value="true" />
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="jsf" />
+        <option value="JavaScript File" />
+        <option value="Jsp File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProjectId" id="1ZFrDJozEr9ULmHS5RtWArHRftD" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="findjar.last.used.dir" value="$PROJECT_DIR$/WebContent/WEB-INF/lib" />
+    <property name="jsx.switch.disabled" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/WebContent/WEB-INF/lib" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.21034482" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\stepa\Desktop\IPProjektniZadatak2020\WebContent\WEB-INF\lib" />
+      <recent name="C:\Users\stepa\Desktop\IPProjektniZadatak2020\src\util" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\stepa\Desktop\IPProjektniZadatak2020\WebContent\WEB-INF\lib" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.TomcatServer">
+    <configuration name="TomcatServer" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.30" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="BROWSER_ID" value="b2a9dca7-9d0b-4e1e-98a8-afb19c1328d2" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="Projekat">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_IPProjektniZadatak2020" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="52691" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Projekat" />
+        </option>
+      </method>
+    </configuration>
+    <configuration name="TomcatServerRemote" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" APPLICATION_SERVER_NAME="Tomcat 9.0.30" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="HOST" value="host" />
+      <option name="LOCAL" value="false" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://192.168.10.10:9999/" />
+      <option name="UPDATING_POLICY" value="hot-swap-classes" />
+      <deployment>
+        <artifact name="Projekat">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <data>
+          <option name="jndiPort" value="8080" />
+          <option name="targets">
+            <list>
+              <WatchedTargetModelImpl>
+                <option name="name" value="CONTEXT_XML" />
+                <option name="transportStagingTarget">
+                  <TransportTarget>
+                    <option name="id" value="842ec1ce-84c6-4b8d-b0a9-f46d9b11dc77" />
+                    <id>842ec1ce-84c6-4b8d-b0a9-f46d9b11dc77</id>
+                  </TransportTarget>
+                </option>
+                <option name="watchedLocalPath" value="" />
+                <watched-path />
+                <name>CONTEXT_XML</name>
+                <transport-target>
+                  <TransportTarget>
+                    <option name="id" value="842ec1ce-84c6-4b8d-b0a9-f46d9b11dc77" />
+                    <id>842ec1ce-84c6-4b8d-b0a9-f46d9b11dc77</id>
+                  </TransportTarget>
+                </transport-target>
+              </WatchedTargetModelImpl>
+              <StagingTargetModelImpl>
+                <option name="name" value="STAGING" />
+                <option name="stagingRemotePath" value="" />
+                <option name="transportStagingTarget">
+                  <TransportTarget>
+                    <option name="id" value="a152dd4b-d446-4ada-9449-b5cb5f23cdd0" />
+                    <id>a152dd4b-d446-4ada-9449-b5cb5f23cdd0</id>
+                  </TransportTarget>
+                </option>
+                <staging-path />
+                <name>STAGING</name>
+                <transport-target>
+                  <TransportTarget>
+                    <option name="id" value="a152dd4b-d446-4ada-9449-b5cb5f23cdd0" />
+                    <id>a152dd4b-d446-4ada-9449-b5cb5f23cdd0</id>
+                  </TransportTarget>
+                </transport-target>
+              </StagingTargetModelImpl>
+            </list>
+          </option>
+          <jndi-port>8080</jndi-port>
+        </data>
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="TOMCAT_LOCALHOST_LOG_ID" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="49806" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Projekat" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Tomcat Server.TomcatServer" />
+      <item itemvalue="Tomcat Server.TomcatServerRemote" />
+    </list>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <option name="contentProportion" value="0.09768212" />
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Failed" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="22ef2966-7319-4202-8540-bc7dd2873c9f" name="Default Changelist" comment="" />
+      <created>1584445561654</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584445561654</updated>
+      <workItem from="1584445569463" duration="592000" />
+      <workItem from="1584446217987" duration="3702000" />
+      <workItem from="1584472233175" duration="24094000" />
+      <workItem from="1584529129014" duration="44564000" />
+      <workItem from="1584616041420" duration="20136000" />
+      <workItem from="1584642464097" duration="692000" />
+      <workItem from="1584645379498" duration="13181000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="234" y="0" key="#HTTP_Proxy" timestamp="1584539043518">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="234" y="0" key="#HTTP_Proxy/0.0.1280.680@0.0.1280.680" timestamp="1584539043518" />
+    <state x="233" y="0" key="#Project_Structure" timestamp="1584625425274">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1584625425274" />
+    <state x="233" y="2" key="#SQL_Dialects" timestamp="1584632702587">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="2" key="#SQL_Dialects/0.0.1280.680@0.0.1280.680" timestamp="1584632702587" />
+    <state x="233" y="0" key="#SQL_Resolution_Scopes" timestamp="1584646538043">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="0" key="#SQL_Resolution_Scopes/0.0.1280.680@0.0.1280.680" timestamp="1584646538043" />
+    <state x="233" y="0" key="#Template_Data_Languages" timestamp="1584563728989">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="0" key="#Template_Data_Languages/0.0.1280.680@0.0.1280.680" timestamp="1584563728989" />
+    <state x="339" y="0" width="616" height="680" key="#TomcatServer" timestamp="1584649060099">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="339" y="0" width="616" height="680" key="#TomcatServer/0.0.1280.680@0.0.1280.680" timestamp="1584649060099" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584649048273">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1584649048273" />
+    <state x="500" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1584645468841">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="500" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1584645468841" />
+    <state x="272" y="29" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1584642861967">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="272" y="29" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1280.680@0.0.1280.680" timestamp="1584642861967" />
+    <state x="233" y="0" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable" timestamp="1584648048424">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="0" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable/0.0.1280.680@0.0.1280.680" timestamp="1584648048424" />
+    <state x="471" y="22" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1584574994538">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="471" y="22" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1280.680@0.0.1280.680" timestamp="1584574994538" />
+    <state x="347" y="270" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1584635088373">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="347" y="270" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1584635088373" />
+    <state x="443" y="230" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1584635090941">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="443" y="230" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1280.680@0.0.1280.680" timestamp="1584635090941" />
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584531347640">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1584531347640" />
+    <state width="420" height="466" key="DebuggerActiveHint" timestamp="1584655273839">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="420" height="466" key="DebuggerActiveHint/0.0.1280.680@0.0.1280.680" timestamp="1584655273839" />
+    <state x="348" y="81" key="FileChooserDialogImpl" timestamp="1584638209368">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="348" y="81" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1584638209368" />
+    <state width="531" height="174" key="GridCell.Tab.0.bottom" timestamp="1584659080777">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584659080777" />
+    <state width="531" height="174" key="GridCell.Tab.0.center" timestamp="1584659080777">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1584659080777" />
+    <state width="531" height="174" key="GridCell.Tab.0.left" timestamp="1584659080776">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1584659080776" />
+    <state width="531" height="174" key="GridCell.Tab.0.right" timestamp="1584659080777">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1584659080777" />
+    <state width="531" height="174" key="GridCell.Tab.1.bottom" timestamp="1584659080777">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584659080777" />
+    <state width="531" height="174" key="GridCell.Tab.1.center" timestamp="1584659080777">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1584659080777" />
+    <state width="531" height="174" key="GridCell.Tab.1.left" timestamp="1584659080777">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1584659080777" />
+    <state width="531" height="174" key="GridCell.Tab.1.right" timestamp="1584659080777">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1584659080777" />
+    <state width="531" height="174" key="GridCell.Tab.2.bottom" timestamp="1584659080777">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.2.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584659080777" />
+    <state width="531" height="174" key="GridCell.Tab.2.center" timestamp="1584659080777">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.2.center/0.0.1280.680@0.0.1280.680" timestamp="1584659080777" />
+    <state width="531" height="174" key="GridCell.Tab.2.left" timestamp="1584659080777">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.2.left/0.0.1280.680@0.0.1280.680" timestamp="1584659080777" />
+    <state width="531" height="174" key="GridCell.Tab.2.right" timestamp="1584659080777">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.2.right/0.0.1280.680@0.0.1280.680" timestamp="1584659080777" />
+    <state width="531" height="174" key="GridCell.Tab.3.bottom" timestamp="1584659080778">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.3.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584659080778" />
+    <state width="531" height="174" key="GridCell.Tab.3.center" timestamp="1584659080777">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.3.center/0.0.1280.680@0.0.1280.680" timestamp="1584659080777" />
+    <state width="531" height="174" key="GridCell.Tab.3.left" timestamp="1584659080777">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.3.left/0.0.1280.680@0.0.1280.680" timestamp="1584659080777" />
+    <state width="531" height="174" key="GridCell.Tab.3.right" timestamp="1584659080778">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="531" height="174" key="GridCell.Tab.3.right/0.0.1280.680@0.0.1280.680" timestamp="1584659080778" />
+    <state x="121" y="0" key="SettingsEditor" timestamp="1584642944379">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1584642944379" />
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1584642464606">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1584642464606" />
+    <state x="376" y="242" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1584631053946">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="376" y="242" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1280.680@0.0.1280.680" timestamp="1584631053946" />
+    <state x="371" y="106" key="extract.method.dialog" timestamp="1584646258911">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="106" key="extract.method.dialog/0.0.1280.680@0.0.1280.680" timestamp="1584646258911" />
+    <state x="348" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1584549514070">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="348" y="0" key="refactoring.ChangeSignatureDialog/0.0.1280.680@0.0.1280.680" timestamp="1584549514070" />
+    <state x="297" y="151" key="run.anything.popup" timestamp="1584553533260">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1584553533260" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1584645573381">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1584645573381" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/Controller.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/Controller.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
+          <line>93</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/Controller.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
+          <line>23</line>
+          <properties class="controller.FileUploadController" method="doGet">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
+        <watch expression="request.getParameter(&quot;controller&quot;)" language="JAVA" />
+        <watch expression="request.getParameter(&quot;submit&quot;)" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

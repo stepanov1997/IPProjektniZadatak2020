@@ -24,7 +24,7 @@ public class AccountController extends HttpServlet implements Serializable {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getParameter("submit")!=null && "account".equals(request.getParameter("controller"))) {
+        if (request.getParameter("submit") != null && "account".equals(request.getParameter("controller"))) {
             switch (request.getParameter("action")) {
                 case "register": {
                     String name = request.getParameter("name");
@@ -87,14 +87,21 @@ public class AccountController extends HttpServlet implements Serializable {
                     accountBean.getAccount().setPassword(SHA1.encryptPassword(password));
                     accountBean.getAccount().setEmail(email);
                     request.getSession().setAttribute("accountBean", accountBean);
-                    accountBean.addAccount();
+                    if (accountBean.add()) {
+                        Map<String, Object> inputMap = new HashMap<>();
+                        inputMap.put("redirect", true);
+                        inputMap.put("message", "You are successfully registered.");
+                        String json = gson.toJson(inputMap);
+                        out.print(json);
+                    } else {
+                        Map<String, Object> inputMap = new HashMap<>();
+                        inputMap.put("redirect", false);
+                        inputMap.put("message", "You are unsuccessfully registered.");
+                        String json = gson.toJson(inputMap);
+                        out.print(json);
+                    }
 
 
-                    Map<String, Object> inputMap = new HashMap<>();
-                    inputMap.put("redirect", true);
-                    inputMap.put("message", "You are successfully registered.");
-                    String json = gson.toJson(inputMap);
-                    out.print(json);
                 }
                 //break;
                 break;

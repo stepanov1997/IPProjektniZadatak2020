@@ -91,26 +91,24 @@
                     selectCities.hidden = selectCities.innerHTML === "";
                 }
             }
-
             JsonpHttpRequest(url, "cb");
         }
 
         function uploadFileAjax() {
             var fileInput = document.getElementById('file');
             var file = fileInput.files[0];
-            var formData = new FormData();
-            formData.append('file', file);
             var xhr = new XMLHttpRequest();
-            // xhr.setRequestHeader("ContentType", "application/x-www-form-urlencoded;charset=utf-8");
+            var formData = new FormData;
+            formData.append("file", file);
             xhr.onreadystatechange = function() {
-                document.getElementById("upload").innerHTML = this.responseText;
-                // var slikaPar = document.getElementById("slikaPar");
-                // var img = document.createElement("img");
-                // img.setAttribute("src", fileInput.value);
-                // img.setAttribute("height", "300px");
-                // img.setAttribute("width", "400px");
-                // slikaPar.innerHTML="";
-                // slikaPar.appendChild(img);
+                if(this.readyState===4 && this.status===200 && this.responseText!=="")
+                {
+                    var img = new Image();
+                    img.onload = function () { document.getElementById("upload").appendChild(img); };
+                    img.setAttribute("height", "300px");
+                    img.setAttribute("width", "400px");
+                    img.src = "rest?id="+JSON.parse(this.responseText).id;
+                }
             };
             xhr.open('POST', "Controller?controller=upload&action=profilePicture&submit=submit", true);
             xhr.send(formData);
@@ -156,8 +154,7 @@
 <select id="cities" hidden="hidden">
 </select><br>
 <%--Controller?controller=upload?action=profilePicture--%>
-<form id="fileForm" onsubmit="return uploadFileAjax()" method="post"
-      enctype="multipart/form-data">
+<form id="fileForm" onsubmit="return uploadFileAjax()" method="post" enctype="multipart/form-data">
     <input id="file" type="file" name="file" size="1"/>
     <br/>
     <input type="submit" name="submit" value="Upload File"/>

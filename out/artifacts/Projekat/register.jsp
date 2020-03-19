@@ -46,7 +46,6 @@
             xhttp.open("POST", url.toString(), true);
             xhttp.send();
         }
-
     </script>
 </head>
 <body>

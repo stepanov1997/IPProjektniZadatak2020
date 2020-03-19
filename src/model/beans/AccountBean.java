@@ -30,14 +30,14 @@ public class AccountBean {
         this.account = account;
     }
 
-    public void addAccount()
+    public boolean add()
     {
-        accountDao.addAccount(account);
+        return accountDao.add(account)!=-1;
     }
 
-    public void removeAccount()
+    public void remove()
     {
-        accountDao.removeAccount(account);
+        accountDao.remove(account);
     }
 
     public boolean existsByUsername()
