@@ -96,6 +96,10 @@
 
         function uploadFileAjax() {
             var fileInput = document.getElementById('file');
+            if( fileInput.files.length === 0 ){
+
+                return false;
+            }
             var file = fileInput.files[0];
             var xhr = new XMLHttpRequest();
             var formData = new FormData;
@@ -103,11 +107,14 @@
             xhr.onreadystatechange = function() {
                 if(this.readyState===4 && this.status===200 && this.responseText!=="")
                 {
-                    var img = new Image();
-                    img.onload = function () { document.getElementById("upload").appendChild(img); };
-                    img.setAttribute("height", "300px");
-                    img.setAttribute("width", "400px");
-                    img.src = "rest?id="+JSON.parse(this.responseText).id;
+                    var result = JSON.parse(this.responseText);
+                    if(result.success)
+                    {
+                        var img = new Image();
+                        img.onload = function () { document.getElementById("upload").appendChild(img); };
+                        img.setAttribute("style", "height:300px;width:400px");
+                        img.src = "rest?id="+result.id;
+                    }
                 }
             };
             xhr.open('POST', "Controller?controller=upload&action=profilePicture&submit=submit", true);
@@ -155,7 +162,7 @@
 </select><br>
 <%--Controller?controller=upload?action=profilePicture--%>
 <form id="fileForm" onsubmit="return uploadFileAjax()" method="post" enctype="multipart/form-data">
-    <input id="file" type="file" name="file" size="1"/>
+    <input id="file" type="file" name="file" accept="image/*" size="1"/>
     <br/>
     <input type="submit" name="submit" value="Upload File"/>
 </form>

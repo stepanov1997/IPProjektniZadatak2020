@@ -1,10 +1,13 @@
 package controller;
 
 import com.google.gson.Gson;
+import model.beans.AccountBean;
+import model.dao.PictureDao;
+import model.dto.Account;
+import model.dto.Picture;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import util.ConnectionPool;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.sql.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -30,19 +32,18 @@ public class FileUploadController extends HttpServlet {
         if (request.getParameter("submit") != null && "upload".equals(request.getParameter("controller"))) {
             switch (request.getParameter("action")) {
                 case "profilePicture": {
-                    // Check that we have a file upload request
+                    Gson gson = new Gson();
+                    Map<String, Object> inputMap = new HashMap<>();
+
                     boolean isMultipart = ServletFileUpload.isMultipartContent(request);
                     java.io.PrintWriter out = response.getWriter();
 
                     if (!isMultipart) {
-                        out.println("<html>");
-                        out.println("<head>");
-                        out.println("<title>Servlet upload</title>");
-                        out.println("</head>");
-                        out.println("<body>");
-                        out.println("<p>No file uploaded</p>");
-                        out.println("</body>");
-                        out.println("</html>");
+                        inputMap.put("success", false);
+                        String json = gson.toJson(inputMap);
+                        response.setContentType("application/json");
+                        response.setCharacterEncoding("UTF-8");
+                        out.print(json);
                         return;
                     }
 
@@ -63,54 +64,52 @@ public class FileUploadController extends HttpServlet {
                     upload.setSizeMax(maxFileSize);
 
                     byte[] img = null;
+                    String fileName = null;
 
                     try {
                         // Parse the request to get file items.
-                        List fileItems = upload.parseRequest(request);
+                        List<FileItem> fileItems = upload.parseRequest(request);
 
                         // Process the uploaded file items
-                        Iterator i = fileItems.iterator();
+                        Iterator<FileItem> i = fileItems.iterator();
 
                         if (i.hasNext()) {
                             FileItem fi = (FileItem) i.next();
                             if (!fi.isFormField()) {
-                                // Get the uploaded file parameters
-                                String fieldName = fi.getFieldName();
-                                String fileName = fi.getName();
-                                String contentType = fi.getContentType();
-                                boolean isInMemory = fi.isInMemory();
-                                long sizeInBytes = fi.getSize();
-
+                                fileName = fi.getName();
                                 img = fi.get();
                             }
                         }
                     } catch (Exception ex) {
-                        System.out.println(ex);
+                        ex.printStackTrace();
+                        inputMap.put("success", false);
+                        String json = gson.toJson(inputMap);
+                        response.setContentType("application/json");
+                        response.setCharacterEncoding("UTF-8");
+                        out.print(json);
+                        return;
                     }
 
-                    Connection con = null;
-                    PreparedStatement pstatement = null;
-                    try {
-                        con = ConnectionPool.getConnectionPool().checkOut();
-
-                        String queryString = "INSERT INTO picture set picture=?";
-
-                        pstatement = con.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
-                        pstatement.setBytes(1, img);
-                        pstatement.executeUpdate();
-                        ResultSet generatedKeys = pstatement.getGeneratedKeys();
-                        if (generatedKeys.next()) {
-                            int id = generatedKeys.getInt(1);
-                            Gson gson = new Gson();
-                            Map<String, Object> inputMap = new HashMap<>();
-                            inputMap.put("id", id);
-                            String json = gson.toJson(inputMap);
-                            out.print(json);
-                            response.setContentType("application/json");
-                            response.setCharacterEncoding("UTF-8");
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
+                    PictureDao pictureDao = new PictureDao();
+                    Picture picture = new Picture();
+                    picture.setFileName(fileName);
+                    picture.setImg(img);
+                    AccountBean accountBean = (AccountBean)request.getSession().getAttribute("accountBean");
+                    Account account = accountBean.getAccount();
+                    int accountId = account.getId();
+                    if (pictureDao.add(accountId, picture)) {
+                        inputMap.put("success", true);
+                        inputMap.put("id", picture.getId());
+                        String json = gson.toJson(inputMap);
+                        response.setContentType("application/json");
+                        response.setCharacterEncoding("UTF-8");
+                        out.print(json);
+                    } else {
+                        inputMap.put("success", false);
+                        String json = gson.toJson(inputMap);
+                        response.setContentType("application/json");
+                        response.setCharacterEncoding("UTF-8");
+                        out.print(json);
                     }
                 }
             }

@@ -103,7 +103,11 @@ public class AccountController extends HttpServlet implements Serializable {
 
 
                 }
-                //break;
+                break;
+                case "editProfile":
+                {
+
+                }
                 break;
             }
         }

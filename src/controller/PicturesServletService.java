@@ -1,6 +1,8 @@
 package controller;
 
 import model.dao.PictureDao;
+import model.dto.Picture;
+import org.apache.commons.io.FilenameUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +18,7 @@ public class PicturesServletService extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if("".equals(request.getParameter("id")))
+        if(request.getParameter("id")==null || "".equals(request.getParameter("id")))
         {
             response.getOutputStream().println("Bad parameter.");
             return;
@@ -24,11 +26,15 @@ public class PicturesServletService extends HttpServlet {
 
         int id = Integer.parseInt(request.getParameter("id"));
 
-        byte[] slika = new PictureDao().get(id);
-        response.setContentType("image/jpg");
-        response.setContentLength(slika.length);
+        PictureDao pictureDao = new PictureDao();
+        Picture picture = pictureDao.get(id);
+        String ext = FilenameUtils.getExtension(picture.getFileName());
+        if(ext.equals("svg")) ext+="+xml";
+        response.setHeader("Content-Disposition", "attachment; filename=" + picture.getFileName());
+        response.setContentType("image/"+ext);
+        response.setContentLength(picture.getImg().length);
 
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(slika);
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(picture.getImg());
         BufferedInputStream bufferedInputStream = new BufferedInputStream(byteArrayInputStream);
         OutputStream out = response.getOutputStream();
 
