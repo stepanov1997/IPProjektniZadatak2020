@@ -91,33 +91,39 @@
                     selectCities.hidden = selectCities.innerHTML === "";
                 }
             }
+
             JsonpHttpRequest(url, "cb");
         }
 
-        function uploadFileAjax() {
-            var fileInput = document.getElementById('file');
-            if( fileInput.files.length === 0 ){
+        var id = -1;
 
+        function saveProfilePicture() {
+            var fileInput = document.getElementById('file');
+            if (fileInput.files.length === 0) {
                 return false;
             }
             var file = fileInput.files[0];
             var xhr = new XMLHttpRequest();
             var formData = new FormData;
             formData.append("file", file);
-            xhr.onreadystatechange = function() {
-                if(this.readyState===4 && this.status===200 && this.responseText!=="")
-                {
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
                     var result = JSON.parse(this.responseText);
-                    if(result.success)
-                    {
+                    if (result.success) {
+                        id = result.id;
                         var img = new Image();
-                        img.onload = function () { document.getElementById("upload").appendChild(img); };
+                        img.onload = function () {
+                            document.getElementById("upload").appendChild(img);
+                        };
                         img.setAttribute("style", "height:300px;width:400px");
-                        img.src = "rest?id="+result.id;
+                        img.src = "rest?id=" + result.id;
+                        document.getElementById("pic_id").innerText = "Picture_id: " + result.id;
                     }
                 }
             };
-            xhr.open('POST', "Controller?controller=upload&action=profilePicture&submit=submit", true);
+            var url = "Controller?controller=upload&action=profilePicture&submit=submit";
+
+            xhr.open('POST', url, true);
             xhr.send(formData);
             return false;
         }
@@ -131,20 +137,62 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     let result = JSON.parse(this.responseText);
-                    let select = document.getElementById("countries");
-                    var link = result.find(elem => elem.alpha2Code===selectedOpt.value).flag;
+                    var link = result.find(elem => elem.alpha2Code === selectedOpt.value).flag;
                     var img = document.createElement("img");
                     img.setAttribute("src", link);
                     img.setAttribute("height", "300px");
                     img.setAttribute("width", "400px");
                     var slikaPar = document.getElementById("slikaPar");
-                    slikaPar.innerHTML="";
                     slikaPar.appendChild(img);
                 }
             };
             xhttp.send();
         }
 
+        function editProfile() {
+            var fileInput = document.getElementById('file');
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
+                    var result = JSON.parse(this.responseText);
+                    if (result.redirect) {
+                        $("#result").html(result.message);
+                        setTimeout(function () {
+                            window.location = "newsFeed.jsp";
+                        }, 2000);
+                    } else {
+                        $("#result").html(result.message);
+                        setTimeout(function () {
+                            $("#result").html("");
+                        }, 5000);
+                    }
+                }
+            };
+            var url = "Controller?controller=account&action=editProfile&submit=submit";
+            var selectCountries = document.getElementById("countries");
+            var countryValue = selectCountries.options[selectCountries.selectedIndex].value;
+            url += "&countries=" + countryValue;
+            var selectRegions = document.getElementById("regions");
+            if(selectRegions.hidden===false)
+            {
+                var regionValue = selectRegions.options[selectRegions.selectedIndex].value;
+                url += "&regions=" + regionValue;
+            }
+            var selectCities = document.getElementById("cities");
+            if(selectCities.hidden===false) {
+                var cityValue = selectCities.options[selectCities.selectedIndex].value;
+                url += "&cities=" + cityValue;
+            }
+            if (fileInput.files.length === 0) {
+                url += "&picture=" + false;
+            } else {
+                url += "&picture=" + true;
+            }
+
+            xhr.open('POST', url, true);
+            xhr.send();
+            return false;
+        }
     </script>
 </head>
 <body>
@@ -152,23 +200,24 @@
 <p>Surname: ${accountBean.account.surname}</p>
 <p>Username: ${accountBean.account.username}</p>
 <p>Email: ${accountBean.account.email}</p>
+<p id="pic_id"></p>
 
-<label for="countries">Choose a country:</label>
-<select id="countries" onchange="fillRegions()">
-</select>
-<select id="regions" hidden="hidden" onchange="fillCities()">
-</select>
-<select id="cities" hidden="hidden">
-</select><br>
-<%--Controller?controller=upload?action=profilePicture--%>
-<form id="fileForm" onsubmit="return uploadFileAjax()" method="post" enctype="multipart/form-data">
-    <input id="file" type="file" name="file" accept="image/*" size="1"/>
-    <br/>
-    <input type="submit" name="submit" value="Upload File"/>
+<form id="fileForm" method="post" onsubmit="return editProfile()">
+    <label for="countries">Choose a country:</label>
+    <select id="countries" name="countries" onchange="fillRegions()">
+    </select>
+    <select id="regions" name="regions" hidden="hidden" onchange="fillCities()">
+    </select>
+    <select id="cities" name="cities" hidden="hidden">
+    </select><br>
+    <input id="file" type="file" enctype="multipart/form-data" onchange="saveProfilePicture()" name="file" accept="image/*" size="1"/>
+    <br/><br/><br/>
+    <input type="submit" name="submit" value="Update profile"/>
 </form>
 <p id="slikaPar"></p>
 <hr>
-    <h2 id="upload"></h2>
+<h2 id="upload"></h2>
 <hr>
+<h2 id="result"></h2>
 </body>
 </html>

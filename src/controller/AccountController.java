@@ -2,6 +2,8 @@ package controller;
 
 import com.google.gson.Gson;
 import model.beans.AccountBean;
+import model.dao.AccountDao;
+import model.dto.Account;
 import util.SHA1;
 
 import javax.servlet.ServletException;
@@ -104,9 +106,92 @@ public class AccountController extends HttpServlet implements Serializable {
 
                 }
                 break;
-                case "editProfile":
-                {
+                case "editProfile": {
+                    AccountBean accountBean = (AccountBean) request.getSession().getAttribute("accountBean");
+                    Account account = accountBean.getAccount();
+                    account.setCountry(request.getParameter("country"));
+                    account.setCountryCode(request.getParameter("countryCode"));
+                    account.setRegion(request.getParameter("region"));
+                    account.setCity(request.getParameter("city"));
+                    if (!Boolean.parseBoolean(request.getParameter("picture")))
+                        account.setPicture_Id(null);
+                    AccountDao accountDao = new AccountDao();
+                    Gson gson = new Gson();
+                    var out = response.getOutputStream();
+                    if (accountDao.update(account)) {
+                        request.getSession().setAttribute("accountBean", accountBean);
+                        Map<String, Object> inputMap = new HashMap<>();
+                        inputMap.put("redirect", true);
+                        inputMap.put("message", "You successfully updated your profile.");
+                        String json = gson.toJson(inputMap);
+                        out.print(json);
+                    } else {
+                        Map<String, Object> inputMap = new HashMap<>();
+                        inputMap.put("redirect", false);
+                        inputMap.put("message", "You are unsuccessfully registered.");
+                        String json = gson.toJson(inputMap);
+                        out.print(json);
+                    }
+                }
+                break;
+                case "login": {
+                    String username = request.getParameter("username");
+                    String password = request.getParameter("password");
 
+                    PrintWriter out = response.getWriter();
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+                    Gson gson = new Gson();
+                    Map<String, Object> inputMap = new HashMap<>();
+
+                    if (username == null || password == null || username.isBlank() || password.isBlank()) {
+                        inputMap.put("redirect", false);
+                        inputMap.put("message", "Username or password are not valid.");
+                        String json = gson.toJson(inputMap);
+                        out.print(json);
+                        return;
+                    }
+
+                    AccountBean accountBean = new AccountBean();
+                    AccountDao accountDao = new AccountDao();
+                    Account account = accountDao.getByUsername(username);
+
+                    if (account == null || !SHA1.encryptPassword(password).equals(account.getPassword())) {
+                        inputMap.put("redirect", false);
+                        inputMap.put("message", "Username or password are not valid.");
+                        String json = gson.toJson(inputMap);
+                        out.print(json);
+                        return;
+                    }
+
+                    accountBean.setAccount(account);
+                    request.getSession().setAttribute("accountBean", accountBean);
+
+                    inputMap.put("redirect", true);
+                    inputMap.put("message", username + ", you are successfully logged in.");
+                    String json = gson.toJson(inputMap);
+                    out.print(json);
+                }
+                break;
+                case "picture":
+                {
+                    AccountBean accountBean = (AccountBean)request.getSession().getAttribute("accountBean");
+                    Account account = accountBean.getAccount();
+                    Integer pictureId = account.getPicture_Id();
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+                    Gson gson = new Gson();
+                    Map<String, Object> map = new HashMap<>();
+                    if(pictureId==null)
+                    {
+                        map.put("exists", false);
+                        map.put("countryCode", account.getCountryCode());
+                    }
+                    else {
+                        map.put("exists", true);
+                        map.put("id", pictureId);
+                    }
+                    response.getOutputStream().print(gson.toJson(map));
                 }
                 break;
             }

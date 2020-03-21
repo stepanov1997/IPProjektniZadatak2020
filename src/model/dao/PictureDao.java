@@ -1,5 +1,6 @@
 package model.dao;
 
+import model.dto.Account;
 import model.dto.Picture;
 import util.ConnectionPool;
 
@@ -46,7 +47,7 @@ public class PictureDao {
         return null;
     }
 
-    public boolean add(int accountId, Picture picture) {
+    public boolean add(Account account, Picture picture) {
         Connection con = null;
         PreparedStatement preparedStatement = null;
         ResultSet generatedKeys = null;
@@ -68,7 +69,8 @@ public class PictureDao {
 
             preparedStatement = con.prepareStatement(addPictureToUserQuery);
             preparedStatement.setInt(1, id);
-            preparedStatement.setInt(2, accountId);
+            preparedStatement.setInt(2, account.getId());
+            account.setPicture_Id(id);
             return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {
             e.printStackTrace();

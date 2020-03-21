@@ -47,7 +47,7 @@ public class AccountBean {
 
     public boolean existsByEmail()
     {
-        return accountDao.existsByUsername(usernameKey);
+        return accountDao.existsByEmail(usernameKey);
     }
 
 

@@ -9,8 +9,9 @@ public class Account {
     private String username;
     private String password;
     private String email;
-    private int picture_Id;
+    private Integer picture_Id = null;
     private String country;
+    private String countryCode;
     private String region;
     private String city;
 
@@ -23,6 +24,14 @@ public class Account {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 
     public int getId() {
@@ -97,11 +106,11 @@ public class Account {
         this.city = city;
     }
 
-    public int getPicture_Id() {
+    public Integer getPicture_Id() {
         return picture_Id;
     }
 
-    public void setPicture_Id(int picture_Id) {
+    public void setPicture_Id(Integer picture_Id) {
         this.picture_Id = picture_Id;
     }
 
@@ -118,14 +127,14 @@ public class Account {
                 Objects.equals(getEmail(), account.getEmail()) &&
                 Objects.equals(getPicture_Id(), account.getPicture_Id()) &&
                 Objects.equals(getCountry(), account.getCountry()) &&
+                Objects.equals(getCountryCode(), account.getCountryCode()) &&
                 Objects.equals(getRegion(), account.getRegion()) &&
                 Objects.equals(getCity(), account.getCity());
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(getId(), getName(), getSurname(), getUsername(), getPassword(), getEmail(), getCountry(), getRegion(), getCity(), getPicture_Id());
-        return result;
+        return Objects.hash(getId(), getName(), getSurname(), getUsername(), getPassword(), getEmail(), getPicture_Id(), getCountry(), getCountryCode(), getRegion(), getCity());
     }
 
     @Override
@@ -139,6 +148,7 @@ public class Account {
                 ", email='" + email + '\'' +
                 ", picture_Id=" + picture_Id +
                 ", country='" + country + '\'' +
+                ", countryCode='" + countryCode + '\'' +
                 ", region='" + region + '\'' +
                 ", city='" + city + '\'' +
                 '}';

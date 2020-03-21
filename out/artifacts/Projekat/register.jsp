@@ -33,7 +33,6 @@
                     }
                 }
             };
-            debugger;
             let url = "Controller?controller=account&action=register";
             url += "&name=" + $('[name$="name"]').val();
             url += "&surname=" + $('[name$="surname"]').val();
@@ -43,7 +42,7 @@
             url += "&email=" + $('[name$="email"]').val();
             url += "&submit=" + $('[name$="submit"]').val();
             console.log(url);
-            xhttp.open("POST", url.toString(), true);
+            xhttp.open("POST", url, true);
             xhttp.send();
         }
     </script>

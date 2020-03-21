@@ -96,21 +96,17 @@ public class FileUploadController extends HttpServlet {
                     picture.setImg(img);
                     AccountBean accountBean = (AccountBean)request.getSession().getAttribute("accountBean");
                     Account account = accountBean.getAccount();
-                    int accountId = account.getId();
-                    if (pictureDao.add(accountId, picture)) {
+                    if (pictureDao.add(account, picture)) {
+                        request.getSession().setAttribute("accountBean", accountBean);
                         inputMap.put("success", true);
                         inputMap.put("id", picture.getId());
-                        String json = gson.toJson(inputMap);
-                        response.setContentType("application/json");
-                        response.setCharacterEncoding("UTF-8");
-                        out.print(json);
                     } else {
                         inputMap.put("success", false);
-                        String json = gson.toJson(inputMap);
-                        response.setContentType("application/json");
-                        response.setCharacterEncoding("UTF-8");
-                        out.print(json);
                     }
+                    String json = gson.toJson(inputMap);
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+                    out.print(json);
                 }
             }
         }

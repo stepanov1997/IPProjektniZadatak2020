@@ -13,16 +13,18 @@ public class AccountDao {
 
     private static final String selectAllQuery = "SELECT * FROM user";
     private static final String selectOneQuery = "SELECT * FROM user WHERE id=?";
+    private static final String selectByUsernameQuery = "SELECT * FROM user WHERE username=?";
     private static final String addQuery = "INSERT INTO user (name, surname, username, password, email) VALUES (?, ?, ?, ?, ?)";
     private static final String deleteQuery = "DELETE FROM user WHERE id = ?";
-    private static final String updateQuery = "UPDATE user SET name=?, surname=?, username=?, password=?, email=?, picture=?, country=?, region=?, city=? WHERE id=?";
+    private static final String updateQuery = "UPDATE user SET name=?, surname=?, username=?, password=?, email=?, country=?, countryCode=?, region=?, city=?, picture_id=? WHERE id=?";
     private static final String countByUsernameQuery = "SELECT COUNT(*) as number FROM user WHERE username=?";
     private static final String countByEmailQuery = "SELECT COUNT(*) as number FROM user WHERE email=?";
 
-    public AccountDao() {}
 
-    public List<Account> getAll()
-    {
+    public AccountDao() {
+    }
+
+    public List<Account> getAll() {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
@@ -61,6 +63,7 @@ public class AccountDao {
         }
         return accounts;
     }
+
     public int add(@NotNull Account account) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -129,35 +132,34 @@ public class AccountDao {
         try {
             connection = ConnectionPool.getConnectionPool().checkOut();
             preparedStatement = connection.prepareStatement(updateQuery);
-            //UPDATE user SET name=?, surname=?, username=?, password=?, email=?, country=?, region=?, city=? WHERE id=?
             preparedStatement.setString(1, account.getName());
             preparedStatement.setString(2, account.getSurname());
             preparedStatement.setString(3, account.getUsername());
             preparedStatement.setString(4, account.getPassword());
             preparedStatement.setString(5, account.getEmail());
             preparedStatement.setString(6, account.getCountry());
-            preparedStatement.setString(7, account.getRegion());
-            preparedStatement.setString(8, account.getCity());
-            preparedStatement.setInt(9, account.getId());
+            preparedStatement.setString(7, account.getCountryCode());
+            preparedStatement.setString(8, account.getRegion());
+            preparedStatement.setString(9, account.getCity());
+            if (account.getPicture_Id() == null)
+                preparedStatement.setNull(10, Types.INTEGER);
+            else
+                preparedStatement.setInt(10, account.getPicture_Id());
+            preparedStatement.setInt(11, account.getId());
             int res = preparedStatement.executeUpdate();
+            //"UPDATE user SET name=?, surname=?, username=?, password=?, email=?, country=?, countryCode=?, region=?, city=?, picture_id=? WHERE id=?";
+
             return res > 0;
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
-            try {
-                resultSet.close();
-                preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                ConnectionPool.getConnectionPool().checkIn(connection);
-            }
+            ConnectionPool.getConnectionPool().checkIn(connection);
         }
         return false;
     }
 
     @Nullable
-    private Account get(int id) {
+    public Account get(int id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -197,6 +199,53 @@ public class AccountDao {
         return account;
     }
 
+    public Account getByUsername(String username) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Account account = null;
+        try {
+            connection = ConnectionPool.getConnectionPool().checkOut();
+            preparedStatement = connection.prepareStatement(selectByUsernameQuery);
+            preparedStatement.setString(1, username);
+            preparedStatement.executeQuery();
+
+            resultSet = preparedStatement.getResultSet();
+
+            if (resultSet.next()) {
+                account = new Account();
+                account.setId(resultSet.getInt("id"));
+                account.setName(resultSet.getString("name"));
+                account.setSurname(resultSet.getString("surname"));
+                account.setUsername(resultSet.getString("username"));
+                account.setPassword(resultSet.getString("password"));
+                account.setEmail(resultSet.getString("email"));
+                account.setCountry(resultSet.getString("country"));
+                account.setCountryCode(resultSet.getString("countryCode"));
+                account.setRegion(resultSet.getString("region"));
+                account.setCity(resultSet.getString("city"));
+                Integer picture_id = resultSet.getInt("picture_id");
+                if (resultSet.wasNull()) {
+                    picture_id = null;
+                }
+                account.setPicture_Id(picture_id);
+                return account;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                resultSet.close();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                ConnectionPool.getConnectionPool().checkIn(connection);
+            }
+        }
+        return account;
+    }
+
     public boolean existsByUsername(String username) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -212,7 +261,7 @@ public class AccountDao {
 
             if (resultSet.next()) {
                 int number = resultSet.getInt("number");
-                return number>0;
+                return number > 0;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -244,7 +293,7 @@ public class AccountDao {
 
             if (resultSet.next()) {
                 int number = resultSet.getInt("number");
-                return number>0;
+                return number > 0;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
