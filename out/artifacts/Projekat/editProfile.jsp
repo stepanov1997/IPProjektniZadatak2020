@@ -1,15 +1,17 @@
-<jsp:useBean id="accountBean" scope="session" type="model.beans.AccountBean"/>
-<%--
-  Created by IntelliJ IDEA.
-  User: stepa
-  Date: 18.3.2020.
-  Time: 14:03
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
+
+<%  if(session.getAttribute("accountBean") == null)
+{   %>
+<h2>ACCESS DENIED</h2>
+<h3>Only logged in or registered user has access.</h3>
+<%      return;
+}   %>
+
+<jsp:useBean id="accountBean" scope="session" type="model.beans.AccountBean"/>
 <html>
 <head>
-    <title>Profile info</title>
+    <title>EDIT PROFILE</title>
+    <link rel="ICON" href="https://scontent.fbeg4-1.fna.fbcdn.net/v/t1.0-9/54255431_645793952539379_1611586770158223360_o.jpg?_nc_cat=110&_nc_sid=09cbfe&_nc_ohc=zDb83HnW2FoAX-AuhRZ&_nc_ht=scontent.fbeg4-1.fna&oh=da1701f4c2fa67f6a3bad35766e337e7&oe=5E9CEBBE" type="image/jpg" />
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script>
         function fillContries() {
@@ -178,12 +180,12 @@
             if(selectRegions.hidden===false)
             {
                 var regionValue = selectRegions.options[selectRegions.selectedIndex].value;
-                url += "&regions=" + regionValue;
+                url += "&region=" + regionValue;
             }
             var selectCities = document.getElementById("cities");
             if(selectCities.hidden===false) {
                 var cityValue = selectCities.options[selectCities.selectedIndex].value;
-                url += "&cities=" + cityValue;
+                url += "&city=" + cityValue;
             }
             if (fileInput.files.length === 0) {
                 url += "&picture=" + false;
@@ -198,6 +200,7 @@
     </script>
 </head>
 <body>
+
 <p>Name: ${accountBean.account.name}</p>
 <p>Surname: ${accountBean.account.surname}</p>
 <p>Username: ${accountBean.account.username}</p>

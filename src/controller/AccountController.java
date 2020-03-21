@@ -164,6 +164,9 @@ public class AccountController extends HttpServlet implements Serializable {
                         return;
                     }
 
+                    account.setLoginCounter(account.getLoginCounter()+1);
+                    accountDao.update(account);
+
                     accountBean.setAccount(account);
                     request.getSession().setAttribute("accountBean", accountBean);
 
@@ -192,6 +195,12 @@ public class AccountController extends HttpServlet implements Serializable {
                         map.put("id", pictureId);
                     }
                     response.getOutputStream().print(gson.toJson(map));
+                }
+                break;
+                case "logout":
+                {
+                    request.getSession().invalidate();
+                    response.sendRedirect("login.jsp");
                 }
                 break;
             }

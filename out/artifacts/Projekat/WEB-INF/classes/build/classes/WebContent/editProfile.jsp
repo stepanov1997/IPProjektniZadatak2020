@@ -1,15 +1,17 @@
-<jsp:useBean id="accountBean" scope="session" type="model.beans.AccountBean"/>
-<%--
-  Created by IntelliJ IDEA.
-  User: stepa
-  Date: 18.3.2020.
-  Time: 14:03
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
+
+<%  if(session.getAttribute("accountBean") == null)
+{   %>
+<h2>ACCESS DENIED</h2>
+<h3>Only logged in user has access.</h3>
+<%      return;
+}   %>
+
+<jsp:useBean id="accountBean" scope="session" type="model.beans.AccountBean"/>
 <html>
 <head>
     <title>Profile info</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script>
         function fillContries() {
             const xhttp = new XMLHttpRequest();
@@ -158,7 +160,7 @@
                     if (result.redirect) {
                         $("#result").html(result.message);
                         setTimeout(function () {
-                            window.location = "newsFeed.jsp";
+                            window.location = "login.jsp";
                         }, 2000);
                     } else {
                         $("#result").html(result.message);
@@ -170,8 +172,9 @@
             };
             var url = "Controller?controller=account&action=editProfile&submit=submit";
             var selectCountries = document.getElementById("countries");
-            var countryValue = selectCountries.options[selectCountries.selectedIndex].value;
-            url += "&countries=" + countryValue;
+            var country = selectCountries.options[selectCountries.selectedIndex];
+            url += "&country=" + country.innerHTML;
+            url += "&countryCode=" + country.value;
             var selectRegions = document.getElementById("regions");
             if(selectRegions.hidden===false)
             {
@@ -196,6 +199,7 @@
     </script>
 </head>
 <body>
+
 <p>Name: ${accountBean.account.name}</p>
 <p>Surname: ${accountBean.account.surname}</p>
 <p>Username: ${accountBean.account.username}</p>

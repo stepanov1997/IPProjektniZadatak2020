@@ -14,6 +14,7 @@ public class Account {
     private String countryCode;
     private String region;
     private String city;
+    private int loginCounter;
 
     public Account() {
     }
@@ -24,6 +25,14 @@ public class Account {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public int getLoginCounter() {
+        return loginCounter;
+    }
+
+    public void setLoginCounter(int loginCounter) {
+        this.loginCounter = loginCounter;
     }
 
     public String getCountryCode() {
@@ -129,12 +138,13 @@ public class Account {
                 Objects.equals(getCountry(), account.getCountry()) &&
                 Objects.equals(getCountryCode(), account.getCountryCode()) &&
                 Objects.equals(getRegion(), account.getRegion()) &&
-                Objects.equals(getCity(), account.getCity());
+                Objects.equals(getCity(), account.getCity()) &&
+                Objects.equals(getLoginCounter(), account.getLoginCounter());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getSurname(), getUsername(), getPassword(), getEmail(), getPicture_Id(), getCountry(), getCountryCode(), getRegion(), getCity());
+        return Objects.hash(getId(), getName(), getSurname(), getUsername(), getPassword(), getEmail(), getPicture_Id(), getCountry(), getCountryCode(), getRegion(), getCity(), getLoginCounter());
     }
 
     @Override
@@ -151,6 +161,7 @@ public class Account {
                 ", countryCode='" + countryCode + '\'' +
                 ", region='" + region + '\'' +
                 ", city='" + city + '\'' +
+                ", loginCounter='" + loginCounter + '\'' +
                 '}';
     }
 }

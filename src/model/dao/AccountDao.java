@@ -16,7 +16,7 @@ public class AccountDao {
     private static final String selectByUsernameQuery = "SELECT * FROM user WHERE username=?";
     private static final String addQuery = "INSERT INTO user (name, surname, username, password, email) VALUES (?, ?, ?, ?, ?)";
     private static final String deleteQuery = "DELETE FROM user WHERE id = ?";
-    private static final String updateQuery = "UPDATE user SET name=?, surname=?, username=?, password=?, email=?, country=?, countryCode=?, region=?, city=?, picture_id=? WHERE id=?";
+    private static final String updateQuery = "UPDATE user SET name=?, surname=?, username=?, password=?, email=?, country=?, countryCode=?, region=?, city=?, loginCounter=?, picture_id=? WHERE id=?";
     private static final String countByUsernameQuery = "SELECT COUNT(*) as number FROM user WHERE username=?";
     private static final String countByEmailQuery = "SELECT COUNT(*) as number FROM user WHERE email=?";
 
@@ -141,11 +141,12 @@ public class AccountDao {
             preparedStatement.setString(7, account.getCountryCode());
             preparedStatement.setString(8, account.getRegion());
             preparedStatement.setString(9, account.getCity());
+            preparedStatement.setInt(10, account.getLoginCounter());
             if (account.getPicture_Id() == null)
-                preparedStatement.setNull(10, Types.INTEGER);
+                preparedStatement.setNull(11, Types.INTEGER);
             else
-                preparedStatement.setInt(10, account.getPicture_Id());
-            preparedStatement.setInt(11, account.getId());
+                preparedStatement.setInt(11, account.getPicture_Id());
+            preparedStatement.setInt(12, account.getId());
             int res = preparedStatement.executeUpdate();
             //"UPDATE user SET name=?, surname=?, username=?, password=?, email=?, country=?, countryCode=?, region=?, city=?, picture_id=? WHERE id=?";
 
@@ -223,6 +224,7 @@ public class AccountDao {
                 account.setCountry(resultSet.getString("country"));
                 account.setCountryCode(resultSet.getString("countryCode"));
                 account.setRegion(resultSet.getString("region"));
+                account.setLoginCounter(resultSet.getInt("loginCounter"));
                 account.setCity(resultSet.getString("city"));
                 Integer picture_id = resultSet.getInt("picture_id");
                 if (resultSet.wasNull()) {

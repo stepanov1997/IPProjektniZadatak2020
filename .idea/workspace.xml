@@ -7,55 +7,119 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22ef2966-7319-4202-8540-bc7dd2873c9f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/WebContent/login.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebContent/newsFeed.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebContent/WEB-INF/lib/restfb-3.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebContent/scripts/newsFeedScript.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebContent/styles/newsFeedStyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/NewsFeedController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/creationScript.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/creationScript.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/ip2020.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/Database/ip2020.mwb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/ip2020.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/Database/ip2020.mwb.bak" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/editProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/editProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/newsFeed.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/newsFeed.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/Database/creationScript.sql" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/Database/creationScript.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/Database/ip2020.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/Database/ip2020.mwb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/Database/ip2020.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/Database/ip2020.mwb.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/WebContent/editProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/WebContent/editProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/WebContent/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/newsFeed.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/WebContent/newsFeed.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/WebContent/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/WebContent/register.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/controller/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/controller/FileUploadController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/controller/FileUploadController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/model/beans/AccountBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/model/beans/AccountBean.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/model/dao/AccountDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/model/dao/AccountDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/model/dao/PictureDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/model/dao/PictureDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/model/dto/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/model/dto/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/ip/rss/Feed.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/ip/rss/FeedMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/ip/rss/RSSFeedParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/ip/rss/RSSFeedWriter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/ip/rss/RSSServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/ip/rss/ReadTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/ip/rss/WriteTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/lab/auth/AuthListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/lab/beans/FileUploadBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/lab/beans/ObavezaBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/lab/beans/UserBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/lab/dao/ConnectionPool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/lab/dao/ConnectionPool.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/lab/dao/KorisnikDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/lab/dao/ObavezeDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/lab/dto/Korisnik.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/lab/dto/Obaveza.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/lab/util/CustomValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/lab/util/data/Category.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/net/etfbl/lab/util/data/Picture.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/src/net/etfbl/lab/dao/ConnectionPool.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/Database/creationScript.sql" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/Database/creationScript.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/Database/ip2020.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/Database/ip2020.mwb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/Database/ip2020.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/Database/ip2020.mwb.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/editProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/editProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/newsFeed.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/newsFeed.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/register.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/build/classes/WebContent/editProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/build/classes/WebContent/editProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/build/classes/WebContent/newsFeed.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/build/classes/WebContent/newsFeed.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/FileUploadController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/FileUploadController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dao/AccountDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dao/AccountDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dao/PictureDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dao/PictureDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dto/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dto/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/ip/rss/Feed.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/ip/rss/FeedMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/ip/rss/RSSFeedParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/ip/rss/RSSFeedWriter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/ip/rss/RSSServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/ip/rss/ReadTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/ip/rss/WriteTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/lab/auth/AuthListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/lab/beans/FileUploadBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/lab/beans/ObavezaBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/lab/beans/UserBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/lab/dao/ConnectionPool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/lab/dao/ConnectionPool.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/lab/dao/KorisnikDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/lab/dao/ObavezeDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/lab/dto/Korisnik.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/lab/dto/Obaveza.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/lab/util/CustomValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/lab/util/data/Category.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/net/etfbl/lab/util/data/Picture.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/WebContent/editProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/WebContent/editProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/WebContent/newsFeed.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/WebContent/newsFeed.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/editProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/editProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/newsFeed.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/newsFeed.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/src/net/etfbl/lab/dao/ConnectionPool.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/editProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/editProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/newsFeed.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/newsFeed.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Projekat/register.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/FileUploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/FileUploadController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/beans/AccountBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/beans/AccountBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/dao/AccountDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/dao/AccountDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/dao/PictureDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/dao/PictureDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/dto/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/dto/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/ip/rss/Feed.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/ip/rss/FeedMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/ip/rss/RSSFeedParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/ip/rss/RSSFeedWriter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/ip/rss/RSSServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/RSSServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/ip/rss/ReadTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/ip/rss/WriteTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/lab/auth/AuthListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/lab/beans/FileUploadBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/lab/beans/ObavezaBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/lab/beans/UserBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/lab/dao/ConnectionPool.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/lab/dao/ConnectionPool.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/lab/dao/KorisnikDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/lab/dao/ObavezeDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/lab/dto/Korisnik.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/lab/dto/Obaveza.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/lab/util/CustomValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/lab/util/data/Category.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/etfbl/lab/util/data/Picture.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,8 +155,9 @@
       <list>
         <option value="jsf" />
         <option value="JavaScript File" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Jspx File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -134,15 +199,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\stepa\Desktop\IPProjektniZadatak2020\WebContent\WEB-INF\lib" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\stepa\Desktop\IPProjektniZadatak2020\WebContent\WEB-INF\lib" />
       <recent name="C:\Users\stepa\Desktop\IPProjektniZadatak2020\src\util" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\stepa\Desktop\IPProjektniZadatak2020\WebContent\WEB-INF\lib" />
     </key>
   </component>
   <component name="RestServicesNavigator">
@@ -343,6 +408,7 @@
       <workItem from="1584645379498" duration="13988000" />
       <workItem from="1584701711028" duration="10285000" />
       <workItem from="1584724695933" duration="25096000" />
+      <workItem from="1584791578807" duration="26835000" />
     </task>
     <servers />
   </component>
@@ -385,10 +451,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1584649048273" />
-    <state x="500" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1584750225511">
+    <state x="500" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1584814777028">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="500" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1584750225511" />
+    <state x="500" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1584814777028" />
     <state x="272" y="29" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1584642861967">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -401,110 +467,114 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="471" y="22" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1280.680@0.0.1280.680" timestamp="1584574994538" />
-    <state x="347" y="270" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1584635088373">
+    <state x="347" y="270" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1584807178653">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="347" y="270" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1584635088373" />
+    <state x="347" y="270" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1584807178653" />
     <state x="443" y="230" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1584635090941">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="443" y="230" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1280.680@0.0.1280.680" timestamp="1584635090941" />
-    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584531347640">
+    <state x="340" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1584813773079">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1584531347640" />
+    <state x="340" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1584813773079" />
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584815115218">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1584815115218" />
     <state x="396" y="43" key="#xdebugger.evaluate" timestamp="1584749567656">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="396" y="43" key="#xdebugger.evaluate/0.0.1280.680@0.0.1280.680" timestamp="1584749567656" />
-    <state width="438" height="466" key="DebuggerActiveHint" timestamp="1584749114851">
+    <state width="438" height="466" key="DebuggerActiveHint" timestamp="1584801962304">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="438" height="466" key="DebuggerActiveHint/0.0.1280.680@0.0.1280.680" timestamp="1584749114851" />
+    <state width="438" height="466" key="DebuggerActiveHint/0.0.1280.680@0.0.1280.680" timestamp="1584801962304" />
     <state x="348" y="81" key="FileChooserDialogImpl" timestamp="1584638209368">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="348" y="81" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1584638209368" />
-    <state width="1089" height="150" key="GridCell.Tab.0.bottom" timestamp="1584751633814">
+    <state width="1089" height="2" key="GridCell.Tab.0.bottom" timestamp="1584830715017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584751633814" />
-    <state width="1089" height="150" key="GridCell.Tab.0.center" timestamp="1584751633814">
+    <state width="1089" height="2" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584830715017" />
+    <state width="1089" height="2" key="GridCell.Tab.0.center" timestamp="1584830715017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1584751633814" />
-    <state width="1089" height="150" key="GridCell.Tab.0.left" timestamp="1584751633814">
+    <state width="1089" height="2" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1584830715017" />
+    <state width="1089" height="2" key="GridCell.Tab.0.left" timestamp="1584830715017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1584751633814" />
-    <state width="1089" height="150" key="GridCell.Tab.0.right" timestamp="1584751633814">
+    <state width="1089" height="2" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1584830715017" />
+    <state width="1089" height="2" key="GridCell.Tab.0.right" timestamp="1584830715017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1584751633814" />
-    <state width="1089" height="150" key="GridCell.Tab.1.bottom" timestamp="1584751633815">
+    <state width="1089" height="2" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1584830715017" />
+    <state width="1089" height="2" key="GridCell.Tab.1.bottom" timestamp="1584830715017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584751633815" />
-    <state width="1089" height="150" key="GridCell.Tab.1.center" timestamp="1584751633815">
+    <state width="1089" height="2" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584830715017" />
+    <state width="1089" height="2" key="GridCell.Tab.1.center" timestamp="1584830715017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1584751633815" />
-    <state width="1089" height="150" key="GridCell.Tab.1.left" timestamp="1584751633815">
+    <state width="1089" height="2" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1584830715017" />
+    <state width="1089" height="2" key="GridCell.Tab.1.left" timestamp="1584830715017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1584751633815" />
-    <state width="1089" height="150" key="GridCell.Tab.1.right" timestamp="1584751633815">
+    <state width="1089" height="2" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1584830715017" />
+    <state width="1089" height="2" key="GridCell.Tab.1.right" timestamp="1584830715017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1584751633815" />
-    <state width="1089" height="150" key="GridCell.Tab.2.bottom" timestamp="1584751633815">
+    <state width="1089" height="2" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1584830715017" />
+    <state width="1089" height="2" key="GridCell.Tab.2.bottom" timestamp="1584830715018">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.2.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584751633815" />
-    <state width="1089" height="150" key="GridCell.Tab.2.center" timestamp="1584751633815">
+    <state width="1089" height="2" key="GridCell.Tab.2.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584830715018" />
+    <state width="1089" height="2" key="GridCell.Tab.2.center" timestamp="1584830715017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.2.center/0.0.1280.680@0.0.1280.680" timestamp="1584751633815" />
-    <state width="1089" height="150" key="GridCell.Tab.2.left" timestamp="1584751633815">
+    <state width="1089" height="2" key="GridCell.Tab.2.center/0.0.1280.680@0.0.1280.680" timestamp="1584830715017" />
+    <state width="1089" height="2" key="GridCell.Tab.2.left" timestamp="1584830715017">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.2.left/0.0.1280.680@0.0.1280.680" timestamp="1584751633815" />
-    <state width="1089" height="150" key="GridCell.Tab.2.right" timestamp="1584751633815">
+    <state width="1089" height="2" key="GridCell.Tab.2.left/0.0.1280.680@0.0.1280.680" timestamp="1584830715017" />
+    <state width="1089" height="2" key="GridCell.Tab.2.right" timestamp="1584830715018">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.2.right/0.0.1280.680@0.0.1280.680" timestamp="1584751633815" />
-    <state width="1089" height="150" key="GridCell.Tab.3.bottom" timestamp="1584751633816">
+    <state width="1089" height="2" key="GridCell.Tab.2.right/0.0.1280.680@0.0.1280.680" timestamp="1584830715018" />
+    <state width="1089" height="2" key="GridCell.Tab.3.bottom" timestamp="1584830715018">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.3.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584751633816" />
-    <state width="1089" height="150" key="GridCell.Tab.3.center" timestamp="1584751633815">
+    <state width="1089" height="2" key="GridCell.Tab.3.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584830715018" />
+    <state width="1089" height="2" key="GridCell.Tab.3.center" timestamp="1584830715018">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.3.center/0.0.1280.680@0.0.1280.680" timestamp="1584751633815" />
-    <state width="1089" height="150" key="GridCell.Tab.3.left" timestamp="1584751633815">
+    <state width="1089" height="2" key="GridCell.Tab.3.center/0.0.1280.680@0.0.1280.680" timestamp="1584830715018" />
+    <state width="1089" height="2" key="GridCell.Tab.3.left" timestamp="1584830715018">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.3.left/0.0.1280.680@0.0.1280.680" timestamp="1584751633815" />
-    <state width="1089" height="150" key="GridCell.Tab.3.right" timestamp="1584751633815">
+    <state width="1089" height="2" key="GridCell.Tab.3.left/0.0.1280.680@0.0.1280.680" timestamp="1584830715018" />
+    <state width="1089" height="2" key="GridCell.Tab.3.right" timestamp="1584830715018">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1089" height="150" key="GridCell.Tab.3.right/0.0.1280.680@0.0.1280.680" timestamp="1584751633815" />
-    <state width="933" height="150" key="GridCell.Tab.4.bottom" timestamp="1584749861461">
+    <state width="1089" height="2" key="GridCell.Tab.3.right/0.0.1280.680@0.0.1280.680" timestamp="1584830715018" />
+    <state width="1089" height="150" key="GridCell.Tab.4.bottom" timestamp="1584802114928">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="933" height="150" key="GridCell.Tab.4.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584749861461" />
-    <state width="933" height="150" key="GridCell.Tab.4.center" timestamp="1584749861461">
+    <state width="1089" height="150" key="GridCell.Tab.4.bottom/0.0.1280.680@0.0.1280.680" timestamp="1584802114928" />
+    <state width="1089" height="150" key="GridCell.Tab.4.center" timestamp="1584802114927">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="933" height="150" key="GridCell.Tab.4.center/0.0.1280.680@0.0.1280.680" timestamp="1584749861461" />
-    <state width="933" height="150" key="GridCell.Tab.4.left" timestamp="1584749861461">
+    <state width="1089" height="150" key="GridCell.Tab.4.center/0.0.1280.680@0.0.1280.680" timestamp="1584802114927" />
+    <state width="1089" height="150" key="GridCell.Tab.4.left" timestamp="1584802114927">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="933" height="150" key="GridCell.Tab.4.left/0.0.1280.680@0.0.1280.680" timestamp="1584749861461" />
-    <state width="933" height="150" key="GridCell.Tab.4.right" timestamp="1584749861461">
+    <state width="1089" height="150" key="GridCell.Tab.4.left/0.0.1280.680@0.0.1280.680" timestamp="1584802114927" />
+    <state width="1089" height="150" key="GridCell.Tab.4.right" timestamp="1584802114928">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="933" height="150" key="GridCell.Tab.4.right/0.0.1280.680@0.0.1280.680" timestamp="1584749861461" />
+    <state width="1089" height="150" key="GridCell.Tab.4.right/0.0.1280.680@0.0.1280.680" timestamp="1584802114928" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1584642944379">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -513,10 +583,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="647" height="347" key="XDebugger.FullValuePopup/0.0.1280.680@0.0.1280.680" timestamp="1584749563636" />
-    <state x="337" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1584724699521">
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1584791782054">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1584724699521" />
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1584791782054" />
     <state x="376" y="242" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1584631053946">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -533,14 +603,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="348" y="0" key="refactoring.ChangeSignatureDialog/0.0.1280.680@0.0.1280.680" timestamp="1584549514070" />
-    <state x="297" y="151" key="run.anything.popup" timestamp="1584738146550">
+    <state x="297" y="151" key="run.anything.popup" timestamp="1584820797177">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1584738146550" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1584746371695">
+    <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1584820797177" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1584813480599">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1584746371695" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1584813480599" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -554,11 +624,6 @@
           <url>file://$PROJECT_DIR$/src/controller/FileUploadController.java</url>
           <line>34</line>
           <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/controller/AccountController.java</url>
-          <line>109</line>
-          <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/controller/AccountController.java</url>
@@ -582,7 +647,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/controller/AccountController.java</url>
-          <line>177</line>
+          <line>180</line>
           <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -609,6 +674,11 @@
           <url>file://$PROJECT_DIR$/src/controller/AccountController.java</url>
           <line>158</line>
           <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/AccountController.java</url>
+          <line>110</line>
+          <option name="timeStamp" value="77" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
