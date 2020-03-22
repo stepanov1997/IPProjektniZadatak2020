@@ -125,6 +125,7 @@
             </h5>
             <p><%=rssFeed.getDescription().getValue()%>
             </p>
+            <p><a href="<%=rssFeed.getLink()%>">Link</a></p>
             <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%=rssFeed.getLink()%>"
                data-hashtags="TextSearcher">Tweet</a>
             <div class="fb-share-button"
