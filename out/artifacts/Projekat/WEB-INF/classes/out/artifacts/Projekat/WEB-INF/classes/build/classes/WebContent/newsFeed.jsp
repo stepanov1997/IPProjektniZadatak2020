@@ -56,36 +56,44 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
                     var result = JSON.parse(this.responseText);
-                    if (result.redirect) {
+                    if (result.success) {
+                        var divHtml = "";
                         var div = document.createElement("div");
 
-                        var html = "";
                         var ptag = document.createElement("p");
-                        ptag.innerText = "Datetime: " + result.dateTime;
-                        html += ptag.innerHTML;
-
-                        var ptag = document.createElement("p");
-                        ptag.innerText = "Datetime: " + result.dateTime;
-                        html += ptag.innerHTML;
+                        ptag.innerText = "Datetime: " + result.dateTime.day + "."+ result.dateTime.month + "." + result.dateTime.year + ".";
+                        divHtml += ptag.outerHTML;
 
                         var profile = new Image();
                         profile.style.width = "50px";
                         profile.style.height = "50px";
-                        if (result.Picture_id == null || result.Picture_id === "") {
-                            var flagLink = document.getElementById("profilePic").getAttribute("src");
+                        if (result.Picture_id === undefined || result.Picture_id === "") {
+                            var img = document.getElementById("profilePic").firstChild;
+                            var flagLink = img.getAttribute("src");
                             profile.setAttribute("src", flagLink);
                         } else {
                             profile.setAttribute("src", "rest?id=" + result.Picture_id);
                         }
-                        html += profile.innerHTML;
+                        divHtml += profile.outerHTML;
                         switch (result.contentType) {
+                            case 'textOnly':
+                                var pTag = document.createElement("p");
+                                pTag.innerHTML = "Text: "+result.text;
+                                divHtml += pTag.outerHTML;
+                                break;
                             case 'link':
                                 var aTag = document.createElement("a");
                                 aTag.href = result.value;
-                                html += aTag.innerHTML;
+                                divHtml += aTag.outerHTML;
                                 break;
                             case 'ytLink':
-                                html += `<iframe width="560" height="315" src="//www.youtube.com/embed/" + getId(result.value) + " frameborder="0" allowfullscreen></iframe>`
+                                var iframe = document.createElement("iframe");
+                                iframe.style.width="560px";
+                                iframe.style.height="315px";
+                                iframe.src="//www.youtube.com/embed/" + getId(result.value);
+                                iframe.setAttribute("frameborder","0");
+                                iframe.setAttribute("allowfullscreen", true);
+                                divHtml += iframe.outerHTML;
                                 break;
                             case 'picture':
                                 alert("slika ne radi");
@@ -96,13 +104,9 @@
                             default:
                                 break;
                         }
-                        ptag.innerText = "Datetime: " + result.dateTime;
-                        html += ptag.innerHTML;
-
-                        var div = document.createElement("div");
-                        div.innerHTML = html;
-
+                        div.innerHTML = divHtml;
                         var createPost = document.getElementById("createPost");
+                        div.setAttribute("class", "card");
                         createPost.parentNode.insertBefore(div, createPost.nextSibling);
                     } else {
                         alert("greska");
@@ -110,8 +114,8 @@
                 }
             };
             // var url = "Controller?controller=newsFeed&action=createPost";
-            var url = "NewFeedController";
-            url += "&isVideo=" + fileType;
+            var url = "NewsFeedController?";
+            url += "isVideo=" + fileType;
             url += "&isYoutubeLink=" + linkType;
             if (ytLink !== null && ytLink.value !== "") {
                 url += "&ytLink=" + ytLink.value;
@@ -122,10 +126,11 @@
             url += "&text=" + text.value;
             xhttp.open('post', url, true);
 
-            // if (formData.entries().length !== 0)
-            //     xhttp.send(formData);
-            // else
+            if (formData.entries().length !== 0)
+                xhttp.send(formData);
+            else
                 xhttp.send();
+            return false;
         }
 
         var ytFlag = false;
@@ -282,7 +287,7 @@
     </div>
 
     <div id="posts" class="rightcolumn">
-        <form id="createPost">
+        <form id="createPost" onsubmit="return createPost()">
             <div class="leftPost">
                 <label>Type text: </label><br>
                 <textarea id="text" rows=5 cols="50"></textarea>
@@ -300,7 +305,7 @@
                      onclick="addLink(true)" alt="">
                 <img id="link" src="https://icon-library.net/images/website-link-icon/website-link-icon-23.jpg"
                      onclick="addLink(false)" alt=""><br>
-                <button type="submit" onclick="createPost()">SHARE POST</button>
+                <button type="submit">SHARE POST</button>
             </div>
         </form>
         <%

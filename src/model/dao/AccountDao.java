@@ -175,14 +175,22 @@ public class AccountDao {
 
             if (resultSet.next()) {
                 account = new Account();
+                account.setId(resultSet.getInt("id"));
                 account.setName(resultSet.getString("name"));
                 account.setSurname(resultSet.getString("surname"));
                 account.setUsername(resultSet.getString("username"));
                 account.setPassword(resultSet.getString("password"));
+                account.setEmail(resultSet.getString("email"));
                 account.setCountry(resultSet.getString("country"));
+                account.setCountryCode(resultSet.getString("countryCode"));
                 account.setRegion(resultSet.getString("region"));
+                account.setLoginCounter(resultSet.getInt("loginCounter"));
                 account.setCity(resultSet.getString("city"));
-                account.setPicture_Id(resultSet.getInt("picture_id"));
+                Integer picture_id = resultSet.getInt("picture_id");
+                if (resultSet.wasNull()) {
+                    picture_id = null;
+                }
+                account.setPicture_Id(picture_id);
                 return account;
             }
         } catch (SQLException ex) {

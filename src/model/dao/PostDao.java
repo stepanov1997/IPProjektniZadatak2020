@@ -7,6 +7,8 @@ import org.jetbrains.annotations.Nullable;
 import util.ConnectionPool;
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +44,10 @@ public class PostDao {
                 post.setPicture_id(resultSet.getInt("Picture_id"));
                 post.setVideo_id(resultSet.getInt("Video_id"));
                 post.setYoutubeLink(resultSet.getString("youtubeLink"));
-                post.setDateTime(resultSet.getDate("dateTime"));
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(resultSet.getString("dateTime"), formatter);
+                post.setDateTime(dateTime);
                 posts.add(post);
             }
         } catch (SQLException ex) {
@@ -80,7 +85,10 @@ public class PostDao {
             else
                 preparedStatement.setInt(5, post.getVideo_id());
             preparedStatement.setString(6, post.getYoutubeLink());
-            preparedStatement.setDate(7, post.getDateTime());
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String currentDateTime = formatter.format(post.getDateTime());
+            preparedStatement.setString(7, currentDateTime);
             preparedStatement.executeUpdate();
 
             resultSet = preparedStatement.getGeneratedKeys();
@@ -152,7 +160,10 @@ public class PostDao {
                 preparedStatement.setInt(5, post.getVideo_id());
 
             preparedStatement.setString(6, post.getYoutubeLink());
-            preparedStatement.setDate(7, post.getDateTime());
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String currentDateTime = formatter.format(post.getDateTime());
+            preparedStatement.setString(7, currentDateTime);
             preparedStatement.setInt(8, post.getId());
 
             int res = preparedStatement.executeUpdate();
@@ -188,7 +199,10 @@ public class PostDao {
                 post.setPicture_id(resultSet.getInt("Picture_id"));
                 post.setVideo_id(resultSet.getInt("Video_id"));
                 post.setYoutubeLink(resultSet.getString("youtubeLink"));
-                post.setDateTime(resultSet.getDate("dateTime"));
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(resultSet.getString("dateTime"), formatter);
+                post.setDateTime(dateTime);
                 return post;
             }
         } catch (SQLException ex) {

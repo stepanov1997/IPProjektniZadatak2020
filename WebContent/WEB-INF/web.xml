@@ -72,4 +72,13 @@
         <servlet-name>NewsFeedController</servlet-name>
         <url-pattern>/NewsFeedController</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PostServletService</servlet-name>
+        <servlet-class>controller.PostServletService</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PostServletService</servlet-name>
+        <url-pattern>/posts/*</url-pattern>
+    </servlet-mapping>
 </web-app>

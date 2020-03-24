@@ -1,8 +1,10 @@
 package model.dto;
 
 import com.mysql.cj.conf.ConnectionUrlParser;
+import com.rometools.rome.feed.synd.SyndEntry;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Post {
@@ -10,7 +12,7 @@ public class Post {
     private String text;
     private String link;
     private String youtubeLink;
-    private Date dateTime;
+    private LocalDateTime dateTime;
     private Integer User_id;
     private Integer Picture_id;
     private Integer Video_id;
@@ -74,11 +76,11 @@ public class Post {
         this.youtubeLink = youtubeLink;
     }
 
-    public Date getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -122,5 +124,41 @@ public class Post {
             return new ConnectionUrlParser.Pair<>("video",String.valueOf(Video_id));
         }
         return null;
+    }
+
+    public static int postCompare(Object o1, Object o2)
+    {
+        if(!(((o1 instanceof SyndEntry) || (o1 instanceof Post)) && ((o2 instanceof SyndEntry) || (o2 instanceof Post))))
+        {
+            return 0;
+        }
+        if(o1 instanceof SyndEntry)
+        {
+            var entry1 = (SyndEntry)o1;
+            if(o2 instanceof SyndEntry)
+            {
+                var entry2 = (SyndEntry)o2;
+                return entry2.getPublishedDate().compareTo(entry1.getPublishedDate());
+            }
+            else
+            {
+                var entry2 = (Post)o2;
+                return Date.valueOf(entry2.getDateTime().toLocalDate()).compareTo(entry1.getPublishedDate());
+            }
+        }
+        else
+        {
+            var entry1 = (Post)o1;
+            if(o2 instanceof SyndEntry)
+            {
+                var entry2 = (SyndEntry)o2;
+                return entry2.getPublishedDate().compareTo(Date.valueOf(entry1.getDateTime().toLocalDate()));
+            }
+            else
+            {
+                var entry2 = (Post)o2;
+                return entry2.getDateTime().compareTo(entry1.getDateTime());
+            }
+        }
     }
 }

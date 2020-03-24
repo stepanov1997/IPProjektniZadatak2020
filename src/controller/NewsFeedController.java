@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -103,7 +103,7 @@ public class NewsFeedController extends HttpServlet {
         PostDao postDao = new PostDao();
         Post post = new Post();
         post.setUser_id(account.getId());
-        post.setDateTime(new Date(new java.util.Date().getTime()));
+        post.setDateTime(LocalDateTime.now());
         post.setYoutubeLink(ytLink);
         post.setLink(link);
         post.setText(text);

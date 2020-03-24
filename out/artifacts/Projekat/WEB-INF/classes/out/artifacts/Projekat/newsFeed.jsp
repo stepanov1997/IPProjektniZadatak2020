@@ -2,12 +2,16 @@
 <%@ page import="com.rometools.rome.feed.synd.SyndFeed" %>
 <%@ page import="com.rometools.rome.io.FeedException" %>
 <%@ page import="com.rometools.rome.io.SyndFeedInput" %>
+<%@ page import="model.dao.PostDao" %>
 <%@ page import="java.io.InputStreamReader" %>
 <%@ page import="java.net.URL" %>
 <%@ page import="java.text.DateFormat" %>
-<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.List" %>
 <%@ page import="java.util.Locale" %>
-<%@ page import="java.util.stream.Collectors" %>
+<%@ page import="java.util.Comparator" %>
+<%@ page import="java.util.function.Function" %>
+<%@ page import="model.dto.Post" %>
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
 
 <% if (session.getAttribute("accountBean") == null) {
@@ -26,6 +30,7 @@
           href="https://scontent.fbeg4-1.fna.fbcdn.net/v/t1.0-9/54255431_645793952539379_1611586770158223360_o.jpg?_nc_cat=110&_nc_sid=09cbfe&_nc_ohc=zDb83HnW2FoAX-AuhRZ&_nc_ht=scontent.fbeg4-1.fna&oh=da1701f4c2fa67f6a3bad35766e337e7&oe=5E9CEBBE"
           type="image/jpg"/>
     <script src="scripts/newsFeedScript.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script>
 
         var fileType = "";
@@ -56,36 +61,45 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
                     var result = JSON.parse(this.responseText);
-                    if (result.redirect) {
+                    if (result.success) {
+                        var divHtml = "";
                         var div = document.createElement("div");
 
-                        var html = "";
                         var ptag = document.createElement("p");
-                        ptag.innerText = "Datetime: " + result.dateTime;
-                        html += ptag.innerHTML;
-
-                        var ptag = document.createElement("p");
-                        ptag.innerText = "Datetime: " + result.dateTime;
-                        html += ptag.innerHTML;
+                        ptag.innerText = "Datetime: " + result.dateTime.day + "." + result.dateTime.month + "." + result.dateTime.year + ".";
+                        divHtml += ptag.outerHTML;
 
                         var profile = new Image();
                         profile.style.width = "50px";
                         profile.style.height = "50px";
-                        if (result.Picture_id == null || result.Picture_id === "") {
-                            var flagLink = document.getElementById("profilePic").getAttribute("src");
+                        if (result.Picture_id === undefined || result.Picture_id === "") {
+                            var img = document.getElementById("profilePic").firstChild;
+                            var flagLink = img.getAttribute("src");
                             profile.setAttribute("src", flagLink);
                         } else {
                             profile.setAttribute("src", "rest?id=" + result.Picture_id);
                         }
-                        html += profile.innerHTML;
+                        divHtml += profile.outerHTML;
                         switch (result.contentType) {
+                            case 'textOnly':
+                                var pTag = document.createElement("p");
+                                pTag.innerHTML = "Text: " + result.text;
+                                divHtml += pTag.outerHTML;
+                                break;
                             case 'link':
                                 var aTag = document.createElement("a");
                                 aTag.href = result.value;
-                                html += aTag.innerHTML;
+                                aTag.innerHTML = "Link";
+                                divHtml += aTag.outerHTML;
                                 break;
                             case 'ytLink':
-                                html += `<iframe width="560" height="315" src="//www.youtube.com/embed/" + getId(result.value) + " frameborder="0" allowfullscreen></iframe>`
+                                var iframe = document.createElement("iframe");
+                                iframe.style.width = "560px";
+                                iframe.style.height = "315px";
+                                iframe.src = "//www.youtube.com/embed/" + getId(result.value);
+                                iframe.setAttribute("frameborder", "0");
+                                iframe.setAttribute("allowfullscreen", true);
+                                divHtml += iframe.outerHTML;
                                 break;
                             case 'picture':
                                 alert("slika ne radi");
@@ -96,13 +110,9 @@
                             default:
                                 break;
                         }
-                        ptag.innerText = "Datetime: " + result.dateTime;
-                        html += ptag.innerHTML;
-
-                        var div = document.createElement("div");
-                        div.innerHTML = html;
-
+                        div.innerHTML = divHtml;
                         var createPost = document.getElementById("createPost");
+                        div.setAttribute("class", "card");
                         createPost.parentNode.insertBefore(div, createPost.nextSibling);
                     } else {
                         alert("greska");
@@ -110,8 +120,8 @@
                 }
             };
             // var url = "Controller?controller=newsFeed&action=createPost";
-            var url = "NewsFeedController";
-            url += "&isVideo=" + fileType;
+            var url = "NewsFeedController?";
+            url += "isVideo=" + fileType;
             url += "&isYoutubeLink=" + linkType;
             if (ytLink !== null && ytLink.value !== "") {
                 url += "&ytLink=" + ytLink.value;
@@ -212,31 +222,31 @@
     <meta property="og:description" content="Your description"/>
     <meta property="og:image" content="https://www.your-domain.com/path/image.jpg"/>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<%--    <script async="async">--%>
-<%--        $(window).load(function () {--%>
-<%--            (function (d, s, id) {--%>
-<%--                var js, fjs = d.getElementsByTagName(s)[0];--%>
-<%--                if (d.getElementById(id)) return;--%>
-<%--                js = d.createElement(s);--%>
-<%--                js.id = id;--%>
-<%--                js.async = true;--%>
-<%--                js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";--%>
-<%--                fjs.parentNode.insertBefore(js, fjs);--%>
-<%--            }(document, 'script', 'facebook-jssdk'));--%>
+    <%--    <script async="async">--%>
+    <%--        $(window).load(function () {--%>
+    <%--            (function (d, s, id) {--%>
+    <%--                var js, fjs = d.getElementsByTagName(s)[0];--%>
+    <%--                if (d.getElementById(id)) return;--%>
+    <%--                js = d.createElement(s);--%>
+    <%--                js.id = id;--%>
+    <%--                js.async = true;--%>
+    <%--                js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";--%>
+    <%--                fjs.parentNode.insertBefore(js, fjs);--%>
+    <%--            }(document, 'script', 'facebook-jssdk'));--%>
 
-<%--            /* Twitter */--%>
-<%--            !function (d, s, id) {--%>
-<%--                var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';--%>
-<%--                if (!d.getElementById(id)) {--%>
-<%--                    js = d.createElement(s);--%>
-<%--                    js.id = id;--%>
-<%--                    js.src = p + '://platform.twitter.com/widgets.js';--%>
-<%--                    fjs.parentNode.insertBefore(js, fjs);--%>
-<%--                }--%>
-<%--            }(document, 'script', 'twitter-wjs');--%>
-<%--        });--%>
+    <%--            /* Twitter */--%>
+    <%--            !function (d, s, id) {--%>
+    <%--                var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';--%>
+    <%--                if (!d.getElementById(id)) {--%>
+    <%--                    js = d.createElement(s);--%>
+    <%--                    js.id = id;--%>
+    <%--                    js.src = p + '://platform.twitter.com/widgets.js';--%>
+    <%--                    fjs.parentNode.insertBefore(js, fjs);--%>
+    <%--                }--%>
+    <%--            }(document, 'script', 'twitter-wjs');--%>
+    <%--        });--%>
 
-<%--    </script>--%>
+    <%--    </script>--%>
 </head>
 <body>
 <div class="header">
@@ -253,8 +263,8 @@
         <div class="card">
             <h2>About Me</h2>
             <div class="fakeimg">
-                <p><a class="italicAndBoldFont">Name:</a> ${accountBean.account.name}</p>
-                <p><a class="italicAndBoldFont">Surname:</a> ${accountBean.account.surname}</p>
+                <p><a id="name" class="italicAndBoldFont">Name:</a> ${accountBean.account.name}</p>
+                <p><a id="surname" class="italicAndBoldFont">Surname:</a> ${accountBean.account.surname}</p>
                 <p><a class="italicAndBoldFont">Username:</a> ${accountBean.account.username}</p>
                 <p><a class="italicAndBoldFont">Email:</a> ${accountBean.account.email}</p>
                 <p><a class="italicAndBoldFont">Country:</a> ${accountBean.account.country}</p>
@@ -304,39 +314,120 @@
                 <button type="submit">SHARE POST</button>
             </div>
         </form>
-        <%
-            URL feedUrl = new URL("https://europa.eu/newsroom/calendar.xml_en?field_nr_events_by_topic_tid=151");
-            SyndFeedInput input = new SyndFeedInput();
-            SyndFeed feed = null;
-            try {
-                feed = input.build(new InputStreamReader(feedUrl.openStream()));
-            } catch (FeedException e) {
-                e.printStackTrace();
+
+        <script>
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                let elem;
+                var result = JSON.parse(this.responseText);
+                var html = "";
+                var outterDiv = document.createElement("div");
+                result.forEach(function (elem) {
+                        html = "";
+                        var div = document.createElement("div");
+                        div.setAttribute("class", "card");
+                        if (elem.isRss) {
+                            var title = document.createElement("h2");
+                            title.innerText = elem.title;
+                            html += title.outerHTML;
+
+                            var date = document.createElement("h5");
+                            date.innerText = "Date: " + elem.date.day + "." + elem.date.month + "." + elem.date.year + ".";
+                            html += date.outerHTML;
+
+                            var description = document.createElement("p");
+                            description.innerText = elem.description;
+                            html += description.outerHTML;
+
+                            var link = document.createElement("a");
+                            link.href = elem.link;
+                            html += link.outerHTML;
+                        } else {
+                            var nameSurname = document.createElement("h2");
+                            nameSurname.innerText = elem.nameSurname;
+                            html += nameSurname.outerHTML;
+
+                            var date = document.createElement("h5");
+                            date.innerText = "Date: " + elem.date;
+                            html += date.outerHTML;
+
+                            var text = document.createElement("p");
+                            text.innerText = elem.text;
+                            html += text.outerHTML;
+
+                            var img = new Image();
+                            if (result.Picture_id === undefined || result.Picture_id === "") {
+                                let result = JSON.parse(
+                                    $.ajax({
+                                        type: "GET",
+                                        url: 'https://restcountries.eu/rest/v2/region/europe',
+                                        async: false
+                                    }).responseText);
+                                var flagLink = result.find(elem => elem.alpha2Code === elem.countryCode).flag;
+                                img.src = flagLink;
+                            } else {
+                                img.src = "rest?id=" + result.Picture_id;
+                            }
+                            html += img.outerHTML;
+
+                            switch (elem.contentType) {
+                                case 'textOnly':
+                                    var pTag = document.createElement("p");
+                                    pTag.innerHTML = "Text: " + elem.text;
+                                    html += pTag.outerHTML;
+                                    break;
+                                case 'link':
+                                    var aTag = document.createElement("a");
+                                    aTag.href = elem.value;
+                                    aTag.innerHTML = "Link";
+                                    html += aTag.outerHTML;
+                                    break;
+                                case 'ytLink':
+                                    var iframe = document.createElement("iframe");
+                                    iframe.style.width = "560px";
+                                    iframe.style.height = "315px";
+                                    iframe.src = "//www.youtube.com/embed/" + getId(elem.ytLink);
+                                    iframe.setAttribute("frameborder", "0");
+                                    iframe.setAttribute("allowfullscreen", true);
+                                    html += iframe.outerHTML;
+                                    break;
+                                case 'picture':
+                                    alert("slika ne radi");
+                                    break;
+                                case 'video':
+                                    alert("video ne radi");
+                                    break;
+                                default:
+                                    break;
+                            }
+                            var tweet = document.createElement("a");
+                            tweet.href = "https://twitter.com/share";
+                            tweet.setAttribute("class", "twitter-share-button");
+                            tweet.setAttribute("data-url", elem.link);
+                            tweet.setAttribute("data-hashtags", "TextSearcher");
+                            tweet.innerText = "Tweet";
+                            html += tweet.outerHTML;
+
+                            var fbshare = document.createElement("div");
+                            fbshare.setAttribute("class", "fb-share-button");
+                            fbshare.setAttribute("data-href", elem.link);
+                            fbshare.setAttribute("data-layout", "button_count");
+                            html += fbshare.outerHTML;
+                        }
+                        div.innerHTML = html;
+                        outterDiv.appendChild(div);
+                    }
+                )
+                ;
+                var createPost = document.getElementById("createPost");
+                createPost.parentNode.insertBefore(outterDiv, createPost.nextSibling);
             }
-            Locale locale = Locale.getDefault();
-            DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
             ;
-            if (feed != null) {
-                for (SyndEntry rssFeed : feed.getEntries().stream().sorted((a, b) -> b.getPublishedDate().compareTo(a.getPublishedDate())).collect(Collectors.toList())) {
-        %>
-        <div class="card">
-            <h2><%=rssFeed.getTitle()%>
-            </h2>
-            <h5><%=dateFormat.format(rssFeed.getPublishedDate())%>
-            </h5>
-            <p><%=rssFeed.getDescription().getValue()%>
-            </p>
-            <p><a href="<%=rssFeed.getLink()%>">Link</a></p>
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%=rssFeed.getLink()%>"
-               data-hashtags="TextSearcher">Tweet</a>
-            <div class="fb-share-button"
-                 data-href="<%=rssFeed.getLink()%>"
-                 data-layout="button_count">
-            </div>
-        </div>
-        <% }
-        }
-        %>
+            var url = "posts";
+            xhttp.open('POST', url, true);
+            xhttp.send();
+        </script>
+
     </div>
 
 </div>
