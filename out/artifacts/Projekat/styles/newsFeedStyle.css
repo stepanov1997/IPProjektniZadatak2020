@@ -94,9 +94,99 @@ body {
         width: 100%;
         padding: 0;
     }
+    .insertAttachment {
+        width: 100%;
+        padding: 0;
+    }
+    #createPost {
+        width: 100%;
+    }
+    .italicAndBoldFont {
+        font-style: italic;
+        font-weight: bold;
+    }
 }
 
 .italicAndBoldFont {
     font-style: italic;
     font-weight: bold;
+}
+
+#createPost {
+    display: flex;
+    width: 100%;
+    background-color: #aaa;
+    padding: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap-reverse;
+}
+
+.insertAttachment > img {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    padding: 10px;
+}
+
+.insertAttachment > button {
+    width: 150px;
+    height: 75px;
+    margin-left: 150px;
+    background-color: white;
+    padding: 10px;
+}
+
+#picture-img, #video-img {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    padding: 10px;
+}
+
+.insertAttachment {
+    display: flex;
+    padding-left: 3%;
+    vertical-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.insertAttachment > div > input[type="file"] {
+    display: none;
+}
+
+.appendChild {
+    animation: slide-up 0.4s ease;
+}
+
+.removeChild {
+    animation: slide-down 0.4s ease;
+    -webkit-transition: opacity 400ms linear, height 400ms linear;
+    transition: opacity 400ms linear, height 400ms linear;
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    100% {
+        transform: translateY(20px);
+        height: 100%;
+    }
+    0% {
+        transform: translateY(0);
+        height: 0%;
+    }
+}
+
+#text {
+    resize: vertical;
 }

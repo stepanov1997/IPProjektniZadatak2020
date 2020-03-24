@@ -1,5 +1,7 @@
 package model.dto;
 
+import com.mysql.cj.conf.ConnectionUrlParser;
+
 import java.sql.Date;
 import java.util.Objects;
 
@@ -98,5 +100,27 @@ public class Post {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getUser_id(), getText(), getLink(), getPicture_id(), getVideo_id(), getYoutubeLink(), getDateTime());
+    }
+
+    public ConnectionUrlParser.Pair<String,String> getContentTypeValue()
+    {
+        ConnectionUrlParser.Pair<String,String> pair;
+        if(link!=null && !link.isBlank())
+        {
+            return new ConnectionUrlParser.Pair<>("link",link);
+        }
+        if(youtubeLink!=null && !youtubeLink.isBlank())
+        {
+            return new ConnectionUrlParser.Pair<>("ytLink",youtubeLink);
+        }
+        if(Picture_id!=null)
+        {
+            return new ConnectionUrlParser.Pair<>("picture",String.valueOf(Picture_id));
+        }
+        if(Video_id!=null)
+        {
+            return new ConnectionUrlParser.Pair<>("video",String.valueOf(Video_id));
+        }
+        return null;
     }
 }

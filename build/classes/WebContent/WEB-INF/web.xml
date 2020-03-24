@@ -63,4 +63,13 @@
         <servlet-name>PicturesRestService</servlet-name>
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewsFeedController</servlet-name>
+        <servlet-class>controller.NewsFeedController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewsFeedController</servlet-name>
+        <url-pattern>/NewsFeedController</url-pattern>
+    </servlet-mapping>
 </web-app>

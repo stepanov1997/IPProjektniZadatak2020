@@ -34,7 +34,6 @@ public class CommentDao {
 
             while (resultSet.next()) {
                 //(dateTime, comment, Post_id, User_id, Picture_id) VALUES (?, ?, ?, ?, ?)";
-                //
                 Comment comment = new Comment();
                 comment.setDateTime(resultSet.getDate("dateTime"));
                 comment.setComment(resultSet.getString("comment"));

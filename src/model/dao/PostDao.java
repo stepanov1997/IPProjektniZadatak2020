@@ -60,7 +60,7 @@ public class PostDao {
         return posts;
     }
 
-    public int add(@NotNull Post post) {
+    public boolean add(Post post) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -70,8 +70,15 @@ public class PostDao {
             preparedStatement.setInt(1, post.getUser_id());
             preparedStatement.setString(2, post.getText());
             preparedStatement.setString(3, post.getLink());
-            preparedStatement.setInt(4, post.getPicture_id());
-            preparedStatement.setInt(5, post.getVideo_id());
+            if(post.getPicture_id()==null)
+                preparedStatement.setNull(4, Types.INTEGER);
+            else
+                preparedStatement.setInt(4, post.getPicture_id());
+
+            if(post.getVideo_id()==null)
+                preparedStatement.setNull(5, Types.INTEGER);
+            else
+                preparedStatement.setInt(5, post.getVideo_id());
             preparedStatement.setString(6, post.getYoutubeLink());
             preparedStatement.setDate(7, post.getDateTime());
             preparedStatement.executeUpdate();
@@ -81,7 +88,7 @@ public class PostDao {
             if (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 post.setId(id);
-                return id;
+                return true;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -95,7 +102,7 @@ public class PostDao {
                 ConnectionPool.getConnectionPool().checkIn(connection);
             }
         }
-        return -1;
+        return false;
     }
 
     public boolean remove(@NotNull Account account) {
