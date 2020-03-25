@@ -1,10 +1,10 @@
 package model.dto;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Comment {
-    private Date dateTime;
+    private LocalDateTime dateTime;
     private String comment;
     private Integer Post_id;
     private Integer User_id;
@@ -13,11 +13,11 @@ public class Comment {
     public Comment() {
     }
 
-    public Date getDateTime() {
+    public LocalDateTime getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 

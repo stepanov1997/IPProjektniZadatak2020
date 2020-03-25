@@ -3,12 +3,14 @@ package controller;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import model.beans.AccountBean;
 import model.dao.AccountDao;
+import model.dao.CommentDao;
 import model.dao.PostDao;
 import model.dto.Account;
 import model.dto.Post;
@@ -26,6 +28,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PostServletService extends HttpServlet {
 
@@ -85,6 +88,7 @@ public class PostServletService extends HttpServlet {
 				Post post = (Post)obj;
 				JsonObject jsonObject = new JsonObject();
 				jsonObject.addProperty("isRss", false);
+				jsonObject.addProperty("id", post.getId());
 				jsonObject.addProperty("text", post.getText());
 
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
@@ -103,6 +107,24 @@ public class PostServletService extends HttpServlet {
 					jsonObject.addProperty("contentType", contentType.left);
 					jsonObject.addProperty("value", contentType.right);
 				}
+				JsonArray comments;
+				CommentDao commentDao = new CommentDao();
+				comments = gson.toJsonTree(commentDao
+						.getFromPost(post.getId())
+						.stream()
+						.map(elem ->
+						{
+							JsonObject jsonPost = new JsonObject();
+							jsonPost.addProperty("User_id", elem.getUser_id());
+							jsonPost.addProperty("comment", elem.getComment());
+							jsonPost.addProperty("Picture_id", elem.getPicture_id());
+							String dateTimeComment = formatter.format(elem.getDateTime());
+							jsonPost.addProperty("datetime", dateTimeComment);
+							return jsonPost;
+						}).collect(Collectors.toList()),
+						new TypeToken<List<JsonObject>>() {}.getType())
+						.getAsJsonArray();
+				jsonObject.add("comments", comments);
 				jsonArray.add(jsonObject);
 			}
 		}

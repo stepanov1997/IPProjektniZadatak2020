@@ -96,7 +96,7 @@ public class FileUploadController extends HttpServlet {
                     picture.setImg(img);
                     AccountBean accountBean = (AccountBean)request.getSession().getAttribute("accountBean");
                     Account account = accountBean.getAccount();
-                    if (pictureDao.add(account, picture)) {
+                    if (pictureDao.addToUser(account, picture)) {
                         request.getSession().setAttribute("accountBean", accountBean);
                         inputMap.put("success", true);
                         inputMap.put("id", picture.getId());

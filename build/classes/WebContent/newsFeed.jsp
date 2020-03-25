@@ -25,6 +25,10 @@
 <head>
     <title>NEWS FEED</title>
     <link rel="stylesheet" type="text/css" href="styles/newsFeedStyle.css">
+    <link href="https://vjs.zencdn.net/7.7.5/video-js.css" rel="stylesheet" />
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <script src="https://vjs.zencdn.net/7.7.5/video.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="ICON"
           href="https://scontent.fbeg4-1.fna.fbcdn.net/v/t1.0-9/54255431_645793952539379_1611586770158223360_o.jpg?_nc_cat=110&_nc_sid=09cbfe&_nc_ohc=zDb83HnW2FoAX-AuhRZ&_nc_ht=scontent.fbeg4-1.fna&oh=da1701f4c2fa67f6a3bad35766e337e7&oe=5E9CEBBE"

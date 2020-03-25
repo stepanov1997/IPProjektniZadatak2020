@@ -93,10 +93,6 @@ public class NewsFeedController extends HttpServlet {
             return;
         }
 
-        PictureDao pictureDao = new PictureDao();
-        Picture picture = new Picture();
-        picture.setFileName(fileName);
-        picture.setImg(img);
         AccountBean accountBean = (AccountBean)request.getSession().getAttribute("accountBean");
         Account account = accountBean.getAccount();
 
@@ -108,11 +104,20 @@ public class NewsFeedController extends HttpServlet {
         post.setLink(link);
         post.setText(text);
         post.setUser_id(account.getId());
-        post.setPicture_id(null);
+
         post.setVideo_id(null);
 
 
         if (postDao.add(post)) {
+
+            if(fileName!=null && "".equals(fileName)) {
+                PictureDao pictureDao = new PictureDao();
+                Picture picture = new Picture();
+                picture.setFileName(fileName);
+                picture.setImg(img);
+                pictureDao.addToPost(post, picture);
+            }
+
             request.getSession().setAttribute("accountBean", accountBean);
             inputMap.put("success", true);
             inputMap.put("dateTime", post.getDateTime().toLocalDate());

@@ -48,7 +48,7 @@ function getId(url) {
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
 
-    if (match && match[2].length == 11) {
+    if (match && match[2].length === 11) {
         return match[2];
     } else {
         return 'error';
@@ -172,11 +172,12 @@ function addPosts() {
             var html = "";
             var outterDiv = document.createElement("div");
             result.forEach(function (elem) {
-                    html = "";
+                    let img;
+                html = "";
                     var div = document.createElement("div");
                     div.setAttribute("class", "card");
                     if (elem.isRss) {
-                        var title = document.createElement("h2");
+                        const title = document.createElement("h2");
                         title.innerText = elem.title;
                         html += title.outerHTML;
 
@@ -196,15 +197,10 @@ function addPosts() {
                         nameSurname.innerText = elem.nameSurname;
                         html += nameSurname.outerHTML;
 
-                        var date = document.createElement("h5");
-                        date.innerText = "Date: " + elem.date;
-                        html += date.outerHTML;
-
-                        var text = document.createElement("p");
-                        text.innerText = elem.text;
-                        html += text.outerHTML;
-
-                        var img = new Image();
+                        img = new Image();
+                        img.className = "fakeimg";
+                        img.style.height = "50px";
+                        img.style.width = "50px";
                         if (result.Picture_id === undefined || result.Picture_id === "") {
                             let result = JSON.parse(
                                 $.ajax({
@@ -240,29 +236,93 @@ function addPosts() {
                                 html += iframe.outerHTML;
                                 break;
                             case 'picture':
-                                alert("slika ne radi");
+                                var pic = new Image();
+                                pic.className = "fakeimg";
+                                pic.style.height = "300px";
+                                pic.style.width = "533px";
+                                pic.src = "rest?id=" + elem.value;
+                                html += pic.outerHTML;
                                 break;
                             case 'video':
-                                alert("video ne radi");
+                                var video = document.createElement("video");
+                                video.controls = true;
+                                video.setAttribute("id", "my-video");
+                                video.setAttribute("class", "video-js");
+                                video.setAttribute("preload", "auto");
+                                video.setAttribute("width", "640px");
+                                video.setAttribute("height", "284");
+                                video.setAttribute("poster", "MY_VIDEO_POSTER.jpg");
+                                video.setAttribute("data-setup", "{}");
+                                var src = document.createElement("source");
+                                src.setAttribute("src", "rest?id=" + elem.value);
+                                var pTag = document.createElement("p");
+                                pTag.setAttribute("class","vjs-no-js");
+                                pTag.innerText = "To view this video please enable JavaScript, and consider upgrading to a web browser that";
+                                var aTag = document.createElement("a");
+                                aTag.setAttribute("href", "https://videojs.com/html5-video-support/");
+                                aTag.setAttribute("target", "_blank");
+                                aTag.innerText = "supports HTML5 video";
+                                pTag.appendChild(aTag);
+                                video.appendChild(pTag);
+                                html += video.outerHTML;
                                 break;
                             default:
                                 break;
                         }
-                        var tweet = document.createElement("a");
-                        tweet.href = "https://twitter.com/share";
-                        tweet.setAttribute("class", "twitter-share-button");
-                        tweet.setAttribute("data-url", elem.link);
-                        tweet.setAttribute("data-hashtags", "TextSearcher");
-                        tweet.innerText = "Tweet";
-                        html += tweet.outerHTML;
+                        var date = document.createElement("h5");
+                        date.innerText = "Date: " + elem.date;
+                        html += date.outerHTML;
 
-                        var fbshare = document.createElement("div");
-                        fbshare.setAttribute("class", "fb-share-button");
-                        fbshare.setAttribute("data-href", elem.link);
-                        fbshare.setAttribute("data-layout", "button_count");
-                        html += fbshare.outerHTML;
+                        if(elem.contentType==='link' || elem.contentType==='ytLink') {
+                            var tweet = document.createElement("a");
+                            tweet.href = "https://twitter.com/share";
+                            tweet.setAttribute("class", "twitter-share-button");
+                            tweet.setAttribute("data-url", elem.link);
+                            tweet.setAttribute("data-hashtags", elem.text);
+                            tweet.innerText = "Tweet";
+                            html += tweet.outerHTML;
+
+                            var fbshare = document.createElement("div");
+                            fbshare.onclick = function () {
+                                $('meta[property="og:description"]').attr('content', elem.text);
+                                switch (elem.contentType) {
+                                    case 'link':
+                                        $('meta[property="og:url"]').attr('content', elem.value);
+                                        break;
+                                    case 'ytLink':
+                                        $('meta[property="og:url"]').attr('content', elem.value);
+                                        break;
+                                    case 'picture':
+                                        $('meta[property="og:image"]').attr('content', "rest?id=" + elem.value);
+                                        break;
+                                    case 'video':
+                                        $('meta[property="og:video"]').attr('content', "rest?id=" + elem.value);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            };
+                            fbshare.setAttribute("class", "fb-share-button");
+                            switch (elem.contentType) {
+                                case 'link':
+                                case 'ytLink':
+                                    fbshare.setAttribute("data-href", elem.value);
+                                    break;
+                                case 'picture':
+                                    fbshare.setAttribute("data-href", "rest?id=" + elem.value);
+                                    break;
+                                case 'video':
+                                    fbshare.setAttribute("data-href", "rest?id=" + elem.value);
+                                    break;
+                                default:
+                                    break;
+                            }
+                            fbshare.setAttribute("data-layout", "button_count");
+                            html += fbshare.outerHTML;
+                        }
                     }
                     div.innerHTML = html;
+                    div.id = elem.id;
                     outterDiv.appendChild(div);
                 }
             )

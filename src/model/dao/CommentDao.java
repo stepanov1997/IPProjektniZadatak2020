@@ -6,18 +6,65 @@ import org.jetbrains.annotations.Nullable;
 import util.ConnectionPool;
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommentDao {
 
-    private static final String selectAllQuery = "SELECT * FROM post";
-    private static final String selectByUserAndPostQuery = "SELECT * FROM post WHERE User_id=? AND Post_id=?";
+    private static final String selectAllQuery = "SELECT * FROM comment";
+    private static final String selectAllFromPost = "SELECT * FROM comment WHERE Post_id=? ORDER BY dateTime DESC;";
+    private static final String selectByUserAndPostQuery = "SELECT * FROM comment WHERE User_id=? AND Post_id=?";
     private static final String addQuery = "INSERT INTO comment (dateTime, comment, Post_id, User_id, Picture_id) VALUES (?, ?, ?, ?, ?)";
     private static final String deleteQuery = "DELETE FROM comment WHERE User_id=? AND Post_id=? AND dateTime=?";
     private static final String updateQuery = "UPDATE comment SET comment=?, Picture_id=? WHERE User_id=? AND Post_id=? AND dateTime=?";
 
+
     public CommentDao() {
+    }
+
+    public List<Comment> getFromPost(int Post_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Comment comment = null;
+        List<Comment> listComments = new ArrayList<>();
+
+        try {
+            connection = ConnectionPool.getConnectionPool().checkOut();
+            preparedStatement = connection.prepareStatement(selectAllFromPost);
+            preparedStatement.setInt(1, Post_id);
+            preparedStatement.executeQuery();
+
+            resultSet = preparedStatement.getResultSet();
+            while (resultSet.next()) {
+                comment = new Comment();
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                String res = resultSet.getString("dateTime");
+                LocalDateTime dateTime = LocalDateTime.parse(res, formatter);
+
+                comment.setDateTime(dateTime);
+                comment.setComment(resultSet.getString("comment"));
+                comment.setUser_id(resultSet.getInt("User_id"));
+                comment.setPost_id(resultSet.getInt("Post_id"));
+                comment.setPicture_id(resultSet.getInt("Picture_id"));
+                listComments.add(comment);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                resultSet.close();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                ConnectionPool.getConnectionPool().checkIn(connection);
+            }
+        }
+        return listComments;
     }
 
     public List<Comment> getAll() {
@@ -35,7 +82,11 @@ public class CommentDao {
             while (resultSet.next()) {
                 //(dateTime, comment, Post_id, User_id, Picture_id) VALUES (?, ?, ?, ?, ?)";
                 Comment comment = new Comment();
-                comment.setDateTime(resultSet.getDate("dateTime"));
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(resultSet.getString("dateTime"), formatter);
+
+                comment.setDateTime(dateTime);
                 comment.setComment(resultSet.getString("comment"));
                 comment.setPost_id(resultSet.getInt("Post_id"));
                 comment.setUser_id(resultSet.getInt("User_id"));
@@ -65,7 +116,10 @@ public class CommentDao {
             connection = ConnectionPool.getConnectionPool().checkOut();
             preparedStatement = connection.prepareStatement(addQuery);
 
-            preparedStatement.setDate(1, comment.getDateTime());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+            String datetime = formatter.format(comment.getDateTime());
+
+            preparedStatement.setString(1, datetime);
             preparedStatement.setString(2, comment.getComment());
             preparedStatement.setInt(3, comment.getPost_id());
             preparedStatement.setInt(4, comment.getUser_id());
@@ -97,7 +151,11 @@ public class CommentDao {
             preparedStatement = connection.prepareStatement(deleteQuery);
             preparedStatement.setInt(1, comment.getPost_id());
             preparedStatement.setInt(2, comment.getUser_id());
-            preparedStatement.setDate(3, comment.getDateTime());
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+            String datetime = formatter.format(comment.getDateTime());
+
+            preparedStatement.setString(3, datetime);
             int rowsDeleted = preparedStatement.executeUpdate();
             return rowsDeleted > 0;
         } catch (SQLException ex) {
@@ -131,7 +189,11 @@ public class CommentDao {
 
             preparedStatement.setInt(3, comment.getUser_id());
             preparedStatement.setInt(4, comment.getPost_id());
-            preparedStatement.setDate(5, comment.getDateTime());
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+            String datetime = formatter.format(comment.getDateTime());
+
+            preparedStatement.setString(5, datetime);
             int res = preparedStatement.executeUpdate();
             return res > 0;
         } catch (SQLException ex) {
@@ -162,7 +224,11 @@ public class CommentDao {
             listComments = new ArrayList<>();
             while (resultSet.next()) {
                 comment = new Comment();
-                comment.setDateTime(resultSet.getDate("dateTime"));
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(resultSet.getString("dateTime"), formatter);
+
+                comment.setDateTime(dateTime);
                 comment.setComment(resultSet.getString("comment"));
                 comment.setUser_id(resultSet.getInt("User_id"));
                 comment.setPost_id(resultSet.getInt("Post_id"));
