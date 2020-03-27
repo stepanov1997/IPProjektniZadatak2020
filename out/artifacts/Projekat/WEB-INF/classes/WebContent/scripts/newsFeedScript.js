@@ -163,6 +163,9 @@ function createPost() {
     return false;
 }
 
+/*
+
+ */
 function addPosts() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -172,168 +175,331 @@ function addPosts() {
             var html = "";
             var outterDiv = document.createElement("div");
             result.forEach(function (elem) {
-                    let img;
+                let img;
                 html = "";
-                    var div = document.createElement("div");
-                    div.setAttribute("class", "card");
-                    if (elem.isRss) {
-                        const title = document.createElement("h2");
-                        title.innerText = elem.title;
-                        html += title.outerHTML;
+                var div = document.createElement("div");
+                div.style.alignContent = "center";
+                div.setAttribute("class", "card");
+                if (elem.isRss) {
+                    const title = document.createElement("h2");
+                    title.innerText = elem.title;
+                    html += title.outerHTML;
 
-                        var date = document.createElement("h5");
-                        date.innerText = "Date: " + elem.date;
-                        html += date.outerHTML;
+                    var date = document.createElement("h5");
+                    date.innerText = "Date: " + elem.date;
+                    html += date.outerHTML;
 
-                        var description = document.createElement("p");
-                        description.innerText = elem.description;
-                        html += description.outerHTML;
+                    var description = document.createElement("p");
+                    description.innerText = elem.description;
+                    html += description.outerHTML;
 
-                        var link = document.createElement("a");
-                        link.href = elem.link;
-                        html += link.outerHTML;
+                    var link = document.createElement("a");
+                    link.href = elem.link;
+                    html += link.outerHTML;
+                } else {
+                    div.id = elem.id;
+                    var nameSurname = document.createElement("h2");
+                    nameSurname.innerText = elem.nameSurname;
+                    html += nameSurname.outerHTML;
+
+                    img = new Image();
+                    img.className = "fakeimg";
+                    img.style.height = "50px";
+                    img.style.width = "50px";
+                    if (result.Picture_id === undefined || result.Picture_id === "") {
+                        let result = JSON.parse(
+                            $.ajax({
+                                type: "GET",
+                                url: 'https://restcountries.eu/rest/v2/region/europe',
+                                async: false
+                            }).responseText);
+                        var flagLink = result.find(country => country.alpha2Code === elem.countryCode).flag;
+                        img.src = flagLink;
                     } else {
-                        var nameSurname = document.createElement("h2");
-                        nameSurname.innerText = elem.nameSurname;
-                        html += nameSurname.outerHTML;
+                        img.src = "rest?id=" + result.Picture_id;
+                    }
+                    html += img.outerHTML;
 
-                        img = new Image();
-                        img.className = "fakeimg";
-                        img.style.height = "50px";
-                        img.style.width = "50px";
-                        if (result.Picture_id === undefined || result.Picture_id === "") {
+                    var pTag = document.createElement("p");
+                    pTag.innerHTML = "Text: " + elem.text;
+                    html += pTag.outerHTML;
+
+                    switch (elem.contentType) {
+                        case 'link':
+                            var aTag = document.createElement("a");
+                            aTag.href = elem.value;
+                            aTag.innerHTML = "Link";
+                            html += aTag.outerHTML;
+                            break;
+                        case 'ytLink':
+                            var iframe = document.createElement("iframe");
+                            iframe.style.alignSelf = "center";
+                            iframe.style.width = "75%";
+                            iframe.style.height = "300px";
+                            iframe.src = "//www.youtube.com/embed/" + getId(elem.value);
+                            iframe.setAttribute("frameborder", "0");
+                            iframe.setAttribute("allowfullscreen", true);
+                            html += iframe.outerHTML;
+                            break;
+                        case 'picture':
+                            var pic = new Image();
+                            pic.className = "fakeimg";
+                            pic.style.height = "300px";
+                            pic.style.width = "533px";
+                            pic.src = "rest?id=" + elem.value;
+                            html += pic.outerHTML;
+                            break;
+                        case 'video':
+                            var video = document.createElement("video");
+                            video.controls = true;
+                            video.setAttribute("id", "my-video");
+                            video.setAttribute("class", "video-js");
+                            video.setAttribute("preload", "auto");
+                            video.setAttribute("width", "640px");
+                            video.setAttribute("height", "284");
+                            video.setAttribute("poster", "MY_VIDEO_POSTER.jpg");
+                            video.setAttribute("data-setup", "{}");
+                            var src = document.createElement("source");
+                            src.setAttribute("src", "rest?id=" + elem.value);
+                            var pTag = document.createElement("p");
+                            pTag.setAttribute("class", "vjs-no-js");
+                            pTag.innerText = "To view this video please enable JavaScript, and consider upgrading to a web browser that";
+                            var aTag = document.createElement("a");
+                            aTag.setAttribute("href", "https://videojs.com/html5-video-support/");
+                            aTag.setAttribute("target", "_blank");
+                            aTag.innerText = "supports HTML5 video";
+                            pTag.appendChild(aTag);
+                            video.appendChild(pTag);
+                            html += video.outerHTML;
+                            break;
+                        default:
+                            break;
+                    }
+                    var date = document.createElement("h5");
+                    date.innerText = "Date: " + elem.date;
+                    html += date.outerHTML;
+
+                    if (elem.contentType === 'link' || elem.contentType === 'ytLink') {
+                        var tweet = document.createElement("a");
+                        tweet.href = "https://twitter.com/share";
+                        tweet.setAttribute("class", "twitter-share-button");
+                        tweet.setAttribute("data-url", elem.link);
+                        tweet.setAttribute("data-hashtags", elem.text);
+                        tweet.innerText = "Tweet";
+                        html += tweet.outerHTML;
+
+                        var fbshare = document.createElement("div");
+                        fbshare.onclick = function () {
+                            $('meta[property="og:description"]').attr('content', elem.text);
+                            switch (elem.contentType) {
+                                case 'link':
+                                    $('meta[property="og:url"]').attr('content', elem.value);
+                                    break;
+                                case 'ytLink':
+                                    $('meta[property="og:url"]').attr('content', elem.value);
+                                    break;
+                                case 'picture':
+                                    $('meta[property="og:image"]').attr('content', "rest?id=" + elem.value);
+                                    break;
+                                case 'video':
+                                    $('meta[property="og:video"]').attr('content', "rest?id=" + elem.value);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        };
+                        fbshare.setAttribute("class", "fb-share-button");
+                        switch (elem.contentType) {
+                            case 'link':
+                            case 'ytLink':
+                                fbshare.setAttribute("data-href", elem.value);
+                                break;
+                            case 'picture':
+                                fbshare.setAttribute("data-href", "rest?id=" + elem.value);
+                                break;
+                            case 'video':
+                                fbshare.setAttribute("data-href", "rest?id=" + elem.value);
+                                break;
+                            default:
+                                break;
+                        }
+                        fbshare.setAttribute("data-layout", "button_count");
+                        html += fbshare.outerHTML;
+                    }
+
+                    var comments = document.createElement("div");
+                    comments.className = "card";
+                    comments.style.background = "gray";
+                    elem.comments.forEach(function (comment) {
+                        let commentDiv = document.createElement("div");
+                        commentDiv.className = "card";
+                        var commentHtml = "";
+                        var name = document.createElement("a");
+                        name.innerHTML = comment.nameSurname;
+                        commentHtml += name.outerHTML;
+
+                        var pic = new Image(50, 50);
+                        pic.className = "fakeimg";
+                        if (comment.ProfilePic_id === undefined || comment.ProfilePic_id === "" || comment.ProfilePic_id === null) {
                             let result = JSON.parse(
                                 $.ajax({
                                     type: "GET",
                                     url: 'https://restcountries.eu/rest/v2/region/europe',
                                     async: false
                                 }).responseText);
-                            var flagLink = result.find(country => country.alpha2Code === elem.countryCode).flag;
-                            img.src = flagLink;
+                            var flagLink = result.find(country => country.alpha2Code === comment.countryCode).flag;
+                            pic.src = flagLink;
                         } else {
-                            img.src = "rest?id=" + result.Picture_id;
+                            pic.src = "rest?id=" + comment.ProfilePic_id;
                         }
-                        html += img.outerHTML;
+                        commentHtml += pic.outerHTML;
 
-                        var pTag = document.createElement("p");
-                        pTag.innerHTML = "Text: " + elem.text;
-                        html += pTag.outerHTML;
-
-                        switch (elem.contentType) {
-                            case 'link':
-                                var aTag = document.createElement("a");
-                                aTag.href = elem.value;
-                                aTag.innerHTML = "Link";
-                                html += aTag.outerHTML;
-                                break;
-                            case 'ytLink':
-                                var iframe = document.createElement("iframe");
-                                iframe.style.width = "560px";
-                                iframe.style.height = "315px";
-                                iframe.src = "//www.youtube.com/embed/" + getId(elem.value);
-                                iframe.setAttribute("frameborder", "0");
-                                iframe.setAttribute("allowfullscreen", true);
-                                html += iframe.outerHTML;
-                                break;
-                            case 'picture':
-                                var pic = new Image();
-                                pic.className = "fakeimg";
-                                pic.style.height = "300px";
-                                pic.style.width = "533px";
-                                pic.src = "rest?id=" + elem.value;
-                                html += pic.outerHTML;
-                                break;
-                            case 'video':
-                                var video = document.createElement("video");
-                                video.controls = true;
-                                video.setAttribute("id", "my-video");
-                                video.setAttribute("class", "video-js");
-                                video.setAttribute("preload", "auto");
-                                video.setAttribute("width", "640px");
-                                video.setAttribute("height", "284");
-                                video.setAttribute("poster", "MY_VIDEO_POSTER.jpg");
-                                video.setAttribute("data-setup", "{}");
-                                var src = document.createElement("source");
-                                src.setAttribute("src", "rest?id=" + elem.value);
-                                var pTag = document.createElement("p");
-                                pTag.setAttribute("class","vjs-no-js");
-                                pTag.innerText = "To view this video please enable JavaScript, and consider upgrading to a web browser that";
-                                var aTag = document.createElement("a");
-                                aTag.setAttribute("href", "https://videojs.com/html5-video-support/");
-                                aTag.setAttribute("target", "_blank");
-                                aTag.innerText = "supports HTML5 video";
-                                pTag.appendChild(aTag);
-                                video.appendChild(pTag);
-                                html += video.outerHTML;
-                                break;
-                            default:
-                                break;
+                        if (comment.Picture_id !== undefined && comment.Picture_id !== "" && comment.Picture_id !== null) {
+                            var commentPicture = new Image(160, 90);
+                            commentPicture.src = "rest?id=" + comment.Picture_id;
+                            commentHtml += commentPicture.outerHTML;
                         }
-                        var date = document.createElement("h5");
-                        date.innerText = "Date: " + elem.date;
-                        html += date.outerHTML;
 
-                        if(elem.contentType==='link' || elem.contentType==='ytLink') {
-                            var tweet = document.createElement("a");
-                            tweet.href = "https://twitter.com/share";
-                            tweet.setAttribute("class", "twitter-share-button");
-                            tweet.setAttribute("data-url", elem.link);
-                            tweet.setAttribute("data-hashtags", elem.text);
-                            tweet.innerText = "Tweet";
-                            html += tweet.outerHTML;
+                        var commentText = document.createElement("h5");
+                        commentText.innerHTML = comment.comment;
+                        commentHtml += commentText.outerHTML;
 
-                            var fbshare = document.createElement("div");
-                            fbshare.onclick = function () {
-                                $('meta[property="og:description"]').attr('content', elem.text);
-                                switch (elem.contentType) {
-                                    case 'link':
-                                        $('meta[property="og:url"]').attr('content', elem.value);
-                                        break;
-                                    case 'ytLink':
-                                        $('meta[property="og:url"]').attr('content', elem.value);
-                                        break;
-                                    case 'picture':
-                                        $('meta[property="og:image"]').attr('content', "rest?id=" + elem.value);
-                                        break;
-                                    case 'video':
-                                        $('meta[property="og:video"]').attr('content', "rest?id=" + elem.value);
-                                        break;
-                                    default:
-                                        break;
-                                }
-                            };
-                            fbshare.setAttribute("class", "fb-share-button");
-                            switch (elem.contentType) {
-                                case 'link':
-                                case 'ytLink':
-                                    fbshare.setAttribute("data-href", elem.value);
-                                    break;
-                                case 'picture':
-                                    fbshare.setAttribute("data-href", "rest?id=" + elem.value);
-                                    break;
-                                case 'video':
-                                    fbshare.setAttribute("data-href", "rest?id=" + elem.value);
-                                    break;
-                                default:
-                                    break;
-                            }
-                            fbshare.setAttribute("data-layout", "button_count");
-                            html += fbshare.outerHTML;
-                        }
-                    }
-                    div.innerHTML = html;
-                    div.id = elem.id;
-                    outterDiv.appendChild(div);
+                        var date = document.createElement("a");
+                        date.innerHTML = comment.datetime;
+                        commentHtml += date.outerHTML;
+
+                        commentDiv.innerHTML = commentHtml;
+                        comments.appendChild(commentDiv);
+                    });
+
+                    let commentDiv = document.createElement("div");
+                    commentDiv.id = "commentDiv" + elem.id;
+                    commentDiv.className = "card";
+
+                    var commentInput = document.createElement("form");
+                    var commentFormHtml = "";
+                    commentInput.className = "card";
+
+                    var text = document.createElement("p");
+                    text.innerHTML = "Type comment: ";
+                    commentFormHtml += text.outerHTML;
+                    var commentText = document.createElement("input");
+                    commentText.id = "inputComment" + elem.id;
+                    commentText.type = "text";
+                    commentFormHtml += commentText.outerHTML;
+
+                    var inputPic = document.createElement("input");
+                    inputPic.id = "file" + elem.id;
+                    inputPic.style.display = "none";
+                    inputPic.type = "file";
+                    inputPic.formEnctype = "multipart/form-data";
+                    commentFormHtml += inputPic.outerHTML;
+
+                    var commPic = new Image(50, 50);
+                    commPic.id = "img";
+                    commPic.src = "https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/6C1aT2Hm3x-.png";
+                    commPic.setAttribute("onclick", "document.getElementById('"+inputPic.id+"').click()");
+                    commentFormHtml += commPic.outerHTML;
+
+                    commentInput.innerHTML = commentFormHtml;
+
+                    var sendButton = document.createElement("button");
+                    sendButton.id = "button" + elem.id;
+                    sendButton.type = "button";
+                    sendButton.innerHTML = "Send comment";
+                    sendButton.setAttribute("onclick", "addComment("+elem.id+");");
+
+                    commentInput.appendChild(sendButton);
+
+                    commentDiv.innerHTML = commentInput.outerHTML;
+
+                    comments.appendChild(commentDiv);
+
+                    html += comments.outerHTML;
                 }
-            )
+                div.innerHTML = html;
+                div.id = elem.id;
+                outterDiv.appendChild(div);
+            });
             var createPost = document.getElementById("createPost");
             createPost.parentNode.insertBefore(outterDiv, createPost.nextSibling);
         }
-    }
-    ;
+    };
     var url = "posts";
     xhttp.open('POST', url, true);
     xhttp.send();
+}
+
+
+function addComment(id) {
+    var xhttp = new XMLHttpRequest();
+    var text = document.getElementById("inputComment" + id).value;
+    var div = document.getElementById("commentDiv" + id);
+    var inputPic = document.getElementById("file" + id);
+    let formData;
+    if (inputPic.files.length !== 0) {
+        formData = new FormData();
+        var file = inputPic.files[0];
+        formData.append("file", file);
+    }
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
+            var commentObj = JSON.parse(this.responseText);
+
+            let cmnt = document.createElement("div");
+            cmnt.className = "card";
+            var cmntHtml = "";
+            var nameCmnt = document.createElement("a");
+            nameCmnt.innerHTML = commentObj.nameSurname;
+            cmntHtml += nameCmnt.outerHTML;
+
+            var picCmnt = new Image(50, 50);
+            picCmnt.className = "fakeimg";
+            if (commentObj.ProfilePic_id === undefined || commentObj.ProfilePic_id === "" || commentObj.ProfilePic_id === null) {
+                let result = JSON.parse(
+                    $.ajax({
+                        type: "GET",
+                        url: 'https://restcountries.eu/rest/v2/region/europe',
+                        async: false
+                    }).responseText);
+                var flagLink = result.find(country => country.alpha2Code === commentObj.countryCode).flag;
+                picCmnt.src = flagLink;
+            } else {
+                picCmnt.src = "rest?id=" + commentObj.ProfilePic_id;
+            }
+            cmntHtml += picCmnt.outerHTML;
+
+            if (commentObj.Picture_id !== undefined && commentObj.Picture_id !== "" && commentObj.Picture_id !== null) {
+                var commentPicture = new Image(160, 90);
+                commentPicture.src = "rest?id=" + commentObj.Picture_id;
+                cmntHtml += commentPicture.outerHTML;
+            }
+
+            var commentText = document.createElement("h5");
+            commentText.innerHTML = commentObj.comment;
+            cmntHtml += commentText.outerHTML;
+
+            var date = document.createElement("a");
+            date.innerHTML = commentObj.datetime;
+            cmntHtml += date.outerHTML;
+
+            cmnt.innerHTML = cmntHtml;
+            div.parentNode.insertBefore(cmnt, div);
+        }
+    };
+    var url = "/comment?Post_Id=" + id + "&text=" + text;
+    if (inputPic.files.length !== 0) {
+        url += "&withImage=true";
+    } else {
+        url += "&withImage=false";
+    }
+    xhttp.open('POST', url, true);
+    if (inputPic.files.length !== 0) {
+        xhttp.send(formData);
+    } else {
+        xhttp.send();
+    }
+    return false;
 }
 
 var ytFlag = false;

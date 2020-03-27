@@ -41,8 +41,14 @@ public class PostDao {
                 post.setUser_id(resultSet.getInt("User_id"));
                 post.setText(resultSet.getString("text"));
                 post.setLink(resultSet.getString("link"));
-                post.setPicture_id(resultSet.getInt("Picture_id"));
-                post.setVideo_id(resultSet.getInt("Video_id"));
+                Integer Picture_id = resultSet.getInt("Picture_id");
+                if(resultSet.wasNull())
+                    Picture_id = null;
+                post.setPicture_id(Picture_id);
+                Integer Video_id = resultSet.getInt("Video_id");
+                if(resultSet.wasNull())
+                    Video_id = null;
+                post.setVideo_id(Video_id);
                 post.setYoutubeLink(resultSet.getString("youtubeLink"));
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

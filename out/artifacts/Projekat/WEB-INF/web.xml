@@ -81,4 +81,13 @@
         <servlet-name>PostServletService</servlet-name>
         <url-pattern>/posts/*</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PublishCommentController</servlet-name>
+        <servlet-class>controller.PublishCommentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PublishCommentController</servlet-name>
+        <url-pattern>/comment</url-pattern>
+    </servlet-mapping>
 </web-app>

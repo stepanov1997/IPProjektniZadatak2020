@@ -1,17 +1,5 @@
-<%@ page import="com.rometools.rome.feed.synd.SyndEntry" %>
-<%@ page import="com.rometools.rome.feed.synd.SyndFeed" %>
-<%@ page import="com.rometools.rome.io.FeedException" %>
-<%@ page import="com.rometools.rome.io.SyndFeedInput" %>
-<%@ page import="model.dao.PostDao" %>
-<%@ page import="java.io.InputStreamReader" %>
-<%@ page import="java.net.URL" %>
-<%@ page import="java.text.DateFormat" %>
-<%@ page import="java.util.Collections" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Locale" %>
-<%@ page import="java.util.Comparator" %>
-<%@ page import="java.util.function.Function" %>
-<%@ page import="model.dto.Post" %>
+<%@ page import="model.beans.AccountBean" %>
+<%@ page import="model.dao.AccountDao" %>
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
 
 <% if (session.getAttribute("accountBean") == null) {
@@ -21,6 +9,7 @@
 %>
 
 <jsp:useBean id="accountBean" scope="session" type="model.beans.AccountBean"/>
+<% accountBean.setAccount(new AccountDao().get(accountBean.getAccount().getId()));  %>
 <html>
 <head>
     <title>NEWS FEED</title>

@@ -13,9 +13,9 @@ public class Post {
     private String link;
     private String youtubeLink;
     private LocalDateTime dateTime;
-    private Integer User_id;
-    private Integer Picture_id;
-    private Integer Video_id;
+    private Integer User_id = null;
+    private Integer Picture_id = null;
+    private Integer Video_id = null;
 
     public Post() {
     }

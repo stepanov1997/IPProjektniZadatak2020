@@ -112,10 +112,14 @@ public class PostServletService extends HttpServlet {
 				comments = gson.toJsonTree(commentDao
 						.getFromPost(post.getId())
 						.stream()
+						.sorted((a,b) -> a.getDateTime().isAfter(b.getDateTime())?1:-1)
 						.map(elem ->
 						{
 							JsonObject jsonPost = new JsonObject();
-							jsonPost.addProperty("User_id", elem.getUser_id());
+							Account account2 = new AccountDao().get(elem.getUser_id());
+							jsonPost.addProperty("nameSurname", account2.getName() + " " + account2.getSurname() + " ("+ account2.getUsername()+")");
+							jsonPost.addProperty("ProfilePic_id", account2.getPicture_Id());
+							jsonPost.addProperty("countryCode", account2.getCountryCode());
 							jsonPost.addProperty("comment", elem.getComment());
 							jsonPost.addProperty("Picture_id", elem.getPicture_id());
 							String dateTimeComment = formatter.format(elem.getDateTime());

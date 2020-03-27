@@ -28,7 +28,6 @@ public class CommentDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        Comment comment = null;
         List<Comment> listComments = new ArrayList<>();
 
         try {
@@ -39,7 +38,7 @@ public class CommentDao {
 
             resultSet = preparedStatement.getResultSet();
             while (resultSet.next()) {
-                comment = new Comment();
+                var comment = new Comment();
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 String res = resultSet.getString("dateTime");
@@ -49,7 +48,14 @@ public class CommentDao {
                 comment.setComment(resultSet.getString("comment"));
                 comment.setUser_id(resultSet.getInt("User_id"));
                 comment.setPost_id(resultSet.getInt("Post_id"));
-                comment.setPicture_id(resultSet.getInt("Picture_id"));
+                Integer User_id = resultSet.getInt("User_id");
+                if(resultSet.wasNull())
+                    User_id = null;
+                comment.setUser_id(User_id);
+                Integer Picture_id = resultSet.getInt("Picture_id");
+                if(resultSet.wasNull())
+                    Picture_id = null;
+                comment.setPicture_id(Picture_id);
                 listComments.add(comment);
             }
         } catch (SQLException ex) {
@@ -111,19 +117,21 @@ public class CommentDao {
     public boolean add(@NotNull Comment comment) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
         try {
             connection = ConnectionPool.getConnectionPool().checkOut();
             preparedStatement = connection.prepareStatement(addQuery);
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String datetime = formatter.format(comment.getDateTime());
 
             preparedStatement.setString(1, datetime);
             preparedStatement.setString(2, comment.getComment());
             preparedStatement.setInt(3, comment.getPost_id());
             preparedStatement.setInt(4, comment.getUser_id());
-            preparedStatement.setInt(5, comment.getPicture_id());
+            if(comment.getPicture_id()==null)
+                preparedStatement.setNull(5, Types.INTEGER);
+            else
+                preparedStatement.setInt(5, comment.getPicture_id());
             preparedStatement.executeUpdate();
 
             return true;
@@ -131,7 +139,6 @@ public class CommentDao {
             ex.printStackTrace();
         } finally {
             try {
-                resultSet.close();
                 preparedStatement.close();
             } catch (SQLException e) {
                 e.printStackTrace();

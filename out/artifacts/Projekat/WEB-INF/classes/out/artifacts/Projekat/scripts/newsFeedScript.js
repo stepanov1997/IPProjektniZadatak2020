@@ -330,7 +330,7 @@ function addPosts() {
                     var comments = document.createElement("div");
                     comments.className = "card";
                     comments.style.background = "gray";
-                    elem.comments.forEach(function (comment) {
+                    elem.comments.reverse().forEach(function (comment) {
                         let commentDiv = document.createElement("div");
                         commentDiv.className = "card";
                         var commentHtml = "";
