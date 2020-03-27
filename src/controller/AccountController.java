@@ -1,6 +1,6 @@
 package controller;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
 import model.beans.AccountBean;
 import model.dao.AccountDao;
 import model.dto.Account;
@@ -10,11 +10,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.*;
+import java.net.URL;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class AccountController extends HttpServlet implements Serializable {
     private String emailPattern = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
@@ -102,8 +102,6 @@ public class AccountController extends HttpServlet implements Serializable {
                         String json = gson.toJson(inputMap);
                         out.print(json);
                     }
-
-
                 }
                 break;
                 case "editProfile": {
@@ -164,7 +162,7 @@ public class AccountController extends HttpServlet implements Serializable {
                         return;
                     }
 
-                    account.setLoginCounter(account.getLoginCounter()+1);
+                    account.setLoginCounter(account.getLoginCounter() + 1);
                     accountDao.update(account);
 
                     accountBean.setAccount(account);
@@ -176,34 +174,135 @@ public class AccountController extends HttpServlet implements Serializable {
                     out.print(json);
                 }
                 break;
-                case "picture":
-                {
-                    AccountBean accountBean = (AccountBean)request.getSession().getAttribute("accountBean");
+                case "picture": {
+                    AccountBean accountBean = (AccountBean) request.getSession().getAttribute("accountBean");
                     Account account = accountBean.getAccount();
                     Integer pictureId = account.getPicture_Id();
                     response.setContentType("application/json");
                     response.setCharacterEncoding("UTF-8");
                     Gson gson = new Gson();
                     Map<String, Object> map = new HashMap<>();
-                    if(pictureId==null)
-                    {
+                    if (pictureId == null) {
                         map.put("exists", false);
                         map.put("countryCode", account.getCountryCode());
-                    }
-                    else {
+                    } else {
                         map.put("exists", true);
                         map.put("id", pictureId);
                     }
                     response.getOutputStream().print(gson.toJson(map));
                 }
                 break;
-                case "logout":
-                {
+                case "logout": {
                     request.getSession().invalidate();
                     response.sendRedirect("login.jsp");
                 }
                 break;
+                case "weather": {
+                    AccountBean accountBean = (AccountBean) request.getSession().getAttribute("accountBean");
+                    Account account = accountBean.getAccount();
+                    response.setContentType("application/json");
+                    Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+                    List<City> citiesCollection = new ArrayList<>();
+
+                    // 41a4662c8721408380903394cae44064
+                    // a3d51706563163f27cbe078b482e25ee
+                    String page="http://battuta.medunes.net/api/region/" + account.getCountryCode() + "/all/?key=41a4662c8721408380903394cae44064";
+                    String json = getFromUrl(page);
+                    JsonArray regions = JsonParser.parseString(json).getAsJsonArray();
+                    for (JsonElement region : regions) {
+                        String page2 = "https://geo-battuta.net/api/city/" + account.getCountryCode() + "/search/?region=" + region.getAsJsonObject().get("region").getAsString().replace(" ", "+") + "&key=41a4662c8721408380903394cae44064";
+                        String json2 = getFromUrl(page2);
+                        JsonArray cities = JsonParser.parseString(json2).getAsJsonArray();
+                        for (JsonElement cityElem : cities) {
+                            var city = new City();
+                            JsonObject jsonCity = cityElem.getAsJsonObject();
+                            city.city = jsonCity.get("city").getAsString();
+                            city.latitude = jsonCity.get("latitude").getAsDouble();
+                            city.longitude = jsonCity.get("longitude").getAsDouble();
+                            citiesCollection.add(city);
+                        }
+                    }
+
+                    City city1;
+                    if(account.getCity() != null && !account.getCity().isBlank()) {
+                        city1 = citiesCollection.stream().filter(e -> e.city.equals(account.getCity())).findFirst().get();
+                    }
+                    else {
+                        Random random = new Random();
+                        city1 = citiesCollection.get(random.nextInt(citiesCollection.size() - 1));
+                    }
+                    citiesCollection.remove(city1);
+
+                    Random random = new Random();
+                    City city2 = citiesCollection.get(random.nextInt(citiesCollection.size() - 1));
+
+                    citiesCollection.remove(city2);
+                    City city3 = citiesCollection.get(random.nextInt(citiesCollection.size() - 1));
+
+                    List<City> cities = Arrays.asList(city1, city2, city3);
+
+                    JsonArray result = new JsonArray();
+                    for (City city: cities) {
+                        String weatherLink = "http://api.openweathermap.org/data/2.5/forecast?lat="+city.latitude+"&lon="+city.longitude+"&appid=e5e72b439a7435dc8d70b5cf1fb3b61f";
+                        String weatherJson = getFromUrl(weatherLink);
+                        JsonObject weatherObject = JsonParser.parseString(weatherJson).getAsJsonObject();
+                        JsonArray weatherList = weatherObject.get("list").getAsJsonArray();
+                        List<JsonObject> weatherFiveDays = IntStream
+                                .range(0, weatherList.size())
+                                .filter(n -> n % 8 == 0)
+                                .mapToObj(weatherList::get)
+                                .map(e -> e.getAsJsonObject())
+                                .collect(Collectors.toList());
+
+                        JsonArray jsonArray = gson.toJsonTree(weatherFiveDays).getAsJsonArray();
+                        JsonObject jsonObject = new JsonObject();
+                        jsonObject.addProperty("city", city.city);
+                        jsonObject.add("weather", jsonArray);
+                        result.add(jsonObject);
+                    }
+                    response.getOutputStream().print(result.toString());
+                }
+                break;
             }
         }
+    }
+
+    public String getFromUrl(String page) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            URL oracle = new URL(page);
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(oracle.openStream()));
+
+            String inputLine;
+            while ((inputLine = in.readLine()) != null)
+                sb.append(inputLine.replace("\\\"", "\""));
+            in.close();
+        }
+        catch (IOException ex) {
+            return null;
+        }
+        return sb.toString();
+    }
+}
+
+class City {
+    public String city;
+    public double latitude;
+    public double longitude;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof City)) return false;
+        City city1 = (City) o;
+        return Double.compare(city1.latitude, latitude) == 0 &&
+                Double.compare(city1.longitude, longitude) == 0 &&
+                Objects.equals(city, city1.city);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(city, latitude, longitude);
     }
 }

@@ -9,12 +9,12 @@
 %>
 
 <jsp:useBean id="accountBean" scope="session" type="model.beans.AccountBean"/>
-<% accountBean.setAccount(new AccountDao().get(accountBean.getAccount().getId()));  %>
+<% accountBean.setAccount(new AccountDao().get(accountBean.getAccount().getId())); %>
 <html>
 <head>
     <title>NEWS FEED</title>
     <link rel="stylesheet" type="text/css" href="styles/newsFeedStyle.css">
-    <link href="https://vjs.zencdn.net/7.7.5/video-js.css" rel="stylesheet" />
+    <link href="https://vjs.zencdn.net/7.7.5/video-js.css" rel="stylesheet"/>
     <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
     <script src="https://vjs.zencdn.net/7.7.5/video.js"></script>
@@ -27,6 +27,7 @@
     <script src="scripts/newsFeedScript.js"></script>
     <script>addProfilePicture();</script>
     <script>addPosts();</script>
+    <script>addWeatherForcast();</script>
 
     <meta property="og:url" content="https://www.your-domain.com/your-page.html"/>
     <meta property="og:type" content="website"/>
@@ -78,7 +79,7 @@
         </div>
     </div>
 
-    <div id="posts" class="rightcolumn">
+    <div id="posts" class="midcolumn">
         <form id="createPost" onsubmit="return createPost()">
             <div class="leftPost">
                 <label>Type text: </label><br>
@@ -100,6 +101,19 @@
                 <button type="submit">SHARE POST</button>
             </div>
         </form>
+    </div>
+    <div id="weatherForcast" class="rightcolumn">
+        <div class="card">
+            <div id="myCity">
+                <p>KIKI</p>
+            </div>
+            <div id="city1">
+                <p>Miki</p>
+            </div>
+            <div id="city2">
+                <p>Riki</p>
+            </div>
+        </div>
     </div>
 </div>
 

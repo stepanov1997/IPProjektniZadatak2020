@@ -206,17 +206,17 @@ function addPosts() {
                     img.className = "fakeimg";
                     img.style.height = "50px";
                     img.style.width = "50px";
-                    if (result.Picture_id === undefined || result.Picture_id === "") {
-                        let result = JSON.parse(
+                    if (elem.Picture_id === undefined || elem.Picture_id === "" || elem.Picture_id === null) {
+                        let resultJSON = JSON.parse(
                             $.ajax({
                                 type: "GET",
                                 url: 'https://restcountries.eu/rest/v2/region/europe',
                                 async: false
                             }).responseText);
-                        var flagLink = result.find(country => country.alpha2Code === elem.countryCode).flag;
+                        var flagLink = resultJSON.find(country => country.alpha2Code === elem.countryCode).flag;
                         img.src = flagLink;
                     } else {
-                        img.src = "rest?id=" + result.Picture_id;
+                        img.src = "rest?id=" + elem.Picture_id;
                     }
                     html += img.outerHTML;
 
@@ -398,7 +398,7 @@ function addPosts() {
                     var commPic = new Image(50, 50);
                     commPic.id = "img";
                     commPic.src = "https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/6C1aT2Hm3x-.png";
-                    commPic.setAttribute("onclick", "document.getElementById('"+inputPic.id+"').click()");
+                    commPic.setAttribute("onclick", "document.getElementById('" + inputPic.id + "').click()");
                     commentFormHtml += commPic.outerHTML;
 
                     commentInput.innerHTML = commentFormHtml;
@@ -407,7 +407,7 @@ function addPosts() {
                     sendButton.id = "button" + elem.id;
                     sendButton.type = "button";
                     sendButton.innerHTML = "Send comment";
-                    sendButton.setAttribute("onclick", "addComment("+elem.id+");");
+                    sendButton.setAttribute("onclick", "addComment(" + elem.id + ");");
 
                     commentInput.appendChild(sendButton);
 
@@ -575,4 +575,103 @@ function addLink(isYTLink) {
             text.parentNode.insertBefore(pTag, text.nextSibling);
         }
     }
+}
+
+function addWeatherForcast() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.status === 200 && this.readyState === 4) {
+            var result = JSON.parse(this.responseText);
+            if (result.success) {
+                var myCountryCode = result.countryCode;
+                var myRegion = result.region;
+                var myCity = result.city;
+
+                if (myRegion === undefined || myRegion === "" || myRegion === null) {
+                    if (myCity === undefined || myCity === "" || myCity === null) {
+                        var div = document.getElementById("weatherForcast");
+                        div.innerHTML = "<h2>Not available in your country</h2>";
+                    } else {
+
+                    }
+                } else {
+                    if (myCity === undefined || myCity === "" || myCity === null) {
+
+                    } else {
+                        const url = 'http://battuta.medunes.net/api/region/' + myCountryCode.replace(" ", "+") + '/all/?key=a3d51706563163f27cbe078b482e25ee&callback=cb';
+
+                        let citiesList = [];
+
+                        function JsonpHttpRequest(url, callback) {
+                            var e = document.createElement('script');
+                            e.src = url;
+                            document.body.appendChild(e);
+                            window[callback] = (regions) => {
+                                console.log("callback");
+                                regions.forEach(region => {
+                                    const url = "https://geo-battuta.net/api/city/" + myCountryCode + "/search/?region=" + region.toString().replace(" ", "+") + "&key=a3d51706563163f27cbe078b482e25ee&callback=cb";
+
+                                    function JsonpHttpRequest(url, callback) {
+                                        var e = document.createElement('script');
+                                        e.src = url;
+                                        document.body.appendChild(e);
+                                        window[callback] = (cities) => {
+                                            cities.forEach(city => {
+                                                citiesList.push(city);
+                                            });
+                                        }
+                                    }
+
+                                    JsonpHttpRequest(url, "cb");
+                                });
+                            }
+                        }
+
+                        JsonpHttpRequest(url, "cb");
+
+                        citiesList.splice(citiesList.indexOf(myCity), 1);
+
+                        var city1 = citiesList[Math.floor(Math.random() * citiesList.length)];
+                        citiesList.splice(citiesList.indexOf(city1), 1);
+
+                        var city2 = citiesList[Math.floor(Math.random() * citiesList.length)];
+
+                        document.getElementById("myCity").innerText = myCity;
+                        document.getElementById("city1").innerText = city1;
+                        document.getElementById("city2").innerText = city2;
+                    }
+                }
+            }
+        }
+    };
+    var url = "Controller?controller=account&submit=submit&controller=account&action=weather";
+    xhttp.open('GET', url, true);
+    xhttp.send();
+}
+
+function getCities() {
+    const selectCountries = document.getElementById("countries");
+    const selectRegions = document.getElementById("regions");
+    const selectedCountry = selectCountries.options[selectCountries.selectedIndex];
+    const selectedRegion = selectRegions.options[selectRegions.selectedIndex];
+    const url = "https://geo-battuta.net/api/city/" + selectedCountry.value.toString().replace(" ", "+") + "/search/?region=" + selectedRegion.value.toString().replace(" ", "+") + "&key=a3d51706563163f27cbe078b482e25ee&callback=cb";
+
+    function JsonpHttpRequest(url, callback) {
+        var e = document.createElement('script');
+        e.src = url;
+        document.body.appendChild(e);
+        window[callback] = (regions) => {
+            let selectCities = document.getElementById("cities");
+            selectCities.innerHTML = "";
+            regions.forEach(elem => {
+                const option = document.createElement("option");
+                option.value = elem.city;
+                option.innerHTML = elem.city;
+                selectCities.appendChild(option);
+            });
+            selectCities.hidden = selectCities.innerHTML === "";
+        }
+    }
+
+    JsonpHttpRequest(url, "cb");
 }
