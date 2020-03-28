@@ -1,3 +1,5 @@
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
 $(window).load(function () {
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -582,96 +584,63 @@ function addWeatherForcast() {
     xhttp.onreadystatechange = function () {
         if (this.status === 200 && this.readyState === 4) {
             var result = JSON.parse(this.responseText);
-            if (result.success) {
-                var myCountryCode = result.countryCode;
-                var myRegion = result.region;
-                var myCity = result.city;
 
-                if (myRegion === undefined || myRegion === "" || myRegion === null) {
-                    if (myCity === undefined || myCity === "" || myCity === null) {
-                        var div = document.getElementById("weatherForcast");
-                        div.innerHTML = "<h2>Not available in your country</h2>";
-                    } else {
-
-                    }
-                } else {
-                    if (myCity === undefined || myCity === "" || myCity === null) {
-
-                    } else {
-                        const url = 'http://battuta.medunes.net/api/region/' + myCountryCode.replace(" ", "+") + '/all/?key=a3d51706563163f27cbe078b482e25ee&callback=cb';
-
-                        let citiesList = [];
-
-                        function JsonpHttpRequest(url, callback) {
-                            var e = document.createElement('script');
-                            e.src = url;
-                            document.body.appendChild(e);
-                            window[callback] = (regions) => {
-                                console.log("callback");
-                                regions.forEach(region => {
-                                    const url = "https://geo-battuta.net/api/city/" + myCountryCode + "/search/?region=" + region.toString().replace(" ", "+") + "&key=a3d51706563163f27cbe078b482e25ee&callback=cb";
-
-                                    function JsonpHttpRequest(url, callback) {
-                                        var e = document.createElement('script');
-                                        e.src = url;
-                                        document.body.appendChild(e);
-                                        window[callback] = (cities) => {
-                                            cities.forEach(city => {
-                                                citiesList.push(city);
-                                            });
-                                        }
-                                    }
-
-                                    JsonpHttpRequest(url, "cb");
-                                });
-                            }
-                        }
-
-                        JsonpHttpRequest(url, "cb");
-
-                        citiesList.splice(citiesList.indexOf(myCity), 1);
-
-                        var city1 = citiesList[Math.floor(Math.random() * citiesList.length)];
-                        citiesList.splice(citiesList.indexOf(city1), 1);
-
-                        var city2 = citiesList[Math.floor(Math.random() * citiesList.length)];
-
-                        document.getElementById("myCity").innerText = myCity;
-                        document.getElementById("city1").innerText = city1;
-                        document.getElementById("city2").innerText = city2;
-                    }
-                }
-            }
+            displayWeatherDataForCity(result[0], "myCity");
+            displayWeatherDataForCity(result[1], "city1");
+            displayWeatherDataForCity(result[2], "city2");
         }
-    };
+    }
     var url = "Controller?controller=account&submit=submit&controller=account&action=weather";
-    xhttp.open('GET', url, true);
+    xhttp.open('POST', url, true);
     xhttp.send();
 }
 
-function getCities() {
-    const selectCountries = document.getElementById("countries");
-    const selectRegions = document.getElementById("regions");
-    const selectedCountry = selectCountries.options[selectCountries.selectedIndex];
-    const selectedRegion = selectRegions.options[selectRegions.selectedIndex];
-    const url = "https://geo-battuta.net/api/city/" + selectedCountry.value.toString().replace(" ", "+") + "/search/?region=" + selectedRegion.value.toString().replace(" ", "+") + "&key=a3d51706563163f27cbe078b482e25ee&callback=cb";
+function displayWeatherDataForCity(cityObj, id) {
+    var div = document.getElementById(id);
+    var html = "";
 
-    function JsonpHttpRequest(url, callback) {
-        var e = document.createElement('script');
-        e.src = url;
-        document.body.appendChild(e);
-        window[callback] = (regions) => {
-            let selectCities = document.getElementById("cities");
-            selectCities.innerHTML = "";
-            regions.forEach(elem => {
-                const option = document.createElement("option");
-                option.value = elem.city;
-                option.innerHTML = elem.city;
-                selectCities.appendChild(option);
-            });
-            selectCities.hidden = selectCities.innerHTML === "";
+    var city = cityObj.city;
+    var h1 = document.createElement("h1");
+    h1.innerText = city;
+    html += h1.outerHTML + "<br>";
+
+    var div2 = document.createElement("div");
+    div2.className = "weathers";
+    var weatherDivHtml = "";
+
+    var weathers = cityObj.weather;
+    weathers.forEach(weather => {
+        var innerDiv = document.createElement("div");
+        innerDiv.className = "weatherDay";
+
+        var p1 = document.createElement("p");
+        var temperature = "<b>" + (weather.main.temp - 273.15).toFixed(0) + " °C</b>";
+        p1.innerHTML = temperature;
+        innerDiv.appendChild(p1);
+
+        var p2 = document.createElement("p");
+        var state = weather.weather[0].description;
+        p2.innerText = state;
+        innerDiv.appendChild(p2);
+
+        var p3 = document.createElement("p");
+        var date = new Date(Date.parse(weather.dt_txt.substr(0, 10)));
+        var day = "";
+        var today = new Date().getDay();
+        var tomorrow = (today+1)%7;
+        var afterTomorrow = (today+2)%7;
+        switch (date.getDay()) {
+            case today: day="Today"; break;
+            case tomorrow: day="Tomorrow"; break;
+            case afterTomorrow: day="Day after tomorrow"; break;
+            default: day=days[date.getDay()]; break;
         }
-    }
+        p3.innerHTML = date.getDate() + ". " + (date.getMonth()+1) + ". " + date.getFullYear() + ". (" + day + ")";
+        innerDiv.appendChild(p3);
+        weatherDivHtml += innerDiv.outerHTML;
+    })
+    div2.innerHTML = weatherDivHtml;
+    html += div2.outerHTML;
 
-    JsonpHttpRequest(url, "cb");
+    div.innerHTML = html;
 }

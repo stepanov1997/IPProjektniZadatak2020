@@ -251,7 +251,7 @@ public class AccountController extends HttpServlet implements Serializable {
                                 .range(0, weatherList.size())
                                 .filter(n -> n % 8 == 0)
                                 .mapToObj(weatherList::get)
-                                .map(e -> e.getAsJsonObject())
+                                .map(JsonElement::getAsJsonObject)
                                 .collect(Collectors.toList());
 
                         JsonArray jsonArray = gson.toJsonTree(weatherFiveDays).getAsJsonArray();

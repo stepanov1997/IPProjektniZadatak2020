@@ -104,15 +104,9 @@
     </div>
     <div id="weatherForcast" class="rightcolumn">
         <div class="card">
-            <div id="myCity">
-                <p>KIKI</p>
-            </div>
-            <div id="city1">
-                <p>Miki</p>
-            </div>
-            <div id="city2">
-                <p>Riki</p>
-            </div>
+            <div id="myCity" class="card"></div>
+            <div id="city1" class="card"></div>
+            <div id="city2" class="card"></div>
         </div>
     </div>
 </div>
