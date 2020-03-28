@@ -607,6 +607,7 @@ function displayWeatherDataForCity(cityObj, id) {
     var div2 = document.createElement("div");
     div2.className = "weathers";
     var weatherDivHtml = "";
+    var index = 0;
 
     var weathers = cityObj.weather;
     weathers.forEach(weather => {
@@ -617,6 +618,20 @@ function displayWeatherDataForCity(cityObj, id) {
         var temperature = "<b>" + (weather.main.temp - 273.15).toFixed(0) + " °C</b>";
         p1.innerHTML = temperature;
         innerDiv.appendChild(p1);
+
+        var icon = document.createElement("img");
+        icon.src = "http://openweathermap.org/img/wn/"+ weather.weather[0].icon +"@2x.png";
+        if(index>0) {
+            icon.style.width=70;
+            icon.style.height=70;
+        }
+        else {
+            icon.style.width=100;
+            icon.style.height=100;
+        }
+        index++;
+
+        innerDiv.appendChild(icon);
 
         var p2 = document.createElement("p");
         var state = weather.weather[0].description;
