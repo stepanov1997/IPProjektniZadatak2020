@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="MainApplication:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b0a2e0bd-c0f6-4982-a963-7501a598f547" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/MainApplication.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/MainApplication_war_exploded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/web/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebContent/scripts/google-maps.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/VideoServletService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/dao/VideoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Projekat.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Biblioteke.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/JAX_RS_2_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.metadata/WebContent/WEB-INF/faces-config.pageflow" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/faces-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/editProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/editProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/newsFeed.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/newsFeed.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/scripts/newsFeedScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/scripts/newsFeedScript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/styles/newsFeedStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/styles/newsFeedStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.idea/artifacts/Projekat.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.idea/libraries/Biblioteke.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.idea/libraries/JAX_RS_2_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.metadata/WebContent/WEB-INF/faces-config.pageflow" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.settings/.jsdtscope" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.settings/org.eclipse.jst.j2ee.ejb.annotations.xdoclet.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.settings/org.eclipse.ltk.core.refactoring.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.settings/org.eclipse.wst.common.component" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.settings/org.eclipse.wst.common.project.facet.core.prefs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.settings/org.eclipse.wst.common.project.facet.core.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.settings/org.eclipse.wst.jsdt.ui.superType.container" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.settings/org.eclipse.wst.jsdt.ui.superType.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/.settings/org.eclipse.wst.ws.service.policy.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/Database/creationScript.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/Database/ip2020.mwb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/Database/ip2020.mwb.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/Database/slika.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/IPProjektniZadatak2020.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/META-INF/IPProjektniZadatak2020.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/faces-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/commons-fileupload-1.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/commons-io-2.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/gson-2.8.6-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/gson-2.8.6-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/gson-2.8.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/java-json.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/javax.annotation.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/javax.ejb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/javax.faces-2.2.8-31.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/javax.jms.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/javax.persistence.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/javax.resource.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/javax.servlet.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/javax.servlet.jsp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/javax.servlet.jsp.jstl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/javax.transaction.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/jdom2-2.0.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/jedis-2.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/mysql-connector-java-8.0.18.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/restfb-3.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/rome-1.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/rome-utils-1.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/lib/slf4j-api-1.7.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/editProfile.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/login.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/newsFeed.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/register.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/scripts/newsFeedScript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/WebContent/styles/newsFeedStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/articles.rss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/controller/AccountController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/controller/City.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/controller/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/controller/FileUploadController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/controller/NewsFeedController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/controller/PicturesServletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/controller/PostServletService$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/controller/PostServletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/controller/PublishCommentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/controller/nameOfMyTheme.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/lib/javax.ws.rs-api-2.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/beans/AccountBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/dao/AccountDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/dao/CommentDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/dao/PictureDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/dao/PostDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/dto/Account.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/dto/Comment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/dto/Picture.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/dto/Post.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/dto/Video.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/src/util/ConnectionPool.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/util/ConnectionPool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/util/ConnectionPool.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/util/FileUploadFromRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/util/SHA1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/META-INF/IPProjektniZadatak2020.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/controller/AccountController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/controller/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/model/beans/AccountBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/model/dao/AccountDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/model/dto/Account.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/ip/rss/Feed.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/ip/rss/FeedMessage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/ip/rss/RSSFeedParser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/ip/rss/RSSFeedWriter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/ip/rss/RSSServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/ip/rss/ReadTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/ip/rss/WriteTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/lab/auth/AuthListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/lab/beans/FileUploadBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/lab/beans/ObavezaBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/lab/beans/UserBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/lab/dao/ConnectionPool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/lab/dao/ConnectionPool.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/lab/dao/KorisnikDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/lab/dao/ObavezeDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/lab/dto/Korisnik.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/lab/dto/Obaveza.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/lab/util/CustomValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/lab/util/data/Category.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/net/etfbl/lab/util/data/Picture.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/classes/util/SHA1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/faces-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/gson-2.8.6-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/gson-2.8.6-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/gson-2.8.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/javax.annotation.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/javax.ejb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/javax.faces-2.2.8-31.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/javax.jms.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/javax.json-api-1.1.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/javax.persistence.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/javax.resource.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/javax.servlet.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/javax.servlet.jsp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/javax.servlet.jsp.jstl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/javax.transaction.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/jdom2-2.0.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/mysql-connector-java-8.0.13.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/rome-1.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/rome-utils-1.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/lib/slf4j-api-1.7.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/planer_obaveza.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/editProfile.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/register.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Artifact/register.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/artifacts/Projekat.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/libraries/Biblioteke.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/libraries/JAX_RS_2_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.metadata/WebContent/WEB-INF/faces-config.pageflow" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.settings/.jsdtscope" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.settings/org.eclipse.jst.j2ee.ejb.annotations.xdoclet.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.settings/org.eclipse.ltk.core.refactoring.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.settings/org.eclipse.wst.common.component" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.settings/org.eclipse.wst.common.project.facet.core.prefs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.settings/org.eclipse.wst.common.project.facet.core.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.settings/org.eclipse.wst.jsdt.ui.superType.container" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.settings/org.eclipse.wst.jsdt.ui.superType.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/.settings/org.eclipse.wst.ws.service.policy.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/Database/creationScript.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/Database/ip2020.mwb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/Database/ip2020.mwb.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/Database/slika.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/IPProjektniZadatak2020.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/META-INF/IPProjektniZadatak2020.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/faces-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/aopalliance-repackaged-2.5.0-b42.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/aopalliance-repackaged-2.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/asm-3.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/commons-fileupload-1.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/commons-io-2.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/gson-2.8.6-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/gson-2.8.6-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/gson-2.8.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/hk2-api-2.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/hk2-locator-2.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/hk2-utils-2.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jakarta.activation-api-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jakarta.annotation-api-1.3.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jakarta.inject-2.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jakarta.json-1.1.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jakarta.json-api-1.1.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jakarta.json.bind-api-1.0.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jakarta.persistence-api-2.2.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jakarta.servlet-api-4.0.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jakarta.validation-api-2.0.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jakarta.ws.rs-api-2.1.6-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jakarta.ws.rs-api-2.1.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jakarta.xml.bind-api-2.3.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/java-json.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javassist-3.25.0-GA.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.annotation.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.ejb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.faces-2.2.8-31.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.jms.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.persistence.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.resource.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.servlet.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.servlet.jsp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.servlet.jsp.jstl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.transaction.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.ws.rs-api-2.0-m02-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.ws.rs-api-2.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jdom2-2.0.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jedis-2.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-bundle-1.19.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-bundle-1.19.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-bundle-1.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-bundle-1.9.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-client.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-common.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-container-servlet-core.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-container-servlet.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-hk2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-media-jaxb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-media-json-binding.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-media-sse.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-multipart.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-server-2.30.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/jersey-server.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/mimepull-1.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/mysql-connector-java-8.0.18.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/org.osgi.core-6.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/osgi-resource-locator-1.0.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/restfb-3.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/rome-1.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/rome-utils-1.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/slf4j-api-1.7.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/yasson-1.0.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/editProfile.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/login.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/newsFeed.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/register.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/scripts/newsFeedScript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/WebContent/styles/newsFeedStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/articles.rss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/build/classes/WebContent/editProfile.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/build/classes/WebContent/newsFeed.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/build/classes/WebContent/scripts/newsFeedScript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/build/classes/WebContent/styles/newsFeedStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/AccountController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/City.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/FileUploadController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/NewsFeedController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/PicturesServletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/PostServletService$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/PostServletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/PublishCommentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/controller/nameOfMyTheme.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/lib/javax.ws.rs-api-2.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/beans/AccountBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dao/AccountDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dao/CommentDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dao/PictureDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dao/PostDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dto/Account.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dto/Comment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dto/Picture.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dto/Post.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/model/dto/Video.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/WebContent/WEB-INF/lib/javax.ws.rs-api-2.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/WebContent/editProfile.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/WebContent/newsFeed.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/WebContent/scripts/newsFeedScript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/WebContent/styles/newsFeedStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/build/classes/WebContent/newsFeed.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/build/classes/WebContent/styles/newsFeedStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/WebContent/newsFeed.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/WebContent/styles/newsFeedStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/build/classes/WebContent/newsFeed.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/WebContent/newsFeed.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/newsFeed.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/newsFeed.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/styles/newsFeedStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/WEB-INF/lib/javax.ws.rs-api-2.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/editProfile.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/newsFeed.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/scripts/newsFeedScript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/out/artifacts/Projekat/styles/newsFeedStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/services/PicturesRestService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/src/util/ConnectionPool.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/util/ConnectionPool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/util/ConnectionPool.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/util/FileUploadFromRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/classes/util/SHA1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/faces-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/annotations-18.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/aopalliance-repackaged-2.5.0-b42.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/aopalliance-repackaged-2.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/asm-3.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/commons-fileupload-1.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/commons-io-2.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/gson-2.8.6-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/gson-2.8.6-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/gson-2.8.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/hk2-api-2.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/hk2-locator-2.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/hk2-utils-2.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jakarta.activation-api-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jakarta.annotation-api-1.3.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jakarta.inject-2.6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jakarta.json-1.1.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jakarta.json-api-1.1.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jakarta.json.bind-api-1.0.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jakarta.persistence-api-2.2.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jakarta.servlet-api-4.0.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jakarta.validation-api-2.0.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jakarta.ws.rs-api-2.1.6-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jakarta.ws.rs-api-2.1.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jakarta.xml.bind-api-2.3.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/java-json.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javassist-3.25.0-GA.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.annotation.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.ejb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.faces-2.2.8-31.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.jms.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.persistence.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.resource.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.servlet.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.servlet.jsp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.servlet.jsp.jstl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.transaction.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.ws.rs-api-2.0-m02-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/javax.ws.rs-api-2.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jdom2-2.0.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jedis-2.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-bundle-1.19.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-bundle-1.19.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-bundle-1.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-bundle-1.9.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-client.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-common.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-container-servlet-core.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-container-servlet.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-hk2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-media-jaxb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-media-json-binding.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-media-sse.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-multipart.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-server-2.30.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/jersey-server.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/mimepull-1.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/mysql-connector-java-8.0.13.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/mysql-connector-java-8.0.18.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/org.osgi.core-6.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/osgi-resource-locator-1.0.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/restfb-3.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/rome-1.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/rome-utils-1.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/slf4j-api-1.7.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/lib/yasson-1.0.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/editProfile.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/login.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/newsFeed.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/register.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/scripts/newsFeedScript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Projekat/styles/newsFeedStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/NewsFeedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/NewsFeedController.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProjectId" id="1ZxNtOZS2PyD1c91mXmQ215Cu2k" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/WebContent/WEB-INF" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.21034482" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
+  </component>
+  <component name="RunManager">
+    <configuration name="TomcatServer" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.30" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="BROWSER_ID" value="b2a9dca7-9d0b-4e1e-98a8-afb19c1328d2" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="MainApplication:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_MainApplication" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="59420" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="MainApplication:war exploded" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <option name="contentProportion" value="0.16556291" />
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b0a2e0bd-c0f6-4982-a963-7501a598f547" name="Default Changelist" comment="" />
+      <created>1585776998668</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585776998668</updated>
+      <workItem from="1585777001552" duration="1854000" />
+      <workItem from="1585778913768" duration="4986000" />
+      <workItem from="1585784336533" duration="282000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="421" y="145" key="#BuildArtifactsBeforeRunChooser" timestamp="1585780181759">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="145" key="#BuildArtifactsBeforeRunChooser/0.0.1280.680@0.0.1280.680" timestamp="1585780181759" />
+    <state x="233" y="0" key="#Project_Structure" timestamp="1585780644234">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="0" key="#Project_Structure/0.0.1280.680@0.0.1280.680" timestamp="1585780644234" />
+    <state x="339" y="0" width="616" height="680" key="#TomcatServer" timestamp="1585779307431">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="339" y="0" width="616" height="680" key="#TomcatServer/0.0.1280.680@0.0.1280.680" timestamp="1585779307431" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585783299253">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1585783299253" />
+    <state x="233" y="0" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable" timestamp="1585778712384">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="0" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable/0.0.1280.680@0.0.1280.680" timestamp="1585778712384" />
+    <state x="331" y="264" width="629" height="151" key="#com.intellij.javaee.module.view.common.J2EE.J2EEDeploymentDescriptorLocationPanel.changeDDPath" timestamp="1585781413026">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="331" y="264" width="629" height="151" key="#com.intellij.javaee.module.view.common.J2EE.J2EEDeploymentDescriptorLocationPanel.changeDDPath/0.0.1280.680@0.0.1280.680" timestamp="1585781413026" />
+    <state x="440" y="247" key="#com.intellij.javaee.module.view.web.EditWebRootDialog" timestamp="1585781608611">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="440" y="247" key="#com.intellij.javaee.module.view.web.EditWebRootDialog/0.0.1280.680@0.0.1280.680" timestamp="1585781608611" />
+    <state x="371" y="95" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1585781051899">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="95" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1280.680@0.0.1280.680" timestamp="1585781051899" />
+    <state width="383" height="466" key="DebuggerActiveHint" timestamp="1585782059838">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="383" height="466" key="DebuggerActiveHint/0.0.1280.680@0.0.1280.680" timestamp="1585782059838" />
+    <state x="348" y="81" key="FileChooserDialogImpl" timestamp="1585784581573">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="348" y="81" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1585784581573" />
+    <state width="1007" height="241" key="GridCell.Tab.0.bottom" timestamp="1585784025910">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1585784025910" />
+    <state width="1007" height="241" key="GridCell.Tab.0.center" timestamp="1585784025910">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1585784025910" />
+    <state width="1007" height="241" key="GridCell.Tab.0.left" timestamp="1585784025910">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1585784025910" />
+    <state width="1007" height="241" key="GridCell.Tab.0.right" timestamp="1585784025910">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1585784025910" />
+    <state width="1007" height="241" key="GridCell.Tab.1.bottom" timestamp="1585784025910">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1585784025910" />
+    <state width="1007" height="241" key="GridCell.Tab.1.center" timestamp="1585784025910">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1585784025910" />
+    <state width="1007" height="241" key="GridCell.Tab.1.left" timestamp="1585784025910">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1585784025910" />
+    <state width="1007" height="241" key="GridCell.Tab.1.right" timestamp="1585784025910">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1585784025910" />
+    <state width="1007" height="241" key="GridCell.Tab.2.bottom" timestamp="1585784025911">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.2.bottom/0.0.1280.680@0.0.1280.680" timestamp="1585784025911" />
+    <state width="1007" height="241" key="GridCell.Tab.2.center" timestamp="1585784025911">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.2.center/0.0.1280.680@0.0.1280.680" timestamp="1585784025911" />
+    <state width="1007" height="241" key="GridCell.Tab.2.left" timestamp="1585784025911">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.2.left/0.0.1280.680@0.0.1280.680" timestamp="1585784025911" />
+    <state width="1007" height="241" key="GridCell.Tab.2.right" timestamp="1585784025911">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.2.right/0.0.1280.680@0.0.1280.680" timestamp="1585784025911" />
+    <state width="1007" height="241" key="GridCell.Tab.3.bottom" timestamp="1585784025911">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.3.bottom/0.0.1280.680@0.0.1280.680" timestamp="1585784025911" />
+    <state width="1007" height="241" key="GridCell.Tab.3.center" timestamp="1585784025911">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.3.center/0.0.1280.680@0.0.1280.680" timestamp="1585784025911" />
+    <state width="1007" height="241" key="GridCell.Tab.3.left" timestamp="1585784025911">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.3.left/0.0.1280.680@0.0.1280.680" timestamp="1585784025911" />
+    <state width="1007" height="241" key="GridCell.Tab.3.right" timestamp="1585784025911">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.3.right/0.0.1280.680@0.0.1280.680" timestamp="1585784025911" />
+    <state width="1007" height="241" key="GridCell.Tab.4.bottom" timestamp="1585783304970">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.4.bottom/0.0.1280.680@0.0.1280.680" timestamp="1585783304970" />
+    <state width="1007" height="241" key="GridCell.Tab.4.center" timestamp="1585783304970">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.4.center/0.0.1280.680@0.0.1280.680" timestamp="1585783304970" />
+    <state width="1007" height="241" key="GridCell.Tab.4.left" timestamp="1585783304970">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.4.left/0.0.1280.680@0.0.1280.680" timestamp="1585783304970" />
+    <state width="1007" height="241" key="GridCell.Tab.4.right" timestamp="1585783304970">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="241" key="GridCell.Tab.4.right/0.0.1280.680@0.0.1280.680" timestamp="1585783304970" />
+    <state width="1007" height="235" key="GridCell.Tab.5.bottom" timestamp="1585778541609">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="235" key="GridCell.Tab.5.bottom/0.0.1280.680@0.0.1280.680" timestamp="1585778541609" />
+    <state width="1007" height="235" key="GridCell.Tab.5.center" timestamp="1585778541609">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="235" key="GridCell.Tab.5.center/0.0.1280.680@0.0.1280.680" timestamp="1585778541609" />
+    <state width="1007" height="235" key="GridCell.Tab.5.left" timestamp="1585778541608">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="235" key="GridCell.Tab.5.left/0.0.1280.680@0.0.1280.680" timestamp="1585778541608" />
+    <state width="1007" height="235" key="GridCell.Tab.5.right" timestamp="1585778541609">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1007" height="235" key="GridCell.Tab.5.right/0.0.1280.680@0.0.1280.680" timestamp="1585778541609" />
+    <state x="221" y="83" key="IDE.errors.dialog" timestamp="1585777242340">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="221" y="83" key="IDE.errors.dialog/0.0.1280.680@0.0.1280.680" timestamp="1585777242340" />
+    <state x="121" y="0" key="SettingsEditor" timestamp="1585781611281">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1585781611281" />
+    <state width="647" height="347" key="XDebugger.FullValuePopup" timestamp="1585782059835">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="647" height="347" key="XDebugger.FullValuePopup/0.0.1280.680@0.0.1280.680" timestamp="1585782059835" />
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1585784409000">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1585784409000" />
+    <state x="91" y="0" key="new project wizard" timestamp="1585784618867">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="91" y="0" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1585784618867" />
+  </component>
+</project>

@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head />
+    <ui:composition>
+    	<hr />
+    	<h:form>
+    	<h:panelGrid columns="2">
+    		<h:outputText value="Unesite datum za prikaz: "></h:outputText>
+    		<h:inputText value="${obavezaBean.datum}">
+    		</h:inputText>
+    		<h:outputText value=""></h:outputText>
+    		<h:commandButton value="Prikaži obaveze" action="#{obavezaBean.ocitajObavezeIzBaze}"></h:commandButton>
+    	</h:panelGrid>
+    	</h:form>
+    </ui:composition>    
+</html>

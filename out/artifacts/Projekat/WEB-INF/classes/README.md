@@ -1,2 +1,0 @@
-# IPProjektniZadatak2020
- 
