@@ -1,6 +1,24 @@
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+function imAlive()
+{
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.status===200 && this.readyState===4){
+            var elem = JSON.parse(this.responseText);
+            if(elem.expires)
+                window.location = "newsFeed.jsp"
+        }
+    }
+    xhttp.open('POST', 'Controller?controller=account&action=online&submit=submit', true);
+    xhttp.send();
+}
+
+setInterval(imAlive, 5000);
+
 $(window).load(function () {
+    imAlive();
+    
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;

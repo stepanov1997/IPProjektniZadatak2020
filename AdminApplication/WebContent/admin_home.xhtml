@@ -1,0 +1,57 @@
+<!--suppress ALL -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head/>
+<h:body xmlns:f="http://java.sun.com/jsf/core">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{userBean.importUsers}"/>
+        <f:event type="preRenderView" listener="#{userBean.getNumberOfActiveUsers}"/>
+        <f:event type="preRenderView" listener="#{userBean.getNumberOfRegistredUsers}"/>
+    </f:metadata>
+
+    Number of active users:
+    <h:outputText id="activeUsers" value="#{userBean.numberOfActive}"></h:outputText><br/>
+
+    Number of registred users:
+    <h:outputText id="registredUsers" value="#{userBean.numberOfRegistered}"></h:outputText><br/>
+
+    <h:form>
+        <h:dataTable value="#{userBean.users}" var="o">
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{o.user.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Surname</f:facet>
+                #{o.user.surname}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Username</f:facet>
+                #{o.user.username}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Give access</f:facet>
+                <h:commandLink id="giveAccess" type="submit" value="Give access" action="#{o.giveAccess}"></h:commandLink>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Block user</f:facet>
+                <h:commandButton id="blockUsr" type="submit" value="Block user" action="#{o.blockUser}"></h:commandButton>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Reset password</f:facet>
+                <h:commandButton id="resetPwd" type="submit" value="Reset password" action="#{o.resetPassword}"></h:commandButton>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+
+    <h2>PrimeFaces Linear Chart Example</h2>
+    <p:chart type="line" model="#{lineChartBean.lineModel}" style="height:400px;width:600px"/>
+
+    <h:message for="giveAccess"></h:message>
+    <h:message for="blockUsr"></h:message>
+    <h:message for="resetPwd"></h:message>
+</h:body>
+</html>

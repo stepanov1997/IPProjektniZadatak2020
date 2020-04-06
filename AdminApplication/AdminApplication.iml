@@ -17,6 +17,7 @@
         <webroots>
           <root url="file://$MODULE_DIR$/WebContent" relative="/" />
         </webroots>
+        <sourceRoots />
       </configuration>
     </facet>
   </component>
@@ -29,5 +30,17 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="12" jdkType="JavaSDK" />
     <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/annotations-18.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Validation API-2.0.1.Final" level="project" />
+    <orderEntry type="library" name="PrimeFaces-6.1" level="project" />
   </component>
 </module>

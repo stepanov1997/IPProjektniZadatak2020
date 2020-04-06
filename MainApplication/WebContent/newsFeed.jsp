@@ -1,11 +1,15 @@
 <%@ page import="model.beans.AccountBean" %>
 <%@ page import="model.dao.AccountDao" %>
+<%@ page import="model.dto.Account" %>
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
 
-<% if (session.getAttribute("accountBean") == null) {
-    response.sendRedirect("login.jsp");
-    return;
-}
+<%
+    AccountBean acc = (AccountBean) session.getAttribute("accountBean");
+    if (acc == null || acc.getAccount() == null || !acc.getAccount().isLogged()) {
+        session.invalidate();
+        response.sendRedirect("login.jsp");
+        return;
+    }
 %>
 
 <jsp:useBean id="accountBean" scope="session" type="model.beans.AccountBean"/>

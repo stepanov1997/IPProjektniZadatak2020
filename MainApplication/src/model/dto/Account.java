@@ -15,6 +15,8 @@ public class Account {
     private String region;
     private String city;
     private int loginCounter;
+    private boolean isLogged;
+    private boolean isRegistered;
 
     public Account() {
     }
@@ -25,22 +27,6 @@ public class Account {
         this.username = username;
         this.password = password;
         this.email = email;
-    }
-
-    public int getLoginCounter() {
-        return loginCounter;
-    }
-
-    public void setLoginCounter(int loginCounter) {
-        this.loginCounter = loginCounter;
-    }
-
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
     }
 
     public int getId() {
@@ -91,12 +77,28 @@ public class Account {
         this.email = email;
     }
 
+    public Integer getPicture_Id() {
+        return picture_Id;
+    }
+
+    public void setPicture_Id(Integer picture_Id) {
+        this.picture_Id = picture_Id;
+    }
+
     public String getCountry() {
         return country;
     }
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 
     public String getRegion() {
@@ -115,12 +117,28 @@ public class Account {
         this.city = city;
     }
 
-    public Integer getPicture_Id() {
-        return picture_Id;
+    public int getLoginCounter() {
+        return loginCounter;
     }
 
-    public void setPicture_Id(Integer picture_Id) {
-        this.picture_Id = picture_Id;
+    public void setLoginCounter(int loginCounter) {
+        this.loginCounter = loginCounter;
+    }
+
+    public boolean isLogged() {
+        return isLogged;
+    }
+
+    public void setLogged(boolean logged) {
+        isLogged = logged;
+    }
+
+    public boolean isRegistered() {
+        return isRegistered;
+    }
+
+    public void setRegistered(boolean registered) {
+        isRegistered = registered;
     }
 
     @Override
@@ -129,6 +147,9 @@ public class Account {
         if (!(o instanceof Account)) return false;
         Account account = (Account) o;
         return getId() == account.getId() &&
+                getLoginCounter() == account.getLoginCounter() &&
+                isLogged() == account.isLogged() &&
+                isRegistered() == account.isRegistered() &&
                 Objects.equals(getName(), account.getName()) &&
                 Objects.equals(getSurname(), account.getSurname()) &&
                 Objects.equals(getUsername(), account.getUsername()) &&
@@ -138,13 +159,12 @@ public class Account {
                 Objects.equals(getCountry(), account.getCountry()) &&
                 Objects.equals(getCountryCode(), account.getCountryCode()) &&
                 Objects.equals(getRegion(), account.getRegion()) &&
-                Objects.equals(getCity(), account.getCity()) &&
-                Objects.equals(getLoginCounter(), account.getLoginCounter());
+                Objects.equals(getCity(), account.getCity());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getSurname(), getUsername(), getPassword(), getEmail(), getPicture_Id(), getCountry(), getCountryCode(), getRegion(), getCity(), getLoginCounter());
+        return Objects.hash(getId(), getName(), getSurname(), getUsername(), getPassword(), getEmail(), getPicture_Id(), getCountry(), getCountryCode(), getRegion(), getCity(), getLoginCounter(), isLogged(), isRegistered());
     }
 
     @Override
@@ -161,7 +181,9 @@ public class Account {
                 ", countryCode='" + countryCode + '\'' +
                 ", region='" + region + '\'' +
                 ", city='" + city + '\'' +
-                ", loginCounter='" + loginCounter + '\'' +
+                ", loginCounter=" + loginCounter +
+                ", isLogged=" + isLogged +
+                ", isRegistered=" + isRegistered +
                 '}';
     }
 }

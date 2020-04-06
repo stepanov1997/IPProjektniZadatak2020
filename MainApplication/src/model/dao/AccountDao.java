@@ -1,11 +1,14 @@
 package model.dao;
 
+import com.mysql.cj.MysqlConnection;
 import model.dto.Account;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import util.ConnectionPool;
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +22,9 @@ public class AccountDao {
     private static final String updateQuery = "UPDATE user SET name=?, surname=?, username=?, password=?, email=?, country=?, countryCode=?, region=?, city=?, loginCounter=?, picture_id=? WHERE id=?";
     private static final String countByUsernameQuery = "SELECT COUNT(*) as number FROM user WHERE username=?";
     private static final String countByEmailQuery = "SELECT COUNT(*) as number FROM user WHERE email=?";
-
+    private static final String loginQuery = "UPDATE user SET isLogged=1, loginCounter=? WHERE id=?";
+    private static final String insertToHistoryQuery = "INSERT INTO history_of_logins (User_id, datetime) VALUES (?,?)";
+    private static final String logoutQuery = "UPDATE user SET isLogged=0 WHERE id=?";
 
     public AccountDao() {
     }
@@ -43,10 +48,19 @@ public class AccountDao {
                 account.setSurname(resultSet.getString("surname"));
                 account.setUsername(resultSet.getString("username"));
                 account.setPassword(resultSet.getString("password"));
+                account.setEmail(resultSet.getString("email"));
                 account.setCountry(resultSet.getString("country"));
+                account.setCountryCode(resultSet.getString("countryCode"));
                 account.setRegion(resultSet.getString("region"));
+                account.setLoginCounter(resultSet.getInt("loginCounter"));
                 account.setCity(resultSet.getString("city"));
-                account.setPicture_Id(resultSet.getInt("picture_id"));
+                Integer picture_id = resultSet.getInt("picture_id");
+                if (resultSet.wasNull()) {
+                    picture_id = null;
+                }
+                account.setPicture_Id(picture_id);
+                account.setRegistered(resultSet.getBoolean("isRegistered"));
+                account.setLogged(resultSet.getBoolean("isLogged"));
                 accounts.add(account);
             }
         } catch (SQLException ex) {
@@ -191,6 +205,8 @@ public class AccountDao {
                     picture_id = null;
                 }
                 account.setPicture_Id(picture_id);
+                account.setRegistered(resultSet.getBoolean("isRegistered"));
+                account.setLogged(resultSet.getBoolean("isLogged"));
                 return account;
             }
         } catch (SQLException ex) {
@@ -239,6 +255,8 @@ public class AccountDao {
                     picture_id = null;
                 }
                 account.setPicture_Id(picture_id);
+                account.setRegistered(resultSet.getBoolean("isRegistered"));
+                account.setLogged(resultSet.getBoolean("isLogged"));
                 return account;
             }
         } catch (SQLException ex) {
@@ -319,4 +337,49 @@ public class AccountDao {
         }
         return false;
     }
+
+    public void login(@NotNull Account account) {
+        account.setLogged(true);
+        account.setLoginCounter(account.getLoginCounter() + 1);
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = ConnectionPool.getConnectionPool().checkOut();
+            preparedStatement = connection.prepareStatement(loginQuery);
+            preparedStatement.setInt(1, account.getLoginCounter());
+            preparedStatement.setInt(2, account.getId());
+            preparedStatement.executeUpdate();
+
+            preparedStatement = connection.prepareStatement(insertToHistoryQuery);
+            preparedStatement.setInt(1, account.getId());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            preparedStatement.setString(2, formatter.format(LocalDateTime.now()));
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionPool.getConnectionPool().checkIn(connection);
+        }
+    }
+
+    public void logout(@NotNull Account account) {
+        account.setLogged(false);
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = ConnectionPool.getConnectionPool().checkOut();
+            preparedStatement = connection.prepareStatement(logoutQuery);
+            preparedStatement.setInt(1, account.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionPool.getConnectionPool().checkIn(connection);
+        }
+    }
+
 }

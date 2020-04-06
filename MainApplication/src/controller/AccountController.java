@@ -12,12 +12,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URL;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.temporal.TemporalAmount;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class AccountController extends HttpServlet implements Serializable {
     private String emailPattern = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+
+    static HashMap<Integer, LocalDateTime> onlineUsers = new HashMap<>();
+
+    static {
+        new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException ignored) {
+                }
+                var accountBeans = onlineUsers.entrySet().stream().filter(e -> {
+                    long seconds = Duration.between(e.getValue(), LocalDateTime.now()).getSeconds();
+                    return seconds > 10 || seconds < -10;
+                }).collect(Collectors.toList());
+                for (int i = 0; i < accountBeans.size(); i++) {
+                    AccountDao accountDao = new AccountDao();
+                    accountDao.logout(Objects.requireNonNull(accountDao.get(accountBeans.get(i).getKey())));
+                    onlineUsers.remove(accountBeans.get(i).getKey());
+                }
+            }
+        }).start();
+    }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -154,18 +181,19 @@ public class AccountController extends HttpServlet implements Serializable {
                     AccountDao accountDao = new AccountDao();
                     Account account = accountDao.getByUsername(username);
 
-                    if (account == null || !SHA1.encryptPassword(password).equals(account.getPassword())) {
+                    if (account == null || !SHA1.encryptPassword(password).equals(account.getPassword()) || !account.isRegistered()) {
                         inputMap.put("redirect", false);
-                        inputMap.put("message", "Username or password are not valid.");
+                        inputMap.put("message", account == null ? "Username or password are not valid." : (account.isRegistered() ? "Username or password are not valid." : "User does not have access right."));
                         String json = gson.toJson(inputMap);
                         out.print(json);
                         return;
                     }
 
-                    account.setLoginCounter(account.getLoginCounter() + 1);
-                    accountDao.update(account);
+                    accountDao.login(account);
 
                     accountBean.setAccount(account);
+                    onlineUsers.put(account.getId(), LocalDateTime.now());
+
                     request.getSession().setAttribute("accountBean", accountBean);
 
                     inputMap.put("redirect", true);
@@ -193,8 +221,28 @@ public class AccountController extends HttpServlet implements Serializable {
                 }
                 break;
                 case "logout": {
+                    AccountBean accountBean = (AccountBean) request.getSession().getAttribute("accountBean");
+                    Account account = accountBean.getAccount();
+                    AccountDao accountDao = new AccountDao();
+
+                    accountDao.logout(account);
+
                     request.getSession().invalidate();
                     response.sendRedirect("login.jsp");
+                }
+                break;
+                case "online": {
+                    AccountBean accountBean = (AccountBean) request.getSession().getAttribute("accountBean");
+                    JsonObject jsonObject = new JsonObject();
+                    response.setContentType("application/json");
+                    if (onlineUsers.containsKey(accountBean.getAccount().getId())) {
+                        onlineUsers.replace(accountBean.getAccount().getId(), LocalDateTime.now());
+                        jsonObject.addProperty("expires", false);
+                    } else {
+                        request.getSession().invalidate();
+                        jsonObject.addProperty("expires", true);
+                    }
+                    response.getOutputStream().print(jsonObject.toString());
                 }
                 break;
                 case "weather": {
@@ -205,7 +253,7 @@ public class AccountController extends HttpServlet implements Serializable {
                     List<City> citiesCollection = new ArrayList<>();
 
                     // 7578fefe26854e880722d16cb2a9f344
-                    String page="http://battuta.medunes.net/api/region/" + account.getCountryCode() + "/all/?key=7578fefe26854e880722d16cb2a9f344";
+                    String page = "http://battuta.medunes.net/api/region/" + account.getCountryCode() + "/all/?key=7578fefe26854e880722d16cb2a9f344";
                     String json = getFromUrl(page);
                     JsonArray regions = JsonParser.parseString(json).getAsJsonArray();
                     for (JsonElement region : regions) {
@@ -223,10 +271,9 @@ public class AccountController extends HttpServlet implements Serializable {
                     }
 
                     City city1;
-                    if(account.getCity() != null && !account.getCity().isBlank()) {
+                    if (account.getCity() != null && !account.getCity().isBlank()) {
                         city1 = citiesCollection.stream().filter(e -> e.city.equals(account.getCity())).findFirst().get();
-                    }
-                    else {
+                    } else {
                         Random random = new Random();
                         city1 = citiesCollection.get(random.nextInt(citiesCollection.size() - 1));
                     }
@@ -241,8 +288,8 @@ public class AccountController extends HttpServlet implements Serializable {
                     List<City> cities = Arrays.asList(city1, city2, city3);
 
                     JsonArray result = new JsonArray();
-                    for (City city: cities) {
-                        String weatherLink = "http://api.openweathermap.org/data/2.5/forecast?lat="+city.latitude+"&lon="+city.longitude+"&appid=43eacaa5f711d065623e781ac55480aa";
+                    for (City city : cities) {
+                        String weatherLink = "http://api.openweathermap.org/data/2.5/forecast?lat=" + city.latitude + "&lon=" + city.longitude + "&appid=43eacaa5f711d065623e781ac55480aa";
                         String weatherJson = getFromUrl(weatherLink);
                         JsonObject weatherObject = JsonParser.parseString(weatherJson).getAsJsonObject();
                         JsonArray weatherList = weatherObject.get("list").getAsJsonArray();
@@ -277,8 +324,7 @@ public class AccountController extends HttpServlet implements Serializable {
             while ((inputLine = in.readLine()) != null)
                 sb.append(inputLine.replace("\\\"", "\""));
             in.close();
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             return null;
         }
         return sb.toString();
