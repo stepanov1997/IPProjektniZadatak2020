@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="admin_lib">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/AdminApplication/WebContent/WEB-INF/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/AdminApplication/WebContent/WEB-INF/lib" recursive="false" />
+  </library>
+</component>

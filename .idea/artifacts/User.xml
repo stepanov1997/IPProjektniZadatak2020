@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="User">
+    <output-path>$PROJECT_DIR$/out/artifacts/User</output-path>
+    <root id="root">
+      <element id="dir-copy" path="$PROJECT_DIR$/MainApplication" />
+      <element id="javaee-facet-resources" facet="IPProjektniZadatak2020/web/User" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="javaee-facet-classes" facet="IPProjektniZadatak2020/web/User" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="user_lib" />
+          <element id="library" level="project" name="PrimeFaces-6.1" />
+          <element id="library" level="project" name="admin_lib" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

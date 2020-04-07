@@ -1,0 +1,13 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head/>
+<h:body>
+    <h:form>
+        Username: <h:inputText value="#{adminBean.administrator.username}"></h:inputText>
+        Password: <h:inputSecret value="#{adminBean.administrator.password}"></h:inputSecret>
+        <h:commandButton id="login-btn" type="submit" action="#{adminBean.login}"></h:commandButton>
+        <h:message for="login-btn"></h:message>
+    </h:form>
+</h:body>
+</html>

@@ -43,9 +43,9 @@ public class ConnectionPool {
   }
 
   protected ConnectionPool(String aJdbcURL, String aUsername,
-    String aPassword, int aPreconnectCount,
-    int aMaxIdleConnections,
-    int aMaxConnections)
+                           String aPassword, int aPreconnectCount,
+                           int aMaxIdleConnections,
+                           int aMaxConnections)
     throws ClassNotFoundException, SQLException {
 
     freeConnections = new Vector<Connection>();
@@ -83,7 +83,7 @@ public class ConnectionPool {
       } else {
         try {
           wait();
-          conn = (Connection)freeConnections.elementAt(0);
+          conn = freeConnections.elementAt(0);
           freeConnections.removeElementAt(0);
           usedConnections.addElement(conn);
         } catch (InterruptedException ex) {

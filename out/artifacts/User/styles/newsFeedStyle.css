@@ -1,0 +1,301 @@
+* {
+    box-sizing: border-box;
+    font-size: 95%;
+}
+
+/* Add a gray background color with some padding */
+body {
+    font-family: Arial;
+    padding: 0 20px;
+    background: gray;
+}
+
+/* Header/Blog Title */
+.header {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-gap: 10px;
+    background: white;
+}
+
+.leftHeader {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin-left: 25%;
+    text-align: center;
+    horiz-align: center;
+}
+
+.rightHeader {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 30px;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+    float: left;
+    width: 25%;
+}
+
+/* Right column */
+.midcolumn {
+    float: left;
+    width: 50%;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.rightcolumn {
+    float: right;
+    height: auto;
+    width: 25%;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow: visible;
+}
+
+/* Fake image */
+.fakeimg img {
+    background-color: #aaa;
+    border-radius: 4px;
+    width: 100%;
+    padding: 20px;
+}
+
+.fakeimg > p {
+    background-color: #aaa;
+    border-radius: 4px;
+    vertical-align: center;
+    width: 100%;
+    height: 20px;
+    padding: 5px;
+}
+
+/* Add a card effect for articles */
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+    .leftcolumn, .midcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+
+    .insertAttachment {
+        width: 100%;
+        padding: 0;
+    }
+
+    #createPost1 {
+        width: 100%;
+    }
+    #createPost2 {
+        width: 100%;
+    }
+
+    .italicAndBoldFont {
+        font-style: italic;
+        font-weight: bold;
+    }
+}
+
+.italicAndBoldFont {
+    font-style: italic;
+    font-weight: bold;
+}
+
+#createPost1, #createPost2 {
+    width: 100%;
+    background-color: #aaa;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#createPost1 {
+    display: block;
+}
+
+#createPost2 {
+    display: none;
+}
+
+.insertAttachment > img {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    padding: 10px;
+}
+
+.insertAttachment > button {
+    width: 150px;
+    height: 75px;
+    margin-left: 150px;
+    background-color: white;
+    padding: 10px;
+}
+
+#picture-img, #video-img {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    padding: 10px;
+}
+
+.insertAttachment {
+    display: flex;
+    vertical-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.appendChild {
+    animation: slide-up 0.4s ease;
+}
+
+.removeChild {
+    animation: slide-down 0.4s ease;
+    -webkit-transition: opacity 400ms linear, height 400ms linear;
+    transition: opacity 400ms linear, height 400ms linear;
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    100% {
+        transform: translateY(20px);
+        height: 100%;
+    }
+    0% {
+        transform: translateY(0);
+        height: 0;
+    }
+}
+
+#text {
+    resize: vertical;
+}
+
+.weathers {
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: center;
+}
+
+.weathers > p {
+    width: 100%;
+    text-align: center;
+    align-self: center;
+}
+
+.weatherDay {
+    float: inside;
+    border: 2px solid black;
+    border-radius: 15px;
+    text-align: center;
+    width: 50%;
+    background: #dddddd;
+}
+
+.weatherDay:nth-child(1) {
+    float: inside;
+    border: 2px solid black;
+    border-radius: 15px;
+    text-align: center;
+    width: 100%;
+    background: #dddddd;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+    padding-top: 20px;
+    vertical-align: center;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    width: 100%;
+}
+
+.tabcontent.active {
+    display: flex;
+    width: 100%;
+}
+
+#map {
+    width: 100%;
+    height: 400px;
+    background-color: grey;
+}
+
+.insertAttachment2 {
+    text-align: center;
+    width: 100%;
+    vertical-align: center;
+    align-items: center;
+}
+
+.leftPost {
+    text-align: center;
+    width: 100%;
+    vertical-align: center;
+    align-items: center;
+}
