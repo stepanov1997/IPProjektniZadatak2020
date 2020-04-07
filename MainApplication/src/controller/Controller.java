@@ -19,9 +19,9 @@ public class Controller extends HttpServlet {
         {
             switch (request.getParameter("controller"))
             {
-                case "account":
+                case "user":
                 {
-                    request.getRequestDispatcher("AccountController").forward(request, response);
+                    request.getRequestDispatcher("UserController").forward(request, response);
                 }
                 break;
                 case "upload":

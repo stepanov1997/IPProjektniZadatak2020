@@ -8,11 +8,11 @@ import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
-import model.beans.AccountBean;
-import model.dao.AccountDao;
+import model.beans.UserBean;
+import model.dao.UserDao;
 import model.dao.CommentDao;
 import model.dao.PostDao;
-import model.dto.Account;
+import model.dto.User;
 import model.dto.Post;
 
 import javax.servlet.ServletException;
@@ -28,6 +28,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class PostServletService extends HttpServlet {
@@ -40,9 +41,9 @@ public class PostServletService extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		AccountBean accountBean = ((AccountBean)request.getSession().getAttribute("accountBean"));
-		Account account = accountBean.getAccount();
-		if(account == null)
+		UserBean userBean = ((UserBean)request.getSession().getAttribute("userBean"));
+		User user = userBean.getUser();
+		if(user == null)
 		{
 			JsonArray jsonArray = new JsonArray();
 			response.getOutputStream().print(jsonArray.toString());
@@ -57,13 +58,12 @@ public class PostServletService extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		List<Object> posts = new ArrayList<>(new ArrayList<SyndEntry>(feed.getEntries()));
+		List<Object> posts = new ArrayList<>(new ArrayList<>(Objects.requireNonNull(feed).getEntries()));
 		PostDao postDao = new PostDao();
 		posts.addAll(postDao.getAll());
 		posts.sort(Post::postCompare);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		List<HashMap<String, Object>> result = new ArrayList<>();
 		JsonArray jsonArray = new JsonArray();
 		Gson gson = new Gson();
 		for(Object obj : posts)
@@ -95,11 +95,11 @@ public class PostServletService extends HttpServlet {
 				String dateTime = formatter.format(post.getDateTime());
 				jsonObject.addProperty("date", dateTime);
 
-				AccountDao accountDao = new AccountDao();
-				Account account1 = accountDao.get(post.getUser_id());
-				jsonObject.addProperty("nameSurname", account1.getName() + " " + account1.getSurname() + " (" + account1.getUsername() + ")");
-				jsonObject.addProperty("Picture_id", account1.getPicture_Id());
-				jsonObject.addProperty("countryCode", account1.getCountryCode());
+				UserDao userDao = new UserDao();
+				User user1 = userDao.get(post.getUser_id());
+				jsonObject.addProperty("nameSurname", Objects.requireNonNull(user1).getName() + " " + user1.getSurname() + " (" + user1.getUsername() + ")");
+				jsonObject.addProperty("Picture_id", user1.getPicture_Id());
+				jsonObject.addProperty("countryCode", user1.getCountryCode());
 				var contentType = post.getContentTypeValue();
 				if(contentType==null)
 					jsonObject.addProperty("contentType", "textOnly");
@@ -116,10 +116,10 @@ public class PostServletService extends HttpServlet {
 						.map(elem ->
 						{
 							JsonObject jsonPost = new JsonObject();
-							Account account2 = new AccountDao().get(elem.getUser_id());
-							jsonPost.addProperty("nameSurname", account2.getName() + " " + account2.getSurname() + " ("+ account2.getUsername()+")");
-							jsonPost.addProperty("ProfilePic_id", account2.getPicture_Id());
-							jsonPost.addProperty("countryCode", account2.getCountryCode());
+							User user2 = new UserDao().get(elem.getUser_id());
+							jsonPost.addProperty("nameSurname", user2.getName() + " " + user2.getSurname() + " ("+ user2.getUsername()+")");
+							jsonPost.addProperty("ProfilePic_id", user2.getPicture_Id());
+							jsonPost.addProperty("countryCode", user2.getCountryCode());
 							jsonPost.addProperty("comment", elem.getComment());
 							jsonPost.addProperty("Picture_id", elem.getPicture_id());
 							String dateTimeComment = formatter.format(elem.getDateTime());

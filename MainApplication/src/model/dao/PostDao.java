@@ -1,6 +1,6 @@
 package model.dao;
 
-import model.dto.Account;
+import model.dto.User;
 import model.dto.Post;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -119,14 +119,14 @@ public class PostDao {
         return false;
     }
 
-    public boolean remove(@NotNull Account account) {
+    public boolean remove(@NotNull User user) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionPool.getConnectionPool().checkOut();
             preparedStatement = connection.prepareStatement(deleteQuery);
-            preparedStatement.setInt(1, account.getId());
+            preparedStatement.setInt(1, user.getId());
             int rowsDeleted = preparedStatement.executeUpdate();
             return rowsDeleted > 0;
         } catch (SQLException ex) {

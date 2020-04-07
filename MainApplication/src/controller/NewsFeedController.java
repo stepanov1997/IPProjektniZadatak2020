@@ -1,11 +1,11 @@
 package controller;
 
 import com.google.gson.Gson;
-import model.beans.AccountBean;
+import model.beans.UserBean;
 import model.dao.PictureDao;
 import model.dao.PostDao;
 import model.dao.VideoDao;
-import model.dto.Account;
+import model.dto.User;
 import model.dto.Picture;
 import model.dto.Post;
 import model.dto.Video;
@@ -53,17 +53,17 @@ public class NewsFeedController extends HttpServlet {
             return;
         }
 
-        AccountBean accountBean = (AccountBean) request.getSession().getAttribute("accountBean");
-        Account account = accountBean.getAccount();
+        UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
+        User user = userBean.getUser();
 
         PostDao postDao = new PostDao();
         Post post = new Post();
-        post.setUser_id(account.getId());
+        post.setUser_id(user.getId());
         post.setDateTime(LocalDateTime.now());
         post.setYoutubeLink(ytLink);
         post.setLink(link);
         post.setText(text);
-        post.setUser_id(account.getId());
+        post.setUser_id(user.getId());
 
         post.setVideo_id(null);
 
@@ -88,12 +88,12 @@ public class NewsFeedController extends HttpServlet {
                 }
             }
 
-            request.getSession().setAttribute("accountBean", accountBean);
+            request.getSession().setAttribute("userBean", userBean);
             inputMap.put("success", true);
             inputMap.put("dateTime", post.getDateTime().toLocalDate());
             inputMap.put("text", post.getText());
-            inputMap.put("Picture_id", account.getPicture_Id());
-            inputMap.put("countryCode", account.getCountryCode());
+            inputMap.put("Picture_id", user.getPicture_Id());
+            inputMap.put("countryCode", user.getCountryCode());
             var contentType = post.getContentTypeValue();
             if (contentType == null)
                 inputMap.put("contentType", "textOnly");

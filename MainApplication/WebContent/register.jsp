@@ -5,7 +5,7 @@
   Time: 22:51
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>REGISTRATION</title>
@@ -17,7 +17,7 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     debugger;
-                    var result = JSON.parse(this.responseText);
+                    const result = JSON.parse(this.responseText);
                     if(result.redirect)
                     {
                         $("#result").html(result.message);
@@ -34,7 +34,7 @@
                     }
                 }
             };
-            let url = "Controller?controller=account&action=register";
+            let url = "Controller?controller=user&action=register";
             url += "&name=" + $('[name$="name"]').val();
             url += "&surname=" + $('[name$="surname"]').val();
             url += "&username=" + $('[name$="username"]').val();
@@ -54,12 +54,24 @@
 <hr>
 <br>
 <form>
-    <p>Name: <input type="text" name="name"></p>
-    <p>Surname: <input type="text" name="surname"></p>
-    <p>Username: <input type="text" name="username"></p>
-    <p>Password: <input type="password" name="password"></p>
-    <p>Password: <input type="password" name="passwordAgain"></p>
-    <p>E-mail: <input type="text" name="email"></p><br>
+    <p>Name: <label>
+        <input type="text" name="name">
+    </label></p>
+    <p>Surname: <label>
+        <input type="text" name="surname">
+    </label></p>
+    <p>Username: <label>
+        <input type="text" name="username">
+    </label></p>
+    <p>Password: <label>
+        <input type="password" name="password">
+    </label></p>
+    <p>Password: <label>
+        <input type="password" name="passwordAgain">
+    </label></p>
+    <p>E-mail: <label>
+        <input type="text" name="email">
+    </label></p><br>
     <p>
         <button type="button" onclick="loadDoc()" name="submit">Register</button>
     </p>

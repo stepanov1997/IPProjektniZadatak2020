@@ -2,11 +2,11 @@ package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import model.beans.AccountBean;
-import model.dao.AccountDao;
+import model.beans.UserBean;
+import model.dao.UserDao;
 import model.dao.CommentDao;
 import model.dao.PictureDao;
-import model.dto.Account;
+import model.dto.User;
 import model.dto.Comment;
 import model.dto.Picture;
 import util.FileUploadFromRequest;
@@ -20,13 +20,14 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class PublishCommentController extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Integer Post_id = Integer.valueOf(request.getParameter("Post_Id"));
         String commentString = request.getParameter("text");
-        AccountBean accountBean = (AccountBean)request.getSession().getAttribute("accountBean");
+        UserBean userBean = (UserBean)request.getSession().getAttribute("userBean");
 
         Gson gson = new Gson();
         Map<String, Object> inputMap = new HashMap<>();
@@ -54,7 +55,7 @@ public class PublishCommentController extends HttpServlet {
         }
         CommentDao commentDao = new CommentDao();
         Comment comment = new Comment();
-        comment.setUser_id(accountBean.getAccount().getId());
+        comment.setUser_id(userBean.getUser().getId());
         comment.setPost_id(Post_id);
         comment.setComment(commentString);
         comment.setDateTime(LocalDateTime.now());
@@ -68,10 +69,10 @@ public class PublishCommentController extends HttpServlet {
             }
 
             JsonObject jsonPost = new JsonObject();
-            Account account2 = new AccountDao().get(comment.getUser_id());
-            jsonPost.addProperty("nameSurname", account2.getName() + " " + account2.getSurname() + " ("+ account2.getUsername()+")");
-            jsonPost.addProperty("ProfilePic_id", account2.getPicture_Id());
-            jsonPost.addProperty("countryCode", account2.getCountryCode());
+            User user2 = new UserDao().get(comment.getUser_id());
+            jsonPost.addProperty("nameSurname", Objects.requireNonNull(user2).getName() + " " + user2.getSurname() + " ("+ user2.getUsername()+")");
+            jsonPost.addProperty("ProfilePic_id", user2.getPicture_Id());
+            jsonPost.addProperty("countryCode", user2.getCountryCode());
             jsonPost.addProperty("comment", comment.getComment());
             if(withImage)
                 jsonPost.addProperty("Picture_id", comment.getPicture_id());

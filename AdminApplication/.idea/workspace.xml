@@ -7,72 +7,228 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b7da527-3b67-47f3-8dce-c272346d6bbe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsonCatalog.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/PrimeFaces_6_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Validation_API_2_0_1_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebContent/admin_home.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/beans/AdminBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/beans/LineChartBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/beans/UserBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/dao/AdministratorDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/dao/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/dto/History.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/dto/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/filters/AuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/validators/LoginValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MainApplication/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MainApplication/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Lab09_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Lab09_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebContent/WEB-INF/resources/history.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/dao/AdminUserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/util/Email.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MainApplication/.idea/artifacts/MainApplication_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MainApplication/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MainApplication/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AdminApplication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AdminApplication.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/faces-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/planer_obaveza.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/login.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/META-INF/AdminApplication.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/META-INF/Lab09.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/faces-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/planer_obaveza.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/index.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/admin_home.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/admin_home.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/beans/LineChartBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/model/beans/LineChartBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/beans/UserBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/dao/UserDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/model/dto/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/META-INF/AdminApplication.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/META-INF/Lab09.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/model/beans/AdminBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/model/beans/LineChartBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/model/beans/UserBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/model/dao/AdministratorDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/model/dao/UserDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/model/dto/Administrator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/model/dto/History.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/model/dto/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/util/ConnectionPool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/util/ConnectionPool.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/util/FileUploadFromRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/util/SHA1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/util/filters/AuthenticationFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/classes/util/validators/LoginValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/components/body_obaveze.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/components/body_pregledObaveza.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/components/body_unosObaveza.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/components/header.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/faces-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/lib/annotations-18.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/lib/annotations-19.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/lib/commons-fileupload-1.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/lib/commons-io-2.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/lib/javax.faces-2.1.24.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/lib/javax.servlet.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/lib/mysql-connector-java-8.0.13.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/lib/mysql-connector-java-8.0.18.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/lib/primefaces-6.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/lib/validation-api-2.0.1.Final.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/templates/template.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/admin_home.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/Lab09_war_exploded/login.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/beans/LineChartBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/beans/LineChartBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/beans/UserBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/beans/AdminUserBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/dao/UserDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/dto/User.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Database/creationScript.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Database/creationScript.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Database/ip2020.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/../Database/ip2020.mwb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Database/ip2020.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/../Database/ip2020.mwb.bak" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/.idea/MainApplication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/.idea/MainApplication.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MainApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/WebContent/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/WebContent/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/WebContent/editProfile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/WebContent/editProfile.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/WebContent/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/WebContent/login.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MainApplication/WebContent/newsFeed.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/WebContent/newsFeed.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/WebContent/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/WebContent/register.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MainApplication/WebContent/scripts/newsFeedScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/WebContent/scripts/newsFeedScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/City.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/City.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/creationScript.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/ip2020.mwb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/ip2020.mwb.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dao/AccountDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dao/AccountDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dto/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dto/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/slika.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/newsFeed.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/newsFeed.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/scripts/newsFeedScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/scripts/newsFeedScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/City.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/City.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/creationScript.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/ip2020.mwb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/ip2020.mwb.bak" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dao/AccountDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dao/AccountDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dto/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dto/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/slika.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/src/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/src/model/dao/AccountDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/model/dao/AccountDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MainApplication/src/model/dto/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/model/dto/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/annotations-19.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/commons-fileupload-1.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/commons-io-2.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/gson-2.8.6-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/gson-2.8.6-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/gson-2.8.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/java-json.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/javax.annotation.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/javax.ejb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/javax.faces-2.2.8-31.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/javax.jms.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/javax.persistence.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/javax.resource.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/javax.servlet.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/javax.servlet.jsp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/javax.servlet.jsp.jstl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/javax.transaction.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/jdom2-2.0.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/jedis-2.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/mysql-connector-java-8.0.18.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/restfb-3.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/rome-1.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/rome-utils-1.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/lib/slf4j-api-1.7.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/controller/AccountController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/controller/City.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/controller/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/controller/FileUploadController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/controller/NewsFeedController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/controller/PicturesServletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/controller/PostServletService$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/controller/PostServletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/controller/PublishCommentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/controller/VideoServletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/creationScript.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/ip2020.mwb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/ip2020.mwb.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/model/beans/AccountBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/model/dao/AccountDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/model/dao/CommentDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/model/dao/PictureDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/model/dao/PostDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/model/dao/VideoDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/model/dto/Account.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/model/dto/Comment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/model/dto/Picture.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/model/dto/Post.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/model/dto/Video.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/slika.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/util/ConnectionPool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/util/ConnectionPool.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/util/FileUploadFromRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication/classes/util/SHA1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/META-INF/MainApplication.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/AccountController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/City.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/FileUploadController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/NewsFeedController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/PicturesServletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/PostServletService$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/PostServletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/PublishCommentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/controller/VideoServletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/beans/AccountBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dao/AccountDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dao/CommentDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dao/PictureDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dao/PostDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dao/VideoDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dto/Account.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dto/Comment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dto/Picture.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dto/Post.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/model/dto/Video.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/util/ConnectionPool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/util/ConnectionPool.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/util/FileUploadFromRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/classes/util/SHA1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/faces-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/annotations-19.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/commons-fileupload-1.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/commons-io-2.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/gson-2.8.6-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/gson-2.8.6-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/gson-2.8.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/java-json.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/javax.annotation.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/javax.ejb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/javax.faces-2.2.8-31.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/javax.jms.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/javax.persistence.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/javax.resource.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/javax.servlet.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/javax.servlet.jsp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/javax.servlet.jsp.jstl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/javax.transaction.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/jdom2-2.0.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/jedis-2.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/mysql-connector-java-8.0.18.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/restfb-3.4.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/rome-1.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/rome-utils-1.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/lib/slf4j-api-1.7.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/editProfile.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/login.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/newsFeed.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/register.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/scripts/google-maps.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/scripts/newsFeedScript.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/artifacts/MainApplication_war_exploded/styles/newsFeedStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/META-INF/MainApplication.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/AccountController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/City.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/FileUploadController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/NewsFeedController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/PicturesServletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/PostServletService$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/PostServletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/PublishCommentController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/controller/VideoServletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/beans/AccountBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dao/AccountDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dao/CommentDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dao/PictureDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dao/PostDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dao/VideoDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dto/Account.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dto/Comment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dto/Picture.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dto/Post.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/model/dto/Video.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/util/ConnectionPool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/util/ConnectionPool.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/util/FileUploadFromRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/out/production/MainApplication/util/SHA1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/src/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/src/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/src/controller/FileUploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/controller/FileUploadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/src/controller/NewsFeedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/controller/NewsFeedController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/src/controller/PostServletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/controller/PostServletService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/src/controller/PublishCommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/controller/PublishCommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/src/controller/VideoServletService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/controller/VideoServletService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/src/model/beans/AccountBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/model/beans/UserBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/src/model/dao/AccountDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/model/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/src/model/dao/PictureDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/model/dao/PictureDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/src/model/dao/PostDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/model/dao/PostDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MainApplication/src/model/dto/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MainApplication/src/model/dto/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +249,23 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ip2020@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ip2020@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ip2020@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ip2020: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -134,20 +306,22 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MainApplication" />
-    <property name="project.structure.last.edited" value="Problems" />
+    <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/WebContent/WEB-INF/lib" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.21034482" />
     <property name="settings.editor.selected.configurable" value="preferences.externalResources" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\stepa\Desktop\IPProjektniZadatak2020\AdminApplication\WebContent\WEB-INF" />
       <recent name="C:\Users\stepa\Desktop\IPProjektniZadatak2020\Lab09\WebContent\WEB-INF\lib" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.30" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:80/" />
       <option name="BROWSER_ID" value="b2a9dca7-9d0b-4e1e-98a8-afb19c1328d2" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -159,6 +333,7 @@
       </deployment>
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="Unnamed_Lab09" />
+        <option name="HTTP_PORT" value="80" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -299,6 +474,15 @@
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
                 <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:ip2020@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:ip2020@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@5fc3b2b5" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
             </expand>
             <select />
           </treeState>
@@ -322,6 +506,7 @@
       <workItem from="1585825589029" duration="1892000" />
       <workItem from="1585998734157" duration="27822000" />
       <workItem from="1586084203143" duration="26282000" />
+      <workItem from="1586171248503" duration="24194000" />
     </task>
     <servers />
   </component>
@@ -337,10 +522,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="95" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1586032954988" />
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586088707639">
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586220600294">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1586088707639" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1586220600294" />
     <state x="446" y="24" key="#com.intellij.ide.util.MemberChooser" timestamp="1586105450169">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -349,102 +534,118 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="272" y="29" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1280.680@0.0.1280.680" timestamp="1586103497792" />
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586178438761">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1586178438761" />
+    <state x="361" y="0" key="#ibatis-core-3.0.jar" timestamp="1586214706237">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="361" y="0" key="#ibatis-core-3.0.jar/0.0.1280.680@0.0.1280.680" timestamp="1586214706237" />
     <state width="410" height="466" key="DebuggerActiveHint" timestamp="1586110925666">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="410" height="466" key="DebuggerActiveHint/0.0.1280.680@0.0.1280.680" timestamp="1586110925666" />
-    <state x="348" y="81" key="FileChooserDialogImpl" timestamp="1586118929991">
+    <state x="348" y="81" key="FileChooserDialogImpl" timestamp="1586214723052">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="348" y="81" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1586118929991" />
-    <state width="676" height="271" key="GridCell.Tab.0.bottom" timestamp="1586136665705">
+    <state x="348" y="81" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1586214723052" />
+    <state width="843" height="277" key="GridCell.Tab.0.bottom" timestamp="1586223255609">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.0.center" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586223255609" />
+    <state width="843" height="277" key="GridCell.Tab.0.center" timestamp="1586223255609">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.0.left" timestamp="1586136665704">
+    <state width="843" height="277" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1586223255609" />
+    <state width="843" height="277" key="GridCell.Tab.0.left" timestamp="1586223255609">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1586136665704" />
-    <state width="676" height="271" key="GridCell.Tab.0.right" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1586223255609" />
+    <state width="843" height="277" key="GridCell.Tab.0.right" timestamp="1586223255609">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.1.bottom" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1586223255609" />
+    <state width="843" height="277" key="GridCell.Tab.1.bottom" timestamp="1586223255609">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.1.center" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586223255609" />
+    <state width="843" height="277" key="GridCell.Tab.1.center" timestamp="1586223255609">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.1.left" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1586223255609" />
+    <state width="843" height="277" key="GridCell.Tab.1.left" timestamp="1586223255609">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.1.right" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1586223255609" />
+    <state width="843" height="277" key="GridCell.Tab.1.right" timestamp="1586223255609">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.2.bottom" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1586223255609" />
+    <state width="843" height="277" key="GridCell.Tab.2.bottom" timestamp="1586223255610">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.2.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.2.center" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.2.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586223255610" />
+    <state width="843" height="277" key="GridCell.Tab.2.center" timestamp="1586223255609">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.2.center/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.2.left" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.2.center/0.0.1280.680@0.0.1280.680" timestamp="1586223255609" />
+    <state width="843" height="277" key="GridCell.Tab.2.left" timestamp="1586223255609">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.2.left/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.2.right" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.2.left/0.0.1280.680@0.0.1280.680" timestamp="1586223255609" />
+    <state width="843" height="277" key="GridCell.Tab.2.right" timestamp="1586223255609">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.2.right/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.3.bottom" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.2.right/0.0.1280.680@0.0.1280.680" timestamp="1586223255609" />
+    <state width="843" height="277" key="GridCell.Tab.3.bottom" timestamp="1586223255610">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.3.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.3.center" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.3.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586223255610" />
+    <state width="843" height="277" key="GridCell.Tab.3.center" timestamp="1586223255610">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.3.center/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.3.left" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.3.center/0.0.1280.680@0.0.1280.680" timestamp="1586223255610" />
+    <state width="843" height="277" key="GridCell.Tab.3.left" timestamp="1586223255610">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.3.left/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="676" height="271" key="GridCell.Tab.3.right" timestamp="1586136665705">
+    <state width="843" height="277" key="GridCell.Tab.3.left/0.0.1280.680@0.0.1280.680" timestamp="1586223255610" />
+    <state width="843" height="277" key="GridCell.Tab.3.right" timestamp="1586223255610">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="676" height="271" key="GridCell.Tab.3.right/0.0.1280.680@0.0.1280.680" timestamp="1586136665705" />
-    <state width="411" height="201" key="GridCell.Tab.4.bottom" timestamp="1586114570550">
+    <state width="843" height="277" key="GridCell.Tab.3.right/0.0.1280.680@0.0.1280.680" timestamp="1586223255610" />
+    <state width="843" height="277" key="GridCell.Tab.4.bottom" timestamp="1586223255610">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="411" height="201" key="GridCell.Tab.4.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586114570550" />
-    <state width="411" height="201" key="GridCell.Tab.4.center" timestamp="1586114570550">
+    <state width="843" height="277" key="GridCell.Tab.4.bottom/0.0.1280.680@0.0.1280.680" timestamp="1586223255610" />
+    <state width="843" height="277" key="GridCell.Tab.4.center" timestamp="1586223255610">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="411" height="201" key="GridCell.Tab.4.center/0.0.1280.680@0.0.1280.680" timestamp="1586114570550" />
-    <state width="411" height="201" key="GridCell.Tab.4.left" timestamp="1586114570550">
+    <state width="843" height="277" key="GridCell.Tab.4.center/0.0.1280.680@0.0.1280.680" timestamp="1586223255610" />
+    <state width="843" height="277" key="GridCell.Tab.4.left" timestamp="1586223255610">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="411" height="201" key="GridCell.Tab.4.left/0.0.1280.680@0.0.1280.680" timestamp="1586114570550" />
-    <state width="411" height="201" key="GridCell.Tab.4.right" timestamp="1586114570550">
+    <state width="843" height="277" key="GridCell.Tab.4.left/0.0.1280.680@0.0.1280.680" timestamp="1586223255610" />
+    <state width="843" height="277" key="GridCell.Tab.4.right" timestamp="1586223255610">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="411" height="201" key="GridCell.Tab.4.right/0.0.1280.680@0.0.1280.680" timestamp="1586114570550" />
-    <state x="193" y="0" key="SettingsEditor" timestamp="1586103796208">
+    <state width="843" height="277" key="GridCell.Tab.4.right/0.0.1280.680@0.0.1280.680" timestamp="1586223255610" />
+    <state x="193" y="0" key="SettingsEditor" timestamp="1586214727564">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="193" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1586103796208" />
-    <state x="337" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1586084283179">
+    <state x="193" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1586214727564" />
+    <state x="715" y="106" key="com.intellij.database.run.ParametersPanel.Standalone" timestamp="1586197527320">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="337" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1586084283179" />
+    <state x="715" y="106" key="com.intellij.database.run.ParametersPanel.Standalone/0.0.1280.680@0.0.1280.680" timestamp="1586197527320" />
+    <state x="350" y="0" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1586198053613">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="350" y="0" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1586198053613" />
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog" timestamp="1586171285334">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="337" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1586171285334" />
     <state x="376" y="234" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1586021768345">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -470,34 +671,24 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/model/dao/UserDao.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/model/beans/UserBean.java</url>
-          <line>98</line>
+          <url>file://$PROJECT_DIR$/src/model/beans/AdminUserBean.java</url>
+          <line>96</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/model/beans/UserBean.java</url>
-          <line>75</line>
+          <url>file://$PROJECT_DIR$/src/model/beans/AdminUserBean.java</url>
+          <line>73</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/model/beans/UserBean.java</url>
-          <line>88</line>
+          <url>file://$PROJECT_DIR$/src/model/beans/AdminUserBean.java</url>
+          <line>86</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/util/filters/AuthenticationFilter.java</url>
           <line>26</line>
           <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/model/beans/LineChartBean.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

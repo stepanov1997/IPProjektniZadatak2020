@@ -1,6 +1,6 @@
 package model.dao;
 
-import model.dto.Account;
+import model.dto.User;
 import model.dto.Comment;
 import model.dto.Picture;
 import model.dto.Post;
@@ -52,7 +52,7 @@ public class PictureDao {
         return null;
     }
 
-    public boolean addToUser(Account account, Picture picture) {
+    public boolean addToUser(User user, Picture picture) {
         Connection con = null;
         PreparedStatement preparedStatement = null;
         ResultSet generatedKeys = null;
@@ -74,8 +74,8 @@ public class PictureDao {
 
             preparedStatement = con.prepareStatement(addPictureToUserQuery);
             preparedStatement.setInt(1, id);
-            preparedStatement.setInt(2, account.getId());
-            account.setPicture_Id(id);
+            preparedStatement.setInt(2, user.getId());
+            user.setPicture_Id(id);
             return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,6 +1,6 @@
 package model.beans;
 
-import model.dao.UserDao;
+import model.dao.AdminUserDao;
 import model.dto.History;
 import org.primefaces.model.chart.*;
 
@@ -16,7 +16,7 @@ import java.util.Map;
 @ManagedBean
 @ViewScoped
 public class LineChartBean implements Serializable {
-    UserDao userDao = new UserDao();
+    AdminUserDao userDao = new AdminUserDao();
     private LineChartModel lineModel;
 
     @PostConstruct
@@ -36,7 +36,7 @@ public class LineChartBean implements Serializable {
         lineModel.setStacked(false);
         Axis y = lineModel.getAxis(AxisType.Y);
         y.setTickFormat("%d");
-        y.setTickInterval("10");
+        y.setTickInterval("1");
         y.setMin(history.getHistory().stream().min(Comparator.comparingInt(Map.Entry::getValue)).get().getValue()-1);
         y.setMax(history.getHistory().stream().max(Comparator.comparingInt(Map.Entry::getValue)).get().getValue()+1);
         y.setLabel(history.getyAxisName());

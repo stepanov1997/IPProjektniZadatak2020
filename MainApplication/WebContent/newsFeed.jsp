@@ -1,19 +1,18 @@
-<%@ page import="model.beans.AccountBean" %>
-<%@ page import="model.dao.AccountDao" %>
-<%@ page import="model.dto.Account" %>
-<%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="model.beans.UserBean" %>
+<%@ page import="model.dao.UserDao" %>
+<%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" %>
 
 <%
-    AccountBean acc = (AccountBean) session.getAttribute("accountBean");
-    if (acc == null || acc.getAccount() == null || !acc.getAccount().isLogged()) {
+    UserBean acc = (UserBean) session.getAttribute("userBean");
+    if (acc == null || acc.getUser() == null || !acc.getUser().isEnabled() || !acc.getUser().isOnline()) {
         session.invalidate();
         response.sendRedirect("login.jsp");
         return;
     }
 %>
 
-<jsp:useBean id="accountBean" scope="session" type="model.beans.AccountBean"/>
-<% accountBean.setAccount(new AccountDao().get(accountBean.getAccount().getId())); %>
+<jsp:useBean id="userBean" scope="session" type="model.beans.UserBean"/>
+<% userBean.setUser(new UserDao().get(userBean.getUser().getId())); %>
 <html>
 <head>
     <title>NEWS FEED</title>
@@ -37,7 +36,7 @@
     <script>addProfilePicture();</script>
     <script>
         function refresh() {
-            var top = document.documentElement.scrollTop;
+            const top = document.documentElement.scrollTop;
             document.getElementById("postsDiv").innerHTML = "";
             document.getElementById("postsDiv").remove();
             addPosts();
@@ -64,7 +63,7 @@
 <div class="header">
     <h2 class="leftHeader">NEWS FEED</h2>
     <div class="rightHeader">
-        <form method="post" action="Controller?controller=account&action=logout">
+        <form method="post" action="Controller?controller=user&action=logout">
             <button type="submit" name="submit">Log out</button>
         </form>
     </div>
@@ -75,18 +74,18 @@
         <div class="card">
             <h2>About Me</h2>
             <div class="fakeimg">
-                <p><a id="name" class="italicAndBoldFont">Name:</a> ${accountBean.account.name}</p>
-                <p><a id="surname" class="italicAndBoldFont">Surname:</a> ${accountBean.account.surname}</p>
-                <p><a class="italicAndBoldFont">Username:</a> ${accountBean.account.username}</p>
-                <p><a class="italicAndBoldFont">Email:</a> ${accountBean.account.email}</p>
-                <p><a class="italicAndBoldFont">Country:</a> ${accountBean.account.country}</p>
-                <% if (accountBean.getAccount().getRegion() != null) { %>
-                <p><a class="italicAndBoldFont">Region:</a> ${accountBean.account.region}</p>
+                <p><a id="name" class="italicAndBoldFont">Name:</a> ${userBean.user.name}</p>
+                <p><a id="surname" class="italicAndBoldFont">Surname:</a> ${userBean.user.surname}</p>
+                <p><a class="italicAndBoldFont">Username:</a> ${userBean.user.username}</p>
+                <p><a class="italicAndBoldFont">Email:</a> ${userBean.user.email}</p>
+                <p><a class="italicAndBoldFont">Country:</a> ${userBean.user.country}</p>
+                <% if (userBean.getUser().getRegion() != null) { %>
+                <p><a class="italicAndBoldFont">Region:</a> ${userBean.user.region}</p>
                 <% } %>
-                <% if (accountBean.getAccount().getCity() != null) { %>
-                <p><a class="italicAndBoldFont">City:</a> ${accountBean.account.city}</p>
+                <% if (userBean.getUser().getCity() != null) { %>
+                <p><a class="italicAndBoldFont">City:</a> ${userBean.user.city}</p>
                 <% } %>
-                <p><a class="italicAndBoldFont">Number of logins:</a> ${accountBean.account.loginCounter}</p>
+                <p><a class="italicAndBoldFont">Number of logins:</a> ${userBean.user.loginCounter}</p>
                 <a class="fakeimg" id="profilePic"></a>
             </div>
         </div>
@@ -106,14 +105,14 @@
 
     <div id="posts" class="midcolumn">
         <div class="tab">
-            <button class="tablinks" onclick="showTab(event, 'createPost1')">Post with an attachment</button>
-            <button class="tablinks" onclick="showTab(event, 'createPost2')">Post about a potential danger</button>
+            <button id="tab1" class="tablinks" onclick="showTab('tab1', 'createPost1')">Post with an attachment</button>
+            <button id="tab2" class="tablinks" onclick="showTab('tab2', 'createPost2')">Post about a potential danger</button>
         </div>
         <div id="createPost1" class="tabcontent">
             <form onsubmit="return createPost1()">
                 <div class="leftPost">
                     <label>Type text: </label><br>
-                    <textarea id="text" rows=5 cols="50"></textarea>
+                    <label for="text"></label><textarea id="text" rows=5 cols="50"></textarea>
                 </div>
                 <div id="attachment" class="insertAttachment">
                     <label id="upload-image" for="file-input">
@@ -129,43 +128,48 @@
                          onclick="addLink(true)" alt="">
                     <img id="link" src="https://icon-library.net/images/website-link-icon/website-link-icon-23.jpg"
                          onclick="addLink(false)" alt=""><br>
-                    <button type="submit" onclick="showMore()">SHARE POST</button>
+                    <button type="submit">SHARE POST</button>
                 </div>
             </form>
         </div>
 
         <div id="createPost2" class="tabcontent">
-            <form onsubmit="return createPost2()">
+            <form>
                 <div class="leftPost">
                     <label>Type text: </label><br>
-                    <textarea id="text2" rows=5 cols="50"></textarea>
+                    <label for="text2"></label><textarea id="text2" rows=5 cols="50"></textarea>
                 </div>
                 <div id="attachment2" class="insertAttachment2">
                     <a>Choose type of potential danger: </a>
-                    <select>
-                        <% // dodati opcije %>
-                        <option name="danger" value="1">A fallen tree on the road.</option>
-                        <option name="danger" value="2">A storm forecast.</option>
-                        <option name="danger" value="3">A flood</option>
-                        <option name="danger" value="4">Fire</option>
-                    </select>
+                    <label>
+                        <select>
+                            <% // dodati opcije %>
+                            <option name="danger" value="1">A fallen tree on the road.</option>
+                            <option name="danger" value="2">A storm forecast.</option>
+                            <option name="danger" value="3">A flood</option>
+                            <option name="danger" value="4">Fire</option>
+                        </select>
+                    </label>
                     <br><br>
                     <a>Choose category of potential danger:</a>
-                    <select>
-                        <option name="category" value="1">HIGH PRIORITY</option>
-                        <option name="category" value="2">MEDIUM PRIORITY</option>
-                        <option name="category" value="3">LOW PRIORITY</option>
-                    </select>
+                    <label>
+                        <select>
+                            <option name="category" value="1">HIGH PRIORITY</option>
+                            <option name="category" value="2">MEDIUM PRIORITY</option>
+                            <option name="category" value="3">LOW PRIORITY</option>
+                        </select>
+                    </label>
                     <br><br>
-                    <input type="checkbox"><a> Is post emergency?</a><br>
+                    <label>
+                        <input type="checkbox">
+                    </label><a> Is post emergency?</a><br>
                     <!--The div element for the map -->
                     <div id="map"></div>
                     <script async defer
                             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYxcxZ3yB7owNaBe5Pr6WbxHGn2WId-4w&callback=initMap">
                     </script>
-                    <input id="lat" type="text" onkeydown="changePosition()">
-                    <input id="lng" type="text" onkeydown="changePosition()">
-                    <button type="submit" onclick="showMore()">SHARE POST</button>
+                    <label for="lat"></label><input id="lat" type="text" onkeydown="changePosition()">
+                    <label for="lng"></label><input id="lng" type="text" onkeydown="changePosition()">
                 </div>
             </form>
         </div>

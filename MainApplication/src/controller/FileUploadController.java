@@ -1,9 +1,9 @@
 package controller;
 
 import com.google.gson.Gson;
-import model.beans.AccountBean;
+import model.beans.UserBean;
 import model.dao.PictureDao;
-import model.dto.Account;
+import model.dto.User;
 import model.dto.Picture;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -94,10 +94,10 @@ public class FileUploadController extends HttpServlet {
                     Picture picture = new Picture();
                     picture.setFileName(fileName);
                     picture.setImg(img);
-                    AccountBean accountBean = (AccountBean)request.getSession().getAttribute("accountBean");
-                    Account account = accountBean.getAccount();
-                    if (pictureDao.addToUser(account, picture)) {
-                        request.getSession().setAttribute("accountBean", accountBean);
+                    UserBean userBean = (UserBean)request.getSession().getAttribute("userBean");
+                    User user = userBean.getUser();
+                    if (pictureDao.addToUser(user, picture)) {
+                        request.getSession().setAttribute("userBean", userBean);
                         inputMap.put("success", true);
                         inputMap.put("id", picture.getId());
                     } else {

@@ -15,12 +15,12 @@ import java.io.OutputStream;
 
 public class VideoServletService extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         doGet(req, resp);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if(request.getParameter("id")==null || "".equals(request.getParameter("id")))
         {
             response.getOutputStream().println("Bad parameter.");
@@ -42,7 +42,7 @@ public class VideoServletService extends HttpServlet {
 
         // Copy the contents of the file to the output stream
         byte[] buf = new byte[1024];
-        int count = 0;
+        int count;
         while ((count = bufferedInputStream.read(buf)) >= 0) {
             out.write(buf, 0, count);
         }
