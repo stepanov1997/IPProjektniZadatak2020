@@ -6,7 +6,7 @@
     UserBean acc = (UserBean) session.getAttribute("userBean");
     if (acc == null || acc.getUser() == null || !acc.getUser().isEnabled() || !acc.getUser().isOnline()) {
         session.invalidate();
-        response.sendRedirect("user/login.jsp");
+        response.sendRedirect("login.jsp");
         return;
     }
 %>

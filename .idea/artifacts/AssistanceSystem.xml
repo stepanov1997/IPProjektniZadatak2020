@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="AssistanceSystem">
+    <output-path>$PROJECT_DIR$/out/artifacts/AssistanceSystem</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="AssistanceSystemApplication" />
+          <element id="module-output" name="IPProjektniZadatak2020" />
+          <element id="javaee-facet-classes" facet="IPProjektniZadatak2020/web/AssistanceSystem" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Validation API-2.0.1.Final" />
+          <element id="library" level="project" name="user_lib" />
+          <element id="library" level="project" name="PrimeFaces-6.1" />
+          <element id="library" level="project" name="assistance_lib" />
+          <element id="library" level="project" name="admin_lib" />
+          <element id="library" level="module" name="JAX-RS-2.1.1" module-name="IPProjektniZadatak2020" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="IPProjektniZadatak2020/web/AssistanceSystem" />
+    </root>
+  </artifact>
+</component>

@@ -16,7 +16,7 @@ FROM   (SELECT @n := @n + 1 AS integers
                                           AS 
                                           datetime), INTERVAL 
                                           24 - integers hour)) 
-                         AND logoutdatetime >= IF(Hour(Now()) >= integers, 
+                         AND IFNULL(logoutdatetime, logindatetime) >= IF(Hour(Now()) >= integers, 
                                                    Adddate(Cast(Cast(Now() AS 
                                                            date) AS 
                                                            datetime), 
@@ -60,7 +60,7 @@ FROM   (SELECT @n := @n + 1 AS integers
                                    ) 
                                                     , 
                                                              INTERVAL 1 hour) 
-                                    OR logoutdatetime <= Adddate( 
+                                    OR IFNULL(logoutdatetime, logindatetime) <= Adddate( 
                                        IF(Hour(Now()) >= 
                                           integers, 
                                                       Adddate( 
@@ -72,5 +72,5 @@ FROM   (SELECT @n := @n + 1 AS integers
                                            datetime), 
                                            INTERVAL 24 - integers hour)), 
                                                      INTERVAL 1 hour) ) ) 
-                           AND Timestampdiff(hour, o.logoutdatetime, Now()) < 24 
+                           AND Timestampdiff(hour, IFNULL(logoutdatetime, logindatetime), Now()) < 24 
 GROUP  BY integers; 

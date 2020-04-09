@@ -27,12 +27,26 @@
         </sourceRoots>
       </configuration>
     </facet>
+    <facet type="web" name="AssistanceSystem">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/AssistanceSystemApplication/WebContent/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/AssistanceSystemApplication/WebContent" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/AssistanceSystemApplication/src" />
+        </sourceRoots>
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/AdminApplication/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MainApplication/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/AssistanceSystemApplication/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -41,5 +55,16 @@
     <orderEntry type="library" name="user_lib" level="project" />
     <orderEntry type="library" name="user_lib" level="project" />
     <orderEntry type="library" name="PrimeFaces-6.1" level="project" />
+    <orderEntry type="library" name="assistance_lib" level="project" />
+    <orderEntry type="module-library">
+      <library name="JAX-RS-2.1.1" type="JAX-RS">
+        <properties version="2.1.1" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/AssistanceSystemApplication/WebContent/WEB-INF/lib/javax.ws.rs-api-2.1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

@@ -229,6 +229,13 @@ public class UserController extends HttpServlet implements Serializable {
                     UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
                     JsonObject jsonObject = new JsonObject();
                     response.setContentType("application/json");
+                    if(userBean==null || userBean.getUser()==null)
+                    {
+                        request.getSession().invalidate();
+                        jsonObject.addProperty("expires", true);
+                        response.getOutputStream().print(jsonObject.toString());
+                        return;
+                    }
                     if (onlineUsers.containsKey(userBean.getUser().getId())) {
                         onlineUsers.replace(userBean.getUser().getId(), LocalDateTime.now());
                         jsonObject.addProperty("expires", false);
