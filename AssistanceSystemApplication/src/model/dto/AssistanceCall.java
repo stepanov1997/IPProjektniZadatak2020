@@ -1,10 +1,11 @@
 package model.dto;
 import rss.model.FeedMessage;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class AssistanceCall {
+public class AssistanceCall implements Serializable {
     private Integer id;
     private String name;
     private LocalDateTime datetime;

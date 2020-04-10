@@ -1,5 +1,6 @@
 package model.dao;
 
+import model.dto.Administrator;
 import model.dto.History;
 import model.dto.User;
 import util.ConnectionPool;
@@ -14,15 +15,51 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 public class AdminUserDao extends UserDao {
 
+    private static final String selectAdminByUsernameQuery = "SELECT * FROM administrator WHERE username=?";
     private static final String giveAccessQuery = "UPDATE user SET isEnabled=1 WHERE id=?";
     private static final String blockAccessQuery = "UPDATE user SET isEnabled=0 WHERE id=?";
     private static final String countActiveUsersQuery = "SELECT count(*) FROM user WHERE isOnline=1;";
     private static final String countRegisteredUsersQuery = "SELECT count(*) FROM user";
+
+    public Administrator getAdminByUsername(String username) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Administrator admin = null;
+        try {
+            connection = ConnectionPool.getConnectionPool().checkOut();
+            preparedStatement = connection.prepareStatement(selectAdminByUsernameQuery);
+            preparedStatement.setString(1, username);
+            preparedStatement.executeQuery();
+
+            resultSet = preparedStatement.getResultSet();
+
+            if (resultSet.next()) {
+                admin = new Administrator();
+
+                admin.setUsername(resultSet.getString("username"));
+                admin.setPassword(resultSet.getString("password"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                Objects.requireNonNull(resultSet).close();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                ConnectionPool.getConnectionPool().checkIn(connection);
+            }
+        }
+        return admin;
+    }
 
     public boolean giveAccess(User user) {
         user.setEnabled(true);

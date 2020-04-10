@@ -6,8 +6,8 @@ import com.google.gson.JsonObject;
 import com.sun.mail.util.BASE64DecoderStream;
 import model.dao.AdminUserDao;
 import model.dao.AssistanceCallDao;
+import model.dto.Administrator;
 import model.dto.AssistanceCall;
-import model.dto.User;
 import rss.model.Feed;
 import rss.writer.RSSFeedWriter;
 import util.SHA1;
@@ -59,8 +59,8 @@ public class AssistanceService {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response post(AssistanceCall assistanceCall, @HeaderParam("Authorization") String authString) {
-        if (!isUserAuthenticated(authString)) {
+    public Response post(AssistanceCall assistanceCall, @HeaderParam("authorization") String authString) {
+        if (authString==null || !isUserAuthenticated(authString)) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         } else {
             if (assistanceCall == null) return Response.status(Response.Status.NOT_ACCEPTABLE).build();
@@ -72,7 +72,7 @@ public class AssistanceService {
             jsonObject.addProperty("success", true);
             jsonObject.addProperty("id", id);
 
-            return Response.ok(jsonObject).build();
+            return Response.ok(jsonObject.toString()).build();
         }
     }
 
@@ -80,7 +80,7 @@ public class AssistanceService {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response put(AssistanceCall assistanceCall, @HeaderParam("Authorization") String authString) {
+    public Response put(AssistanceCall assistanceCall, @HeaderParam("authorization") String authString) {
         return post(assistanceCall, authString);
     }
 
@@ -89,8 +89,8 @@ public class AssistanceService {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response patch(@PathParam("id") int id, AssistanceCall assistanceCall, @HeaderParam("Authorization") String authString) {
-        if (!isUserAuthenticated(authString)) {
+    public Response patch(AssistanceCall assistanceCall, @PathParam("id") int id, @HeaderParam("authorization") String authString) {
+        if (authString==null || !isUserAuthenticated(authString)) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         } else {
             AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
@@ -106,8 +106,8 @@ public class AssistanceService {
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response delete(@PathParam("id") int id, @HeaderParam("Authorization") String authString) {
-        if (!isUserAuthenticated(authString)) {
+    public Response delete(@PathParam("id") int id, @HeaderParam("authorization") String authString) {
+        if (authString==null || !isUserAuthenticated(authString)) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         } else {
             AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
@@ -136,9 +136,8 @@ public class AssistanceService {
         String password = decodedAuth.split(":")[1];
 
         AdminUserDao adminUserDao = new AdminUserDao();
-        User user = adminUserDao.getByUsername(username);
-        if (user.getPassword().equals(SHA1.encryptPassword(password)))
-            return true;
-        return false;
+        Administrator admin = adminUserDao.getAdminByUsername(username);
+        if(admin==null) return false;
+        return admin.getPassword().equals(SHA1.encryptPassword(password));
     }
 }

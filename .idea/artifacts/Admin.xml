@@ -12,6 +12,7 @@
           <element id="library" level="project" name="admin_lib" />
           <element id="library" level="project" name="user_lib" />
           <element id="library" level="module" name="JAX-RS-2.1.1" module-name="IPProjektniZadatak2020" />
+          <element id="library" level="project" name="assistance_lib" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="IPProjektniZadatak2020/web/Admin" />

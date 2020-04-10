@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Welcome">
+    <output-path>$PROJECT_DIR$/out/artifacts/Welcome</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Welcome/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Welcome" />
+          <element id="javaee-facet-classes" facet="IPProjektniZadatak2020/web/Welcome" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="admin_lib" />
+          <element id="library" level="project" name="user_lib" />
+          <element id="library" level="project" name="PrimeFaces-6.1" />
+          <element id="library" level="project" name="assistance_lib" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="IPProjektniZadatak2020/web/Welcome" />
+    </root>
+  </artifact>
+</component>

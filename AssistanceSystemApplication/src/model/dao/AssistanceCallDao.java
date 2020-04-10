@@ -106,15 +106,16 @@ public class AssistanceCallDao {
             preparedStatement.setString(2, dateTimeFormatter.format(assistanceCall.getDatetime()));
             preparedStatement.setString(3, assistanceCall.getLocation());
             preparedStatement.setString(4, assistanceCall.getDescription());
-            preparedStatement.setString(5, assistanceCall.getUrlPicture());
-            preparedStatement.setString(6, assistanceCall.getAuthor());
-            preparedStatement.setString(7, assistanceCall.getPhone());
-            preparedStatement.setBoolean(8, assistanceCall.isBlocked());
-            preparedStatement.setBoolean(9, assistanceCall.isReported());
+            preparedStatement.setString(5, assistanceCall.getAuthor());
+            preparedStatement.setString(6, assistanceCall.getPhone());
+            preparedStatement.setBoolean(7, assistanceCall.isBlocked());
+            preparedStatement.setBoolean(8, assistanceCall.isReported());
+            preparedStatement.setString(9, assistanceCall.getUrlPicture());
             preparedStatement.setInt(10, assistanceCall.getCategoryId());
             preparedStatement.executeUpdate();
-            if(preparedStatement.getGeneratedKeys().next())
-                return preparedStatement.getGeneratedKeys().getInt("id");
+            resultSet = preparedStatement.getGeneratedKeys();
+            if(resultSet.next())
+                return resultSet.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -156,11 +157,11 @@ public class AssistanceCallDao {
             preparedStatement.setString(2, dateTimeFormatter.format(assistanceCall.getDatetime()));
             preparedStatement.setString(3, assistanceCall.getLocation());
             preparedStatement.setString(4, assistanceCall.getDescription());
-            preparedStatement.setString(5, assistanceCall.getUrlPicture());
-            preparedStatement.setString(6, assistanceCall.getAuthor());
-            preparedStatement.setString(7, assistanceCall.getPhone());
-            preparedStatement.setBoolean(8, assistanceCall.isBlocked());
-            preparedStatement.setBoolean(9, assistanceCall.isReported());
+            preparedStatement.setString(5, assistanceCall.getAuthor());
+            preparedStatement.setString(6, assistanceCall.getPhone());
+            preparedStatement.setBoolean(7, assistanceCall.isBlocked());
+            preparedStatement.setBoolean(8, assistanceCall.isReported());
+            preparedStatement.setString(9, assistanceCall.getUrlPicture());
             preparedStatement.setInt(10, assistanceCall.getCategoryId());
             return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {
