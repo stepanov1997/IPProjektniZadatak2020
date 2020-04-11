@@ -8,11 +8,8 @@ import model.dao.AdminUserDao;
 import model.dao.AssistanceCallDao;
 import model.dto.Administrator;
 import model.dto.AssistanceCall;
-import rss.model.Feed;
-import rss.writer.RSSFeedWriter;
 import util.SHA1;
 
-import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -30,22 +27,6 @@ public class AssistanceService {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public Response getAllRss() {
-        AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
-        Feed rssFeeder = Feed.createStandardFeed();
-        assistanceCallDao.getAll().forEach(e -> rssFeeder.getMessages().add(e.mapToFeedMessage()));
-        RSSFeedWriter writer = new RSSFeedWriter(rssFeeder);
-        byte[] bytes = null;
-        try {
-            bytes = writer.write();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return Response.ok(bytes).build();
-    }
-
-    @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll(@PathParam("id") int id) {
@@ -55,7 +36,6 @@ public class AssistanceService {
         return Response.ok(jsonArray.toString()).build();
     }
 
-    @RolesAllowed("ADMIN")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -76,7 +56,6 @@ public class AssistanceService {
         }
     }
 
-    @RolesAllowed("ADMIN")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -84,7 +63,6 @@ public class AssistanceService {
         return post(assistanceCall, authString);
     }
 
-    @RolesAllowed("ADMIN")
     @PATCH
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -102,7 +80,6 @@ public class AssistanceService {
         }
     }
 
-    @RolesAllowed("ADMIN")
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)

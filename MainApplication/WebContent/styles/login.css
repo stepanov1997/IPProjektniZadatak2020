@@ -1,0 +1,160 @@
+* {
+  font-size: 95%;
+}
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  background: #f5d7b5;
+  position: relative;
+  width: 100%;
+}
+
+body:before {
+  float: left;
+  padding-top: 100%;
+}
+.main {
+  justify-content: center;
+  text-align: center;
+  background-color: aliceblue;
+  border: solid black 2px;
+  border-radius: 10px;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+.title {
+  font-size: 300%;
+}
+
+a {
+  font-size: 120%;
+}
+.creds {
+  border-radius: 10px;
+  border: solid black 0.75px;
+  font-size: 120%;
+  text-align: center;
+  height: 20px;
+  margin-left: 50px;
+}
+
+a:link,
+a:visited {
+  background-color: #f5d7b5;
+  color: black;
+  padding: 7px 13px;
+  font-size: 90%;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:link:hover,
+a:link:active {
+  background-color: #f3b46b;
+}
+
+.commands {
+  display: inline-block;
+  width: 100%;
+}
+
+.submit-button {
+  background-color: #f5d7b5;
+  border: transparent;
+  border-radius: 10px;
+  padding: 14px 25px;
+  font-size: 150%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.submit-button:hover {
+  background-color: #f1bb7d;
+  border: transparent;
+  padding: 14px 25px;
+  font-size: 150%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+@media screen and (max-device-width: 800px) {
+  * {
+    font-size: 105%;
+  }
+
+  /* Add a gray background color with some padding */
+  body {
+    font-family: Arial;
+    background: #f5d7b5;
+    position: relative;
+    width: 100%;
+  }
+
+  body:before {
+    float: left;
+    padding-top: 100%;
+  }
+  .main {
+    justify-content: center;
+    text-align: center;
+    background-color: aliceblue;
+    border: solid black 2px;
+    border-radius: 3%;
+    vertical-align: middle;
+    width: 80%;
+    position: absolute;
+    overflow: hidden;
+  }
+  .title {
+    font-size: 300%;
+  }
+
+  a {
+    font-size: 190%;
+  }
+  .creds {
+    border-radius: 10px;
+    font-size: 150%;
+    text-align: center;
+    border: solid black 0.75px;
+    height: 60px;
+    margin-left: 50px;
+  }
+
+  a:link,
+  a:visited {
+    background-color: #f5d7b5;
+    color: black;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  a:link:hover,
+  a:link:active {
+    background-color: #f3b46b;
+  }
+
+  .submit-button {
+    background-color: #f5d7b5;
+    padding: 14px 25px;
+    font-size: 150%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+}

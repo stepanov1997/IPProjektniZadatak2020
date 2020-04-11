@@ -7,14 +7,21 @@
 body {
     font-family: Arial;
     padding: 0 20px;
-    background: gray;
+    background: #ffcd93;
 }
 
 /* Header/Blog Title */
 .header {
+    width: 100%;
     padding: 10px;
+    border-radius: 6px;
+    z-index: 100;
     text-align: center;
-    background: white;
+    background: #ddd;
+    margin-top: 20px;
+    margin-right: 20px;
+    top: 0;
+    position: fixed;
 }
 
 .leftHeader {
@@ -38,32 +45,46 @@ body {
 .leftcolumn {
     float: left;
     width: 33.3%;
-    padding-left: 20px;
-    padding-right: 20px;
+    vertical-align: center;
+    z-index: 101;
+    margin-top: 80px;
+    padding: 40px 20px 20px;
 }
 
 /* Right column */
 .midcolumn {
     float: left;
     width: 33.3%;
-    padding-left: 20px;
-    padding-top: 20px;
+    vertical-align: center;
+    z-index: 102;
+    margin-top: 80px;
+    padding: 40px 20px 20px;
 }
 
 .rightcolumn {
     float: right;
     height: auto;
+    vertical-align: center;
     width: 33.3%;
-    padding-left: 20px;
-    padding-right: 20px;
-    overflow: visible;
+    z-index: 103;
+    margin-top: 80px;
+    padding: 40px 20px 20px;
 }
 
 img {
     background-color: #aaa;
-    border-radius: 4px;
-    width: 100%;
+    border-radius: 50%;
+    align-self: center;
+    filter: blur(5px);
+    width: 300px;
+    height: 300px;
     padding: 20px;
+}
+
+img:hover {
+    filter: blur(0px);
+    width: 320px;
+    height: 320px;
 }
 
 .fakeimg > p {
@@ -91,17 +112,70 @@ img {
 
 /* Footer */
 .footer {
-    padding: 20px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
     text-align: center;
     background: #ddd;
     margin-top: 20px;
+    margin-right: 20px;
+    bottom: 0;
+    position: fixed;
 }
 
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
+    .row {
+        margin-top: 40px;
+        margin-bottom: 80px;
+    }
+
     .leftcolumn, .midcolumn, .rightcolumn {
         width: 100%;
         padding: 0;
+    }
+
+    img {
+        background-color: #aaa;
+        border-radius: 50%;
+        align-self: center;
+        filter: blur(0);
+        border: none;
+        width: 300px;
+        height: 300px;
+        padding: 20px;
+    }
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-device-width: 800px) {
+    * {
+        font-size: 110%;
+    }
+    .row {
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+
+    .leftcolumn, .midcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+
+    img:hover {
+        filter: blur(0px);
+        width: 512px;
+        height: 512px;
+    }
+
+    img {
+        background-color: #aaa;
+        border-radius: 50%;
+        align-self: center;
+        filter: blur(0);
+        border: none;
+        width: 512px;
+        height: 512px;
+        padding: 20px;
     }
 
     .insertAttachment {
@@ -112,6 +186,7 @@ img {
     #createPost1 {
         width: 100%;
     }
+
     #createPost2 {
         width: 100%;
     }

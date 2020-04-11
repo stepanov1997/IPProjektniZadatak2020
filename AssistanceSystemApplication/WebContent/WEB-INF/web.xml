@@ -61,4 +61,12 @@
         <url-pattern>/rest</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>RSSServlet</servlet-name>
+        <servlet-class>servlets.RssServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RSSServlet</servlet-name>
+        <url-pattern>/calls.xml</url-pattern>
+    </servlet-mapping>
 </web-app>
