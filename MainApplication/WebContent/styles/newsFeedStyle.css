@@ -7,7 +7,7 @@
 body {
     font-family: Arial;
     padding: 0 20px;
-    background: gray;
+    background: #f5d7b5;
 }
 
 /* Header/Blog Title */
@@ -32,7 +32,7 @@ body {
     grid-column-end: 2;
     text-align: right;
     padding-top: 10px;
-    padding-right: 30px;
+    padding-right: 10px;
 }
 
 /* Create two unequal columns that floats next to each other */
@@ -42,7 +42,6 @@ body {
     width: 25%;
 }
 
-/* Right column */
 .midcolumn {
     float: left;
     width: 50%;
@@ -50,12 +49,12 @@ body {
     padding-top: 20px;
 }
 
+/* Right column */
 .rightcolumn {
     float: right;
     height: auto;
     width: 25%;
     padding-left: 20px;
-    padding-right: 20px;
     overflow: visible;
 }
 
@@ -78,6 +77,8 @@ body {
 
 /* Add a card effect for articles */
 .card {
+    border: 1px solid #bfbebd;
+    border-radius: 10px;
     background-color: white;
     padding: 20px;
     margin-top: 20px;
@@ -129,6 +130,8 @@ body {
 }
 
 #createPost1, #createPost2 {
+    border: 5px black;
+    border-radius: 10px;
     width: 100%;
     background-color: #aaa;
     padding: 10px;
@@ -242,21 +245,21 @@ body {
 
 .tab {
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    background-color: #cccccc;
 }
 
 /* Style the buttons inside the tab */
 .tab button {
-    background-color: inherit;
+    padding-bottom: 10px;
+    width: 50%;
+    border-radius: 10px;
+    background-color: ghostwhite;
     float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
+    border: 1px solid #ccc;
+    cursor: grab;
     transition: 0.3s;
-    font-size: 17px;
-    padding-top: 20px;
-    vertical-align: center;
+    font-size: 15px;
+    padding-top: 10px;
 }
 
 /* Change background color of buttons on hover */
@@ -278,6 +281,13 @@ body {
 .tabcontent.active {
     display: flex;
     width: 100%;
+}
+
+#createDiv {
+    border-radius: 10px;
+    border: 1px solid #868584;
+    padding: 20px;
+    background: #cccccc;
 }
 
 #map {

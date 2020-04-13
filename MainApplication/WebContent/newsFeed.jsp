@@ -104,83 +104,85 @@
     </div>
 
     <div id="posts" class="midcolumn">
-        <div class="tab">
-            <button id="tab1" class="tablinks" onclick="showTab('tab1', 'createPost1')">Post with an attachment</button>
-            <button id="tab2" class="tablinks" onclick="showTab('tab2', 'createPost2')">Post about a potential danger</button>
-        </div>
-        <div id="createPost1" class="tabcontent">
-            <form onsubmit="return createPost1()">
-                <div class="leftPost">
-                    <label>Type text: </label><br>
-                    <label for="text"></label><textarea id="text" rows=5 cols="50"></textarea>
-                </div>
-                <div id="attachment" class="insertAttachment">
-                    <label id="upload-image" for="file-input">
-                        <img id="picture-img" src="https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/6C1aT2Hm3x-.png" alt=""
-                             onclick="fileType='picture'">
-                        <img id="video-img"
-                             src="https://secure.webtoolhub.com/static/resources/icons/set165/e81b28f7.png"
-                             onclick="fileType='video'" alt="">
-                    </label>
-                    <input id="file-input" enctype="multipart/form-data" type="file" hidden="hidden">
-                    <img id="yt-link"
-                         src="https://icons-for-free.com/iconfiles/png/512/video+youtube+icon-1320192294490006733.png"
-                         onclick="addLink(true)" alt="">
-                    <img id="link" src="https://icon-library.net/images/website-link-icon/website-link-icon-23.jpg"
-                         onclick="addLink(false)" alt=""><br>
-                    <button type="submit">SHARE POST</button>
-                </div>
-            </form>
-        </div>
+        <div id="createDiv">
+            <div class="tab">
+                <button id="tab1" class="tablinks" onclick="showTab('tab1', 'createPost1')">Post with an attachment
+                </button>
+                <button id="tab2" class="tablinks" onclick="showTab('tab2', 'createPost2')">Post about a potential
+                    danger
+                </button>
+            </div>
+            <div id="createPost1" class="tabcontent">
+                <form onsubmit="return createPost1()">
+                    <div class="leftPost">
+                        <label>Type text: </label><br>
+                        <label for="text"></label><textarea id="text" rows=5 cols="50"></textarea>
+                    </div>
+                    <div id="attachment" class="insertAttachment">
+                        <label id="upload-image" for="file-input">
+                            <img id="picture-img" src="https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/6C1aT2Hm3x-.png"
+                                 alt=""
+                                 onclick="fileType='picture'">
+                            <img id="video-img"
+                                 src="https://secure.webtoolhub.com/static/resources/icons/set165/e81b28f7.png"
+                                 onclick="fileType='video'" alt="">
+                        </label>
+                        <input id="file-input" enctype="multipart/form-data" type="file" hidden="hidden">
+                        <img id="yt-link"
+                             src="https://icons-for-free.com/iconfiles/png/512/video+youtube+icon-1320192294490006733.png"
+                             onclick="addLink(true)" alt="">
+                        <img id="link" src="https://icon-library.net/images/website-link-icon/website-link-icon-23.jpg"
+                             onclick="addLink(false)" alt=""><br>
+                        <button type="submit">SHARE POST</button>
+                    </div>
+                </form>
+            </div>
 
-        <div id="createPost2" class="tabcontent">
-            <form>
-                <div class="leftPost">
-                    <label>Type text: </label><br>
-                    <label for="text2"></label><textarea id="text2" rows=5 cols="50"></textarea>
-                </div>
-                <div id="attachment2" class="insertAttachment2">
-                    <a>Choose type of potential danger: </a>
-                    <label>
-                        <select>
-                            <% // dodati opcije %>
-                            <option name="danger" value="1">A fallen tree on the road.</option>
-                            <option name="danger" value="2">A storm forecast.</option>
-                            <option name="danger" value="3">A flood</option>
-                            <option name="danger" value="4">Fire</option>
-                        </select>
-                    </label>
-                    <br><br>
-                    <a>Choose category of potential danger:</a>
-                    <label>
-                        <select>
-                            <option name="category" value="1">HIGH PRIORITY</option>
-                            <option name="category" value="2">MEDIUM PRIORITY</option>
-                            <option name="category" value="3">LOW PRIORITY</option>
-                        </select>
-                    </label>
-                    <br><br>
-                    <label>
-                        <input type="checkbox">
-                    </label><a> Is post emergency?</a><br>
-                    <!--The div element for the map -->
-                    <div id="map"></div>
-                    <script async defer
-                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYxcxZ3yB7owNaBe5Pr6WbxHGn2WId-4w&callback=initMap">
-                    </script>
-                    <label for="lat"></label><input id="lat" type="text" onkeydown="changePosition()">
-                    <label for="lng"></label><input id="lng" type="text" onkeydown="changePosition()">
-                </div>
-            </form>
+            <div id="createPost2" class="tabcontent">
+                <form>
+                    <div class="leftPost">
+                        <label>Type text: </label><br>
+                        <label for="text2"></label><textarea id="text2" rows=5 cols="50"></textarea>
+                    </div>
+                    <div id="attachment2" class="insertAttachment2">
+                        <a>Choose type of potential danger: </a>
+                        <label>
+                            <select>
+                                <option name="danger" value="1">A fallen tree on the road.</option>
+                                <option name="danger" value="2">A storm forecast.</option>
+                                <option name="danger" value="3">A flood</option>
+                                <option name="danger" value="4">Fire</option>
+                            </select>
+                        </label>
+                        <br><br>
+                        <a>Choose category of potential danger:</a>
+                        <label>
+                            <select>
+                                <option name="category" value="1">HIGH PRIORITY</option>
+                                <option name="category" value="2">MEDIUM PRIORITY</option>
+                                <option name="category" value="3">LOW PRIORITY</option>
+                            </select>
+                        </label>
+                        <br><br>
+                        <label>
+                            <input type="checkbox">
+                        </label><a> Is post emergency?</a><br>
+                        <!--The div element for the map -->
+                        <div id="map"></div>
+                        <script async defer
+                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYxcxZ3yB7owNaBe5Pr6WbxHGn2WId-4w&callback=initMap">
+                        </script>
+                        <label for="lat"></label><input id="lat" type="text" onkeydown="changePosition()">
+                        <label for="lng"></label><input id="lng" type="text" onkeydown="changePosition()">
+                    </div>
+                </form>
+            </div>
         </div>
-
     </div>
     <div id="weatherForcast" class="rightcolumn">
-        <div class="card">
-            <div id="myCity" class="card"></div>
-            <div id="city1" class="card"></div>
-            <div id="city2" class="card"></div>
-        </div>
+        <div id="myCity" class="card"></div>
+        <div id="city1" class="card"></div>
+        <div id="city2" class="card"></div>
     </div>
 </div>
 

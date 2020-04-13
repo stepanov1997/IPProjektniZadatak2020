@@ -253,11 +253,11 @@ public class UserController extends HttpServlet implements Serializable {
                     Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
                     List<City> citiesCollection = new ArrayList<>();
 
-                    String page = "http://battuta.medunes.net/api/region/" + user.getCountryCode() + "/all/?key=3924b0235f680e43e3e3c11fd1f443b1";
+                    String page = "http://battuta.medunes.net/api/region/" + user.getCountryCode() + "/all/?key=e5b09e49fe0202afb9f113fff493b701";
                     String json = getFromUrl(page);
                     JsonArray regions = JsonParser.parseString(json).getAsJsonArray();
                     for (JsonElement region : regions) {
-                        String page2 = "https://geo-battuta.net/api/city/" + user.getCountryCode() + "/search/?region=" + region.getAsJsonObject().get("region").getAsString().replace(" ", "+") + "&key=3924b0235f680e43e3e3c11fd1f443b1";
+                        String page2 = "https://geo-battuta.net/api/city/" + user.getCountryCode() + "/search/?region=" + region.getAsJsonObject().get("region").getAsString().replace(" ", "+") + "&key=e5b09e49fe0202afb9f113fff493b701";
                         String json2 = getFromUrl(page2);
                         JsonArray cities = JsonParser.parseString(json2).getAsJsonArray();
                         for (JsonElement cityElem : cities) {

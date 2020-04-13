@@ -1,13 +1,14 @@
 package controller;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import model.beans.UserBean;
 import model.dao.PictureDao;
 import model.dao.PostDao;
 import model.dao.VideoDao;
-import model.dto.User;
 import model.dto.Picture;
 import model.dto.Post;
+import model.dto.User;
 import model.dto.Video;
 import util.FileUploadFromRequest;
 
@@ -17,8 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class NewsFeedController extends HttpServlet {
     @Override
@@ -67,6 +70,7 @@ public class NewsFeedController extends HttpServlet {
 
         post.setVideo_id(null);
 
+        JsonObject jsonObject = new JsonObject();
 
         if (postDao.add(post)) {
 
@@ -87,26 +91,30 @@ public class NewsFeedController extends HttpServlet {
                     videoDao.addToPost(post, video);
                 }
             }
-
             request.getSession().setAttribute("userBean", userBean);
-            inputMap.put("success", true);
-            inputMap.put("dateTime", post.getDateTime().toLocalDate());
-            inputMap.put("text", post.getText());
-            inputMap.put("Picture_id", user.getPicture_Id());
-            inputMap.put("countryCode", user.getCountryCode());
+            jsonObject.addProperty("success", true);
+            jsonObject.addProperty("id", post.getId());
+            jsonObject.addProperty("text", post.getText());
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+            String dateTime = formatter.format(post.getDateTime());
+            jsonObject.addProperty("date", dateTime);
+
+            jsonObject.addProperty("nameSurname", Objects.requireNonNull(user).getName() + " " + user.getSurname() + " (" + user.getUsername() + ")");
+            jsonObject.addProperty("Picture_id", user.getPicture_Id());
+            jsonObject.addProperty("countryCode", user.getCountryCode());
             var contentType = post.getContentTypeValue();
-            if (contentType == null)
-                inputMap.put("contentType", "textOnly");
+            if(contentType==null)
+                jsonObject.addProperty("contentType", "textOnly");
             else {
-                inputMap.put("contentType", contentType.left);
-                inputMap.put("value", contentType.right);
+                jsonObject.addProperty("contentType", contentType.left);
+                jsonObject.addProperty("value", contentType.right);
             }
         } else {
-            inputMap.put("success", false);
+            jsonObject.addProperty("success", false);
         }
-        String json = gson.toJson(inputMap);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        out.print(json);
+        out.print(jsonObject.toString());
     }
 }
