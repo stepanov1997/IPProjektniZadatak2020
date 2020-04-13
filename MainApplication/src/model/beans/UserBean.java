@@ -3,11 +3,6 @@ package model.beans;
 import model.dao.UserDao;
 import model.dto.User;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
-@ManagedBean
-@SessionScoped
 public class UserBean {
     private User user = new User();
     private String usernameKey;

@@ -5,10 +5,10 @@ import com.rometools.rome.feed.synd.SyndEntry;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class Post {
     private Integer id;
+    private boolean withAttachment;
     private String text;
     private String link;
     private String youtubeLink;
@@ -16,6 +16,9 @@ public class Post {
     private Integer User_id = null;
     private Integer Picture_id = null;
     private Integer Video_id = null;
+    private String location = null;
+    private boolean isEmergency = false;
+    private Integer dangerCategory_id = null;
 
     public Post() {
     }
@@ -28,12 +31,12 @@ public class Post {
         this.id = id;
     }
 
-    public Integer getUser_id() {
-        return User_id;
+    public boolean isWithAttachment() {
+        return withAttachment;
     }
 
-    public void setUser_id(Integer user_id) {
-        User_id = user_id;
+    public void setWithAttachment(boolean withAttachment) {
+        this.withAttachment = withAttachment;
     }
 
     public String getText() {
@@ -52,22 +55,6 @@ public class Post {
         this.link = link;
     }
 
-    public Integer getPicture_id() {
-        return Picture_id;
-    }
-
-    public void setPicture_id(Integer picture_id) {
-        Picture_id = picture_id;
-    }
-
-    public Integer getVideo_id() {
-        return Video_id;
-    }
-
-    public void setVideo_id(Integer video_id) {
-        Video_id = video_id;
-    }
-
     public String getYoutubeLink() {
         return youtubeLink;
     }
@@ -84,24 +71,52 @@ public class Post {
         this.dateTime = dateTime;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Post)) return false;
-        Post post = (Post) o;
-        return Objects.equals(getId(), post.getId()) &&
-                Objects.equals(getUser_id(), post.getUser_id()) &&
-                Objects.equals(getText(), post.getText()) &&
-                Objects.equals(getLink(), post.getLink()) &&
-                Objects.equals(getPicture_id(), post.getPicture_id()) &&
-                Objects.equals(getVideo_id(), post.getVideo_id()) &&
-                Objects.equals(getYoutubeLink(), post.getYoutubeLink()) &&
-                Objects.equals(getDateTime(), post.getDateTime());
+    public Integer getUser_id() {
+        return User_id;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getUser_id(), getText(), getLink(), getPicture_id(), getVideo_id(), getYoutubeLink(), getDateTime());
+    public void setUser_id(Integer user_id) {
+        User_id = user_id;
+    }
+
+    public Integer getPicture_id() {
+        return Picture_id;
+    }
+
+    public void setPicture_id(Integer picture_id) {
+        Picture_id = picture_id;
+    }
+
+    public Integer getVideo_id() {
+        return Video_id;
+    }
+
+    public void setVideo_id(Integer video_id) {
+        Video_id = video_id;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public boolean isEmergency() {
+        return isEmergency;
+    }
+
+    public void setEmergency(boolean emergency) {
+        isEmergency = emergency;
+    }
+
+    public Integer getDangerCategory_id() {
+        return dangerCategory_id;
+    }
+
+    public void setDangerCategory_id(Integer dangerCategory_id) {
+        this.dangerCategory_id = dangerCategory_id;
     }
 
     public ConnectionUrlParser.Pair<String,String> getContentTypeValue()

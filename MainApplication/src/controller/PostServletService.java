@@ -9,11 +9,12 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import model.beans.UserBean;
-import model.dao.UserDao;
 import model.dao.CommentDao;
+import model.dao.DangerCategoryDao;
 import model.dao.PostDao;
-import model.dto.User;
+import model.dao.UserDao;
 import model.dto.Post;
+import model.dto.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +27,6 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -101,12 +101,24 @@ public class PostServletService extends HttpServlet {
 				jsonObject.addProperty("Picture_id", user1.getPicture_Id());
 				jsonObject.addProperty("countryCode", user1.getCountryCode());
 				var contentType = post.getContentTypeValue();
-				if(contentType==null)
-					jsonObject.addProperty("contentType", "textOnly");
-				else {
-					jsonObject.addProperty("contentType", contentType.left);
-					jsonObject.addProperty("value", contentType.right);
+				jsonObject.addProperty("withAttachment", post.isWithAttachment());
+				if(post.isWithAttachment())
+				{
+					if(contentType==null)
+						jsonObject.addProperty("contentType", "textOnly");
+					else {
+						jsonObject.addProperty("contentType", contentType.left);
+						jsonObject.addProperty("value", contentType.right);
+					}
 				}
+				else
+				{
+					if(post.getLocation()!=null)
+						jsonObject.addProperty("location", post.getLocation());
+					jsonObject.addProperty("category", new DangerCategoryDao().get(post.getDangerCategory_id()).getName());
+					jsonObject.addProperty("isEmergency", post.isEmergency());
+				}
+
 				JsonArray comments;
 				CommentDao commentDao = new CommentDao();
 				comments = gson.toJsonTree(commentDao

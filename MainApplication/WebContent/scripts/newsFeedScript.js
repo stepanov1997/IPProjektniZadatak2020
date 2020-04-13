@@ -135,7 +135,8 @@ function createPost1() {
     };
     // var url = "Controller?controller=newsFeed&action=createPost";
     let url = "NewsFeedController?";
-    url += "content=" + fileType;
+    url += "withAttachment=" + true;
+    url += "&content=" + fileType;
     url += "&isYoutubeLink=" + linkType;
     if (ytLink !== null && ytLink.value !== "") {
         url += "&ytLink=" + ytLink.value;
@@ -153,6 +154,57 @@ function createPost1() {
     }
     catch (e) {
         document.write("Post cannot be created");
+    }
+    return false;
+}
+
+function createPost2() {
+    const text2 = document.getElementById("text2");
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
+            const result = JSON.parse(this.responseText);
+            if (result.success) {
+                var div = document.createElement("div");
+                div.className = "card";
+                var html = "";
+                html += addPost(result);
+                var div2 = document.createElement("div");
+                div2.className = "card";
+                div2.style.background = "gray";
+                var div3 = document.createElement("div");
+                div3.className = "card";
+                div3.id = "commentDiv" + result.id;
+                div3.innerHTML = createCommentInput(result.id);
+                div2.innerHTML = div3.outerHTML;
+                html += div2.outerHTML;
+                div.innerHTML = html;
+                const createPost = document.getElementById("createDiv");
+                div.setAttribute("class", "card");
+                createPost.parentNode.insertBefore(div, createPost.nextSibling);
+            } else {
+                alert("greska");
+            }
+        }
+    };
+    var lat = document.getElementById("lat");
+    var lng = document.getElementById("lng");
+    var isEmergency = document.getElementById("isEmergency");
+    var selectCategory = document.getElementById("selectCategory");
+    var category = selectCategory.options[selectCategory.selectedIndex].value;
+    // var url = "Controller?controller=newsFeed&action=createPost";
+    let url = "NewsFeedController?";
+    url += "withAttachment=" + false;
+    url += "&location=" + lat.value + "+" + lng.value;
+    url += "&isEmergency=" + isEmergency.value;
+    url += "&category=" + category;
+    url += "&text2=" + text2.value;
+    xhttp.open('post', url, true);
+    try {
+       xhttp.send();
+    }
+    catch (e) {
+        window.alert("Post cannot be created");
     }
     return false;
 }
@@ -185,109 +237,147 @@ function addPost(elem) {
     html += pTag.outerHTML;
     let aTag;
 
-    switch (elem.contentType) {
-        case 'link':
-            aTag = document.createElement("a");
-            aTag.href = elem.value;
-            aTag.innerHTML = "Link";
-            html += aTag.outerHTML;
-            break;
-        case 'ytLink':
-            const iframe = document.createElement("iframe");
-            iframe.style.alignSelf = "center";
-            iframe.style.width = "75%";
-            iframe.style.height = "300px";
-            iframe.src = "//www.youtube.com/embed/" + getId(elem.value);
-            iframe.setAttribute("frameborder", "0");
-            iframe.setAttribute("allowfullscreen", "true");
-            html += iframe.outerHTML;
-            break;
-        case 'picture':
-            const pic = new Image();
-            pic.className = "fakeimg";
-            pic.style.height = "300px";
-            pic.style.width = "533px";
-            pic.src = "pictures?id=" + elem.value;
-            html += pic.outerHTML;
-            break;
-        case 'video':
-            const video = document.createElement("video");
-            video.innerHTML = "Your browser does not support the video tag.";
-            video.controls = true;
-            video.setAttribute("id", "my-video");
-            video.setAttribute("class", "video-js");
-            video.setAttribute("preload", "auto");
-            video.setAttribute("width", "640px");
-            video.setAttribute("height", "284");
-            video.setAttribute("data-setup", "{}");
-            const src = document.createElement("source");
-            src.setAttribute("src", "videos?id=" + elem.value);
-            src.setAttribute("type", "video/mp4");
-            video.innerHTML = src.outerHTML;
-            pTag = document.createElement("p");
-            pTag.setAttribute("class", "vjs-no-js");
-            pTag.innerText = "To view this video please enable JavaScript, and consider upgrading to a web browser that";
-            aTag = document.createElement("a");
-            aTag.setAttribute("href", "https://videojs.com/html5-video-support/");
-            aTag.setAttribute("target", "_blank");
-            aTag.innerText = "supports HTML5 video";
-            pTag.appendChild(aTag);
-            video.appendChild(pTag);
-            html += video.outerHTML;
-            break;
-        default:
-            break;
-    }
-    date = document.createElement("h5");
-    date.innerText = "Date: " + elem.date;
-    html += date.outerHTML;
-
-    if (elem.contentType === 'link' || elem.contentType === 'ytLink') {
-        const tweet = document.createElement("a");
-        tweet.href = "https://twitter.com/share";
-        tweet.setAttribute("class", "twitter-share-button");
-        tweet.setAttribute("data-url", elem.link);
-        tweet.setAttribute("data-hashtags", elem.text);
-        tweet.innerText = "Tweet";
-        html += tweet.outerHTML;
-
-        const fbshare = document.createElement("div");
-        fbshare.onclick = function () {
-            $('meta[property="og:description"]').attr('content', elem.text);
-            const metaUrl = $('meta[property="og:url"]');
-            switch (elem.contentType) {
-                case 'ytLink':
-                case 'link':
-                    metaUrl.attr('content', elem.value);
-                    break;
-                case 'picture':
-                    $('meta[property="og:image"]').attr('content', "pictures?id=" + elem.value);
-                    break;
-                case 'video':
-                    $('meta[property="og:video"]').attr('content', "pictures?id=" + elem.value);
-                    break;
-                default:
-                    break;
-            }
-        };
-        fbshare.setAttribute("class", "fb-share-button");
+    if(elem.withAttachment)
+    {
         switch (elem.contentType) {
             case 'link':
+                aTag = document.createElement("a");
+                aTag.href = elem.value;
+                aTag.innerHTML = "Link";
+                html += aTag.outerHTML;
+                break;
             case 'ytLink':
-                fbshare.setAttribute("data-href", elem.value);
+                const iframe = document.createElement("iframe");
+                iframe.style.alignSelf = "center";
+                iframe.style.width = "75%";
+                iframe.style.height = "300px";
+                iframe.src = "//www.youtube.com/embed/" + getId(elem.value);
+                iframe.setAttribute("frameborder", "0");
+                iframe.setAttribute("allowfullscreen", "true");
+                html += iframe.outerHTML;
                 break;
             case 'picture':
-                fbshare.setAttribute("data-href", "pictures?id=" + elem.value);
+                const pic = new Image();
+                pic.className = "fakeimg";
+                pic.style.height = "300px";
+                pic.style.width = "533px";
+                pic.src = "pictures?id=" + elem.value;
+                html += pic.outerHTML;
                 break;
             case 'video':
-                fbshare.setAttribute("data-href", "pictures?id=" + elem.value);
+                const video = document.createElement("video");
+                video.innerHTML = "Your browser does not support the video tag.";
+                video.controls = true;
+                video.setAttribute("id", "my-video");
+                video.setAttribute("class", "video-js");
+                video.setAttribute("preload", "auto");
+                video.setAttribute("width", "640px");
+                video.setAttribute("height", "284");
+                video.setAttribute("data-setup", "{}");
+                const src = document.createElement("source");
+                src.setAttribute("src", "videos?id=" + elem.value);
+                src.setAttribute("type", "video/mp4");
+                video.innerHTML = src.outerHTML;
+                pTag = document.createElement("p");
+                pTag.setAttribute("class", "vjs-no-js");
+                pTag.innerText = "To view this video please enable JavaScript, and consider upgrading to a web browser that";
+                aTag = document.createElement("a");
+                aTag.setAttribute("href", "https://videojs.com/html5-video-support/");
+                aTag.setAttribute("target", "_blank");
+                aTag.innerText = "supports HTML5 video";
+                pTag.appendChild(aTag);
+                video.appendChild(pTag);
+                html += video.outerHTML;
                 break;
             default:
                 break;
         }
-        fbshare.setAttribute("data-layout", "button_count");
-        html += fbshare.outerHTML;
+        date = document.createElement("h5");
+        date.innerText = "Date: " + elem.date;
+        html += date.outerHTML;
+
+        if (elem.contentType === 'link' || elem.contentType === 'ytLink') {
+            const tweet = document.createElement("a");
+            tweet.href = "https://twitter.com/share";
+            tweet.setAttribute("class", "twitter-share-button");
+            tweet.setAttribute("data-url", elem.link);
+            tweet.setAttribute("data-hashtags", elem.text);
+            tweet.innerText = "Tweet";
+            html += tweet.outerHTML;
+
+            const fbshare = document.createElement("div");
+            fbshare.onclick = function () {
+                $('meta[property="og:description"]').attr('content', elem.text);
+                const metaUrl = $('meta[property="og:url"]');
+                switch (elem.contentType) {
+                    case 'ytLink':
+                    case 'link':
+                        metaUrl.attr('content', elem.value);
+                        break;
+                    case 'picture':
+                        $('meta[property="og:image"]').attr('content', "pictures?id=" + elem.value);
+                        break;
+                    case 'video':
+                        $('meta[property="og:video"]').attr('content', "pictures?id=" + elem.value);
+                        break;
+                    default:
+                        break;
+                }
+            };
+            fbshare.setAttribute("class", "fb-share-button");
+            switch (elem.contentType) {
+                case 'link':
+                case 'ytLink':
+                    fbshare.setAttribute("data-href", elem.value);
+                    break;
+                case 'picture':
+                    fbshare.setAttribute("data-href", "pictures?id=" + elem.value);
+                    break;
+                case 'video':
+                    fbshare.setAttribute("data-href", "pictures?id=" + elem.value);
+                    break;
+                default:
+                    break;
+            }
+            fbshare.setAttribute("data-layout", "button_count");
+            html += fbshare.outerHTML;
+        }
     }
+    else
+    {
+        const mapDiv = document.createElement("div");
+        mapDiv.id = "map" + elem.id;
+        html += mapDiv.outerHTML;
+
+        var latt = elem.location.split(' ')[0];
+        var lngg = elem.location.split(' ')[1];
+
+        function initMapLocally() {
+            var uluru = {lat: latt , lng: lngg};
+            var map = new google.maps.Map(document.getElementById('map'+elem.id), {
+                zoom: 15,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+        let script = document.createElement('script');
+        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBYxcxZ3yB7owNaBe5Pr6WbxHGn2WId-4w&callback=initMapLocally";
+        script.async = true;
+        script.defer = true;
+        html += script.outerHTML;
+
+        const categoryDiv = document.createElement('div');
+        categoryDiv.innerText = elem.category;
+        html += categoryDiv.outerHTML;
+
+        const isEmerDiv = document.createElement('div');
+        categoryDiv.innerHTML = "<b>"+elem.isEmergency?"This danger is emergency!":""+"</b>";
+        html += categoryDiv.outerHTML;
+    }
+
     return html;
 }
 

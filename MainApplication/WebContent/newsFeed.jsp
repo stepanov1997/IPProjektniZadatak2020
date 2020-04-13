@@ -1,5 +1,7 @@
-<%@ page import="model.dao.UserDao" %>
 <%@ page import="model.beans.UserBean" %>
+<%@ page import="model.dao.UserDao" %>
+<%@ page import="model.dto.DangerCategory" %>
+<%@ page import="model.beans.DangerCategoryBean" %>
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" %>
 
 <%
@@ -139,33 +141,26 @@
             </div>
 
             <div id="createPost2" class="tabcontent">
-                <form>
+                <form onsubmit="return createPost2()">
                     <div class="leftPost">
                         <label>Type text: </label><br>
                         <label for="text2"></label><textarea id="text2" rows=5 cols="50"></textarea>
                     </div>
                     <div id="attachment2" class="insertAttachment2">
-                        <a>Choose type of potential danger: </a>
-                        <label>
-                            <select>
-                                <option name="danger" value="1">A fallen tree on the road.</option>
-                                <option name="danger" value="2">A storm forecast.</option>
-                                <option name="danger" value="3">A flood</option>
-                                <option name="danger" value="4">Fire</option>
-                            </select>
-                        </label>
-                        <br><br>
                         <a>Choose category of potential danger:</a>
                         <label>
-                            <select>
-                                <option name="category" value="1">HIGH PRIORITY</option>
-                                <option name="category" value="2">MEDIUM PRIORITY</option>
-                                <option name="category" value="3">LOW PRIORITY</option>
+                            <select id="selectCategory">
+                                <%  DangerCategoryBean dangerCategoryBean = new DangerCategoryBean();
+                                    dangerCategoryBean.importDangerCategories();
+                                    for (DangerCategory dangerCategory : dangerCategoryBean.getDangerCategories())
+                                    { %>
+                                        <option name="category" value="<%=dangerCategory.getId()%>"><%=dangerCategory.getName()%></option>
+                                 <% } %>
                             </select>
                         </label>
                         <br><br>
                         <label>
-                            <input type="checkbox">
+                            <input id="isEmergency" type="checkbox">
                         </label><a> Is post emergency?</a><br>
                         <!--The div element for the map -->
                         <div id="map"></div>
@@ -174,6 +169,7 @@
                         </script>
                         <label for="lat"></label><input id="lat" type="text" onkeydown="changePosition()">
                         <label for="lng"></label><input id="lng" type="text" onkeydown="changePosition()">
+                        <button type="submit">Create post</button>
                     </div>
                 </form>
             </div>

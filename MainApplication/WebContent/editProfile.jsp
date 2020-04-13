@@ -40,7 +40,7 @@
             showImageOfCountry();
             const selectCountries = document.getElementById("countries");
             const selectedOpt = selectCountries.options[selectCountries.selectedIndex];
-            const url = 'http://battuta.medunes.net/api/region/' + selectedOpt.value + '/all/?key=3924b0235f680e43e3e3c11fd1f443b1&callback=cb';
+            const url = 'http://battuta.medunes.net/api/region/' + selectedOpt.value + '/all/?key=e5b09e49fe0202afb9f113fff493b701&callback=cb';
 
             function JsonpHttpRequest(url, callback) {
                 const e = document.createElement('script');
@@ -76,7 +76,7 @@
             const selectRegions = document.getElementById("regions");
             const selectedCountry = selectCountries.options[selectCountries.selectedIndex];
             const selectedRegion = selectRegions.options[selectRegions.selectedIndex];
-            const url = "https://geo-battuta.net/api/city/" + selectedCountry.value.toString().replace(" ", "+") + "/search/?region=" + selectedRegion.value.toString().replace(" ", "+") + "&key=3924b0235f680e43e3e3c11fd1f443b1&callback=cb";
+            const url = "https://geo-battuta.net/api/city/" + selectedCountry.value.toString().replace(" ", "+") + "/search/?region=" + selectedRegion.value.toString().replace(" ", "+") + "&key=e5b09e49fe0202afb9f113fff493b701&callback=cb";
 
             function JsonpHttpRequest(url, callback) {
                 const e = document.createElement('script');

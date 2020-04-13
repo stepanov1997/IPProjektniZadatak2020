@@ -16,9 +16,12 @@ public class PostDao {
 
     private static final String selectAllQuery = "SELECT * FROM post";
     private static final String selectByUserQuery = "SELECT * FROM post WHERE User_id=?";
-    private static final String addQuery = "INSERT INTO post (User_id, text, link, Picture_id, Video_id, youtubeLink, dateTime) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String addQuery = "INSERT INTO post " +
+            "(User_id, text, link, Picture_id, Video_id, youtubeLink, dateTime, withAttachment, location, isEmergency, DangerCategory_id) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String deleteQuery = "DELETE FROM post WHERE id = ?";
-    private static final String updateQuery = "UPDATE post SET User_id=?, text=?, link=?, Picture_id=?, Video_id=?, youtubeLink=?, dateTime=? WHERE id=?";
+    private static final String updateQuery = "UPDATE post SET User_id=?, text=?, link=?, Picture_id=?, Video_id=?, youtubeLink=?, dateTime=?, " +
+            "withAttachment=?, location=?, isEmergency=?, DangerCategory_id=? WHERE id=?";
 
     public PostDao() {
     }
@@ -42,11 +45,11 @@ public class PostDao {
                 post.setText(resultSet.getString("text"));
                 post.setLink(resultSet.getString("link"));
                 Integer Picture_id = resultSet.getInt("Picture_id");
-                if(resultSet.wasNull())
+                if (resultSet.wasNull())
                     Picture_id = null;
                 post.setPicture_id(Picture_id);
                 Integer Video_id = resultSet.getInt("Video_id");
-                if(resultSet.wasNull())
+                if (resultSet.wasNull())
                     Video_id = null;
                 post.setVideo_id(Video_id);
                 post.setYoutubeLink(resultSet.getString("youtubeLink"));
@@ -54,6 +57,17 @@ public class PostDao {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime dateTime = LocalDateTime.parse(resultSet.getString("dateTime"), formatter);
                 post.setDateTime(dateTime);
+
+                post.setWithAttachment(resultSet.getBoolean("withAttachment"));
+                Integer category_id = resultSet.getInt("DangerCategory_id");
+                if (resultSet.wasNull())
+                    category_id = null;
+                post.setDangerCategory_id(category_id);
+                post.setEmergency(resultSet.getBoolean("isEmergency"));
+                var location = resultSet.getString("location");
+                if (resultSet.wasNull())
+                    location = null;
+                post.setLocation(location);
                 posts.add(post);
             }
         } catch (SQLException ex) {
@@ -81,12 +95,12 @@ public class PostDao {
             preparedStatement.setInt(1, post.getUser_id());
             preparedStatement.setString(2, post.getText());
             preparedStatement.setString(3, post.getLink());
-            if(post.getPicture_id()==null)
+            if (post.getPicture_id() == null)
                 preparedStatement.setNull(4, Types.INTEGER);
             else
                 preparedStatement.setInt(4, post.getPicture_id());
 
-            if(post.getVideo_id()==null)
+            if (post.getVideo_id() == null)
                 preparedStatement.setNull(5, Types.INTEGER);
             else
                 preparedStatement.setInt(5, post.getVideo_id());
@@ -95,6 +109,18 @@ public class PostDao {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String currentDateTime = formatter.format(post.getDateTime());
             preparedStatement.setString(7, currentDateTime);
+
+            preparedStatement.setBoolean(8, post.isWithAttachment());
+            if (post.getLocation() == null)
+                preparedStatement.setNull(9, Types.VARCHAR);
+            else
+                preparedStatement.setString(9, post.getLocation());
+            preparedStatement.setBoolean(10, post.isEmergency());
+            if (post.getDangerCategory_id() == null)
+                preparedStatement.setNull(11, Types.INTEGER);
+            else
+                preparedStatement.setInt(11, post.getDangerCategory_id());
+
             preparedStatement.executeUpdate();
 
             resultSet = preparedStatement.getGeneratedKeys();
@@ -170,7 +196,19 @@ public class PostDao {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String currentDateTime = formatter.format(post.getDateTime());
             preparedStatement.setString(7, currentDateTime);
-            preparedStatement.setInt(8, post.getId());
+
+            preparedStatement.setBoolean(8, post.isWithAttachment());
+            if (post.getLocation() == null)
+                preparedStatement.setNull(9, Types.VARCHAR);
+            else
+                preparedStatement.setString(9, post.getLocation());
+            preparedStatement.setBoolean(10, post.isEmergency());
+            if (post.getDangerCategory_id() == null)
+                preparedStatement.setNull(11, Types.INTEGER);
+            else
+                preparedStatement.setInt(11, post.getDangerCategory_id());
+
+            preparedStatement.setInt(12, post.getId());
 
             int res = preparedStatement.executeUpdate();
             return res > 0;
@@ -209,6 +247,16 @@ public class PostDao {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime dateTime = LocalDateTime.parse(resultSet.getString("dateTime"), formatter);
                 post.setDateTime(dateTime);
+
+                post.setWithAttachment(resultSet.getBoolean("withAttachment"));
+                var category_id = resultSet.getInt("DangerCategory_id");
+                if (resultSet.wasNull())
+                    post.setDangerCategory_id(null);
+                post.setEmergency(resultSet.getBoolean("isEmergency"));
+                var location = resultSet.getString("location");
+                if (resultSet.wasNull())
+                    post.setLocation(location);
+
                 return post;
             }
         } catch (SQLException ex) {
