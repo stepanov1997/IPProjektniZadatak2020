@@ -281,6 +281,12 @@ body {
 .tabcontent.active {
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.tabcontent.active>div {
+
 }
 
 #createDiv {
@@ -296,7 +302,8 @@ body {
     background-color: grey;
 }
 
-.insertAttachment2 {
+.postType2 {
+    margin: auto;
     text-align: center;
     width: 100%;
     vertical-align: center;

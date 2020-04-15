@@ -5,33 +5,98 @@
 <h:head>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
     <link rel="stylesheet" type="text/css" href="resources/styles/newsFeedStyle.css"></link>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet'/>
+    <script src="resources/scripts/mapBoxInit.js"></script>
 </h:head>
 <h:body xmlns:f="http://java.sun.com/jsf/core">
     <f:metadata>
         <f:event type="preRenderView" listener="#{assistanceCallBean.importAssistanceCalls}"/>
+        <f:event type="preRenderView" listener="#{categoryOfCallBean.importCategories}"/>
     </f:metadata>
     <div class="header"><h2><i><b>Assistance system</b></i></h2></div>
     <div class="row">
         <div class="leftcolumn"><p style="width: 100%">Hello friend</p></div>
+
         <div class="midcolumn">
+            <div id="createCall" class="card" style="text-align: center">
+                <h:form class="postType2">
+                    <a style="margin: auto">Choose category of assistance call:</a>
+                    <p:selectOneMenu style="min-width: 100px" id="selectCategory"
+                                     value="#{assistanceCallBean.assistanceCall.categoryId}">
+                        <f:selectItems value="#{categoryOfCallBean.categories}" var="entry"
+                                       itemValue="#{entry.id}" itemLabel="#{entry.name}"/>
+                    </p:selectOneMenu>
+                    <br/><br/>
+                    <div>
+                        <label>Title: </label>
+                        <p:inputText value="#{assistanceCallBean.assistanceCall.name}"></p:inputText>
+                    </div>
+                    <div>
+                        <label>Description: </label><br/>
+                        <p:inputTextarea value="#{assistanceCallBean.assistanceCall.description}" rows="5"
+                                         cols="50"></p:inputTextarea>
+                    </div>
+                    <br/><br/>
+                    <div>
+                        <label>URL of picture:</label><br/>
+                        <p:inputText value="#{assistanceCallBean.assistanceCall.urlPicture}"></p:inputText><br/>
+                    </div>
+                    <br/><br/>
+                    <div>
+                        <div id="map" style="width: 75%; height: 300px; margin: auto;"></div>
+                        <h:outputScript>initMap()</h:outputScript>
+                        <div style="display: none">
+                            <input id="lat" type="text" name="lat"></input>
+                            <input id="lng" type="text" name="lng"></input>
+                        </div>
+                    </div>
+                    <br/><br/>
+                    <div>
+                        <label>Author:</label>
+                        <p:inputText value="#{assistanceCallBean.assistanceCall.author}"></p:inputText>
+                    </div>
+                    <br/><br/>
+                    <div>
+                        <label>Phone number:</label>
+                        <p:inputText value="#{assistanceCallBean.assistanceCall.phone}"></p:inputText>
+                    </div>
+                    <br/><br/>
+                    <p:commandButton style="margin: auto" type="submit" value="Create call"
+                                     action="#{assistanceCallBean.createCall}"></p:commandButton>
+                </h:form>
+            </div>
             <ui:repeat var="call" value="#{assistanceCallBean.assistanceCallList}">
-                <div class="card">
-                    <h2><h:outputText value="#{call.assistanceCall.name}"></h:outputText></h2>
-                    <hr></hr>
-                    <h:outputText value="#{call.assistanceCall.description}"></h:outputText>
-                    <h:outputText value="#{call.assistanceCall.phone}"></h:outputText>
-                    <h:outputScript name="scripts/google-maps.js"></h:outputScript>
-                    <div id="map#{call.assistanceCall.id}"></div>
-                    <h:outputScript>initMap('#{call.assistanceCall.location}', '#{call.assistanceCall.id}')</h:outputScript>
-                    <h:graphicImage style="width: 100%" value="#{call.assistanceCall.urlPicture}"></h:graphicImage>
-                    <h:outputText value="#{call.assistanceCall.author}"></h:outputText>
-                    <h:outputText value="#{call.assistanceCall.datetime}"></h:outputText>
-                    <hr></hr>
-                </div>
-            </ui:repeat>
-        </div>
-        <div class="rightcolumn"><p style="width: 100%">Hello friend</p></div>
-    </div>
-    <div class="footer"></div>
-</h:body>
-</html>
+            <div id="form1" class="card" style="text-align: center">
+                <h2><h:outputText value="#{call.assistanceCall.name}"></h:outputText></h2>
+                <hr></hr>
+                <br/><br/>
+                <h:outputText value="Description: #{call.assistanceCall.description}"></h:outputText>
+                <br/><br/>
+                <div id="map#{call.assistanceCall.id}" style="width: 80%; height: 300px"></div>
+                <h:outputScript>initMap('#{call.assistanceCall.location}', '#{call.assistanceCall.id}', false)</h:outputScript>
+                <br/><br/>
+                <h:graphicImage style="width: 50%; margin: auto"
+                                value="#{call.assistanceCall.urlPicture}"></h:graphicImage>
+                <hr></hr>
+                <h:outputText value="Datetime: #{call.assistanceCall.datetime}"></h:outputText>
+                <br/><br/>
+                <h:outputText value="Author: #{call.assistanceCall.author}"></h:outputText>
+                <br/><br/>
+                <h:outputText value="Phone number: #{call.assistanceCall.phone}"></h:outputText>
+                <br/><br/>
+                <h:commandButton id='report#{call.assistanceCall.id}' value="Report this post"
+                                 action="#{call.reportCall}" rendered="#{call.checkIsReported}"></h:commandButton>
+                <h:outputLabel rendered="#{!call.checkIsReported}">You already reported this post.</h:outputLabel>
+            </div>
+    </ui:repeat>
+</div>
+<div class="rightcolumn">
+    <h:graphicImage style="width: 128px; height: 128px; float: right; padding: 20px"
+                    onclick="window.location = 'calls.xml'"
+                    value="https://cdn3.iconfinder.com/data/icons/complete-set-icons/512/rss512x512.png"></h:graphicImage>
+</div>
+</div>
+<div class="footer"></div>
+        </h:body>
+        </html>

@@ -1,12 +1,11 @@
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-function imAlive()
-{
+function imAlive() {
     const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if(this.status===200 && this.readyState===4){
+    xhttp.onreadystatechange = function () {
+        if (this.status === 200 && this.readyState === 4) {
             const elem = JSON.parse(this.responseText);
-            if(elem.expires)
+            if (elem.expires)
                 window.location = "newsFeed.jsp"
         }
     };
@@ -63,6 +62,8 @@ function addProfilePicture() {
 
 let fileType = "";
 let linkType = "";
+let mapAttributes = [];
+
 
 function getId(url) {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -90,8 +91,7 @@ function showImageOfCountry(countryCode) {
     };
     try {
         xhttp.send();
-    }
-    catch (e) {
+    } catch (e) {
         document.write("Flag of country is missing.")
     }
 }
@@ -151,8 +151,7 @@ function createPost1() {
             xhttp.send(formData);
         else
             xhttp.send();
-    }
-    catch (e) {
+    } catch (e) {
         document.write("Post cannot be created");
     }
     return false;
@@ -182,6 +181,10 @@ function createPost2() {
                 const createPost = document.getElementById("createDiv");
                 div.setAttribute("class", "card");
                 createPost.parentNode.insertBefore(div, createPost.nextSibling);
+
+                let latt = result.location.split(' ')[0];
+                let lngg = result.location.split(' ')[1];
+                initMap(parseFloat(latt), parseFloat(lngg), parseInt(result.id));
             } else {
                 alert("greska");
             }
@@ -201,9 +204,8 @@ function createPost2() {
     url += "&text2=" + text2.value;
     xhttp.open('post', url, true);
     try {
-       xhttp.send();
-    }
-    catch (e) {
+        xhttp.send();
+    } catch (e) {
         window.alert("Post cannot be created");
     }
     return false;
@@ -237,8 +239,7 @@ function addPost(elem) {
     html += pTag.outerHTML;
     let aTag;
 
-    if(elem.withAttachment)
-    {
+    if (elem.withAttachment) {
         switch (elem.contentType) {
             case 'link':
                 aTag = document.createElement("a");
@@ -342,39 +343,23 @@ function addPost(elem) {
             fbshare.setAttribute("data-layout", "button_count");
             html += fbshare.outerHTML;
         }
-    }
-    else
-    {
+    } else {
         const mapDiv = document.createElement("div");
         mapDiv.id = "map" + elem.id;
+        mapDiv.style = "width: 60%; height: 300px; margin: auto;";
         html += mapDiv.outerHTML;
 
         var latt = elem.location.split(' ')[0];
         var lngg = elem.location.split(' ')[1];
 
-        function initMapLocally() {
-            var uluru = {lat: latt , lng: lngg};
-            var map = new google.maps.Map(document.getElementById('map'+elem.id), {
-                zoom: 15,
-                center: uluru
-            });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
-        }
-        let script = document.createElement('script');
-        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBYxcxZ3yB7owNaBe5Pr6WbxHGn2WId-4w&callback=initMapLocally";
-        script.async = true;
-        script.defer = true;
-        html += script.outerHTML;
+        mapAttributes.push({latt: latt, lngg: lngg, id: elem.id});
 
         const categoryDiv = document.createElement('div');
         categoryDiv.innerText = elem.category;
         html += categoryDiv.outerHTML;
 
         const isEmerDiv = document.createElement('div');
-        categoryDiv.innerHTML = "<b>"+elem.isEmergency?"This danger is emergency!":""+"</b>";
+        categoryDiv.innerHTML = "<b>" + elem.isEmergency ? "This danger is emergency!" : "" + "</b>";
         html += categoryDiv.outerHTML;
     }
 
@@ -518,6 +503,10 @@ function addPosts() {
             });
             const createPost = document.getElementById("posts");
             createPost.appendChild(outterDiv);
+
+            mapAttributes.forEach(e => {
+                initMap(parseFloat(e.latt), parseFloat(e.lngg), parseInt(e.id));
+            })
         }
     };
     const url = "posts";
@@ -546,7 +535,8 @@ function addComment(id) {
             const comment = JSON.parse(this.responseText);
             var cmnt = document.createElement("div");
             cmnt.className = "card";
-            cmnt.innerHTML = createComment(comment);;
+            cmnt.innerHTML = createComment(comment);
+            ;
             div.parentNode.insertBefore(cmnt, div);
         }
     };
@@ -666,8 +656,7 @@ function addWeatherForcast() {
     xhttp.open('POST', url, true);
     try {
         xhttp.send();
-    }
-    catch (e) {
+    } catch (e) {
         document.write("The weather forecast is not accessible right now.")
     }
 }
@@ -755,4 +744,23 @@ function showTab(id, cityName) {
     document.getElementById(cityName).style.display = "block";
     document.getElementById(id).className += " active";
 
+}
+
+function initMap(latt, lngg, mapId) {
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia2lraWtpa2kxOTkyIiwiYSI6ImNrOHoza2ZqejBhbGQzZGxjeGIxNWM0YnoifQ.3FoukhI7DUYFqV4W63mi6w';
+    var map = new mapboxgl.Map({
+        container: 'map' + mapId, // container id
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [lngg, latt], // starting position
+        zoom: 15 // starting zoom
+    });
+    var marker = new mapboxgl.Marker({
+        draggable: false
+    })
+        .setLngLat([lngg, latt])
+        .addTo(map);
+
+    map.addControl(new mapboxgl.NavigationControl());
+
+    //map.flyTo({center:[lngg, latt]});
 }

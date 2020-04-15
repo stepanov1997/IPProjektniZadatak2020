@@ -3,17 +3,29 @@ package model.beans;
 import model.dao.AssistanceCallDao;
 import model.dto.AssistanceCall;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @ManagedBean
 @ViewScoped
 public class AssistanceCallBean implements Serializable {
-    private AssistanceCall assistanceCall;
+    private static Map<Integer, String> ipAddressMap = new HashMap<>();
+
+    private AssistanceCall assistanceCall = new AssistanceCall();
+    AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
     private List<AssistanceCallBean> assistanceCallList;
 
     public AssistanceCallBean() {
@@ -23,9 +35,7 @@ public class AssistanceCallBean implements Serializable {
         this.assistanceCall = assistanceCall;
     }
 
-    public void importAssistanceCalls()
-    {
-        AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
+    public void importAssistanceCalls() {
         List<AssistanceCallBean> assistanceCallBeans = assistanceCallDao
                 .getAll()
                 .stream()
@@ -35,8 +45,7 @@ public class AssistanceCallBean implements Serializable {
         assistanceCallList = assistanceCallBeans;
     }
 
-    public List<String> splitLocation()
-    {
+    public List<String> splitLocation() {
         return Arrays.asList(assistanceCall.getLocation().split(" "));
     }
 
@@ -54,5 +63,46 @@ public class AssistanceCallBean implements Serializable {
 
     public void setAssistanceCallList(List<AssistanceCallBean> assistanceCallList) {
         this.assistanceCallList = assistanceCallList;
+    }
+
+    public String createCall() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+        String lat = params.get("lat");
+        String lng = params.get("lng");
+        assistanceCall.setLocation(lat + " " + lng);
+        assistanceCall.setBlocked(false);
+        assistanceCall.setDatetime(LocalDateTime.now());
+        assistanceCall.setReportsCounter(0);
+        assistanceCallDao.add(assistanceCall);
+        return "mainPage.xhtml";
+    }
+
+    public String reportCall() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        if (Stream.of(request.getCookies()).anyMatch(e -> e.getName().startsWith("LastReport") &&
+                e.getValue().equals(String.valueOf(assistanceCall.getId())))) {
+            FacesContext.getCurrentInstance().addMessage("form"+assistanceCall.getId() + ":" +"report"+assistanceCall.getId(), new FacesMessage("You already reported this post!"));
+            return "";
+        }
+        Cookie cookie = new Cookie("LastReport" + assistanceCall.getId(), String.valueOf(assistanceCall.getId()));
+        cookie.setMaxAge(60 * 60 * 24 * 7);
+        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        response.addCookie(cookie);
+
+        if(assistanceCallDao.reportCall(assistanceCall.getId()))
+            assistanceCall.setReportsCounter(assistanceCall.getReportsCounter()+1);
+        return "failure";
+    }
+
+    public boolean getCheckIsReported() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        var cookies = request.getCookies();
+        if(cookies==null) return false;
+        if (Stream.of(cookies).anyMatch(e -> e.getName().startsWith("LastReport") &&
+                e.getValue().equals(String.valueOf(assistanceCall.getId())))) {
+            return true;
+        }
+        return false;
     }
 }

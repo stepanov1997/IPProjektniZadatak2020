@@ -24,11 +24,19 @@
     <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
     <script src="https://vjs.zencdn.net/7.7.5/video.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
-    </script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
+<%--    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">--%>
+<%--    </script>--%>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
     </script>
-    <script src="scripts/google-maps.js"></script>
+<%--    <script src="scripts/google-maps.js"></script>--%>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="ICON"
           href="https://scontent.fbeg4-1.fna.fbcdn.net/v/t1.0-9/54255431_645793952539379_1611586770158223360_o.jpg?_nc_cat=110&_nc_sid=09cbfe&_nc_ohc=zDb83HnW2FoAX-AuhRZ&_nc_ht=scontent.fbeg4-1.fna&oh=da1701f4c2fa67f6a3bad35766e337e7&oe=5E9CEBBE"
@@ -141,35 +149,58 @@
             </div>
 
             <div id="createPost2" class="tabcontent">
-                <form onsubmit="return createPost2()">
+                <form onsubmit="return createPost2()" class="postType2">
+                    <a style="margin: auto">Choose category of potential danger:</a>
+                    <label>
+                        <select id="selectCategory">
+                            <%  DangerCategoryBean dangerCategoryBean = new DangerCategoryBean();
+                                dangerCategoryBean.importDangerCategories();
+                                for (DangerCategory dangerCategory : dangerCategoryBean.getDangerCategories())
+                                { %>
+                            <option name="category" value="<%=dangerCategory.getId()%>"><%=dangerCategory.getName()%></option>
+                            <% } %>
+                        </select>
+                    </label>
+                    <br><br>
                     <div class="leftPost">
                         <label>Type text: </label><br>
                         <label for="text2"></label><textarea id="text2" rows=5 cols="50"></textarea>
                     </div>
-                    <div id="attachment2" class="insertAttachment2">
-                        <a>Choose category of potential danger:</a>
-                        <label>
-                            <select id="selectCategory">
-                                <%  DangerCategoryBean dangerCategoryBean = new DangerCategoryBean();
-                                    dangerCategoryBean.importDangerCategories();
-                                    for (DangerCategory dangerCategory : dangerCategoryBean.getDangerCategories())
-                                    { %>
-                                        <option name="category" value="<%=dangerCategory.getId()%>"><%=dangerCategory.getName()%></option>
-                                 <% } %>
-                            </select>
-                        </label>
+                    <div id="attachment2">
                         <br><br>
-                        <label>
+                        <label style="margin: auto">
                             <input id="isEmergency" type="checkbox">
-                        </label><a> Is post emergency?</a><br>
+                        </label><a> Is post emergency?</a><br><br>
                         <!--The div element for the map -->
-                        <div id="map"></div>
-                        <script async defer
-                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYxcxZ3yB7owNaBe5Pr6WbxHGn2WId-4w&callback=initMap">
+                        <div id="map" style="width: 75%; height: 300px; margin: auto;"></div>
+                        <script>
+                            mapboxgl.accessToken = 'pk.eyJ1Ijoia2lraWtpa2kxOTkyIiwiYSI6ImNrOHoza2ZqejBhbGQzZGxjeGIxNWM0YnoifQ.3FoukhI7DUYFqV4W63mi6w';
+                            var map = new mapboxgl.Map({
+                                container: 'map', // container id
+                                style: 'mapbox://styles/mapbox/streets-v11',
+                                center: [ 17.1866667, 44.76638889], // starting position
+                                zoom: 15 // starting zoom
+                            });
+                            var marker = new mapboxgl.Marker({
+                                draggable: true
+                            })
+                                .setLngLat([17.1866667, 44.76638889])
+                                .addTo(map);
+
+                            function onDragEnd() {
+                                var lngLat = marker.getLngLat();
+                                document.getElementById('lat').value = lngLat.lat;
+                                document.getElementById('lng').value = lngLat.lng;
+                            }
+
+                            marker.on('drag', onDragEnd);
+
+                            // Add zoom and rotation controls to the map.
+                            map.addControl(new mapboxgl.NavigationControl());
                         </script>
-                        <label for="lat"></label><input id="lat" type="text" onkeydown="changePosition()">
-                        <label for="lng"></label><input id="lng" type="text" onkeydown="changePosition()">
-                        <button type="submit">Create post</button>
+                        <label for="lat"></label><input style="display: none" id="lat" type="text" onkeydown="changePosition1()">
+                        <label for="lng"></label><input style="display: none" id="lng" type="text" onkeydown="changePosition1()"><br><br>
+                        <button style="margin: auto" type="submit">Create post</button>
                     </div>
                 </form>
             </div>

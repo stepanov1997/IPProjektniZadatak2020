@@ -14,11 +14,13 @@ public class AssistanceCallDao {
     private static final String getQuery = "SELECT * FROM AssistanceCall WHERE id=?";
     private static final String insertQuery =
             "INSERT INTO AssistanceCall (name, datetime, location, description, author, phone, isBlocked, " +
-                    "isReported, urlPicture, CategoryOfCalls_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                    "reportsCounter, urlPicture, CategoryOfCalls_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
     private static final String updateQuery =
             "UPDATE AssistanceCall SET name=?, datetime=?, location=?, description=?, author=?, phone=?, isBlocked=?, " +
-                    "isReported=?, urlPicture=?, CategoryOfCalls_id=? WHERE id=?";
+                    "reportsCounter=?, urlPicture=?, CategoryOfCalls_id=? WHERE id=?";
+    private static final String reportQuery = "UPDATE AssistanceCall SET reportsCounter=reportsCounter+1 WHERE id=?";
     private static final String deleteQuery = "DELETE FROM AssistanceCall WHERE id=?";
+
 
     public List<AssistanceCall> getAll()
     {
@@ -43,7 +45,7 @@ public class AssistanceCallDao {
                         resultSet.getString("author"),
                         resultSet.getString("phone"),
                         resultSet.getBoolean("isBlocked"),
-                        resultSet.getBoolean("isReported"),
+                        resultSet.getInt("reportsCounter"),
                         resultSet.getInt("categoryofcalls_id")
                 );
                 list.add(assistanceCall);
@@ -80,7 +82,7 @@ public class AssistanceCallDao {
                         resultSet.getString("author"),
                         resultSet.getString("phone"),
                         resultSet.getBoolean("isBlocked"),
-                        resultSet.getBoolean("isReported"),
+                        resultSet.getInt("reportsCounter"),
                         resultSet.getInt("categoryofcalls_id")
                 );
             }
@@ -109,7 +111,7 @@ public class AssistanceCallDao {
             preparedStatement.setString(5, assistanceCall.getAuthor());
             preparedStatement.setString(6, assistanceCall.getPhone());
             preparedStatement.setBoolean(7, assistanceCall.isBlocked());
-            preparedStatement.setBoolean(8, assistanceCall.isReported());
+            preparedStatement.setInt(8, assistanceCall.getReportsCounter());
             preparedStatement.setString(9, assistanceCall.getUrlPicture());
             preparedStatement.setInt(10, assistanceCall.getCategoryId());
             preparedStatement.executeUpdate();
@@ -160,9 +162,28 @@ public class AssistanceCallDao {
             preparedStatement.setString(5, assistanceCall.getAuthor());
             preparedStatement.setString(6, assistanceCall.getPhone());
             preparedStatement.setBoolean(7, assistanceCall.isBlocked());
-            preparedStatement.setBoolean(8, assistanceCall.isReported());
+            preparedStatement.setInt(8, assistanceCall.getReportsCounter());
             preparedStatement.setString(9, assistanceCall.getUrlPicture());
             preparedStatement.setInt(10, assistanceCall.getCategoryId());
+            return preparedStatement.executeUpdate()>0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            ConnectionPool.getConnectionPool().checkIn(connection);
+        }
+        return false;
+    }
+
+    public boolean reportCall(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            connection = ConnectionPool.getConnectionPool().checkOut();
+            preparedStatement = connection.prepareStatement(reportQuery);
+            preparedStatement.setInt(1, id);
             return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {
             e.printStackTrace();
