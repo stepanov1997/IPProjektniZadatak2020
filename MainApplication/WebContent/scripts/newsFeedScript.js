@@ -199,7 +199,7 @@ function createPost2() {
     let url = "NewsFeedController?";
     url += "withAttachment=" + false;
     url += "&location=" + lat.value + "+" + lng.value;
-    url += "&isEmergency=" + isEmergency.value;
+    url += "&isEmergency=" + isEmergency.checked;
     url += "&category=" + category;
     url += "&text2=" + text2.value;
     xhttp.open('post', url, true);
@@ -344,15 +344,19 @@ function addPost(elem) {
             html += fbshare.outerHTML;
         }
     } else {
-        const mapDiv = document.createElement("div");
-        mapDiv.id = "map" + elem.id;
-        mapDiv.style = "width: 60%; height: 300px; margin: auto;";
-        html += mapDiv.outerHTML;
 
-        var latt = elem.location.split(' ')[0];
-        var lngg = elem.location.split(' ')[1];
+        if (!(elem.location === undefined || elem.location === null || elem.location.length <= 0))
+        {
+            const mapDiv = document.createElement("div");
+            mapDiv.id = "map" + elem.id;
+            mapDiv.style = "width: 60%; height: 300px; margin: auto;";
+            html += mapDiv.outerHTML;
 
-        mapAttributes.push({latt: latt, lngg: lngg, id: elem.id});
+            var latt = elem.location.split(' ')[0];
+            var lngg = elem.location.split(' ')[1];
+
+            mapAttributes.push({latt: latt, lngg: lngg, id: elem.id});
+        }
 
         const categoryDiv = document.createElement('div');
         categoryDiv.innerText = elem.category;
@@ -536,7 +540,6 @@ function addComment(id) {
             var cmnt = document.createElement("div");
             cmnt.className = "card";
             cmnt.innerHTML = createComment(comment);
-            ;
             div.parentNode.insertBefore(cmnt, div);
         }
     };

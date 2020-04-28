@@ -19,14 +19,14 @@ public class UserDao {
     private static final String selectByUsernameQuery = "SELECT * FROM user WHERE username=?";
     private static final String addQuery = "INSERT INTO user (name, surname, username, password, email) VALUES (?, ?, ?, ?, ?)";
     private static final String deleteQuery = "DELETE FROM user WHERE id = ?";
-    private static final String updateQuery = "UPDATE user SET name=?, surname=?, username=?, password=?, email=?, country=?, countryCode=?, region=?, city=?, loginCounter=?, picture_id=? WHERE id=?";
+    private static final String updateQuery = "UPDATE user SET name=?, surname=?, username=?, password=?, email=?, country=?, countryCode=?, region=?, city=?, notificationType=?, loginCounter=?, picture_id=? WHERE id=?";
     private static final String countByUsernameQuery = "SELECT COUNT(*) as number FROM user WHERE username=?";
     private static final String countByEmailQuery = "SELECT COUNT(*) as number FROM user WHERE email=?";
     private static final String loginQuery = "UPDATE user SET isOnline=1, loginCounter=? WHERE id=?";
     private static final String insertToHistoryQuery = "INSERT INTO online_history (User_id, loginDatetime) VALUES (?,?)";
-    private static final String[] logoutQuery = { "UPDATE user SET isOnline=0 WHERE id=?;",
-                                                  "SELECT id FROM online_history oh WHERE oh.User_id=? ORDER BY oh.loginDatetime DESC LIMIT 1",
-                                                  "UPDATE online_history SET logoutDatetime=? WHERE id=?" };
+    private static final String[] logoutQuery = {"UPDATE user SET isOnline=0 WHERE id=?;",
+            "SELECT id FROM online_history oh WHERE oh.User_id=? ORDER BY oh.loginDatetime DESC LIMIT 1",
+            "UPDATE online_history SET logoutDatetime=? WHERE id=?"};
 
 
     public UserDao() {
@@ -56,6 +56,7 @@ public class UserDao {
                 user.setCountryCode(resultSet.getString("countryCode"));
                 user.setRegion(resultSet.getString("region"));
                 user.setLoginCounter(resultSet.getInt("loginCounter"));
+                user.setNotificationType(resultSet.getInt("notificationType"));
                 user.setCity(resultSet.getString("city"));
                 Integer picture_id = resultSet.getInt("picture_id");
                 if (resultSet.wasNull()) {
@@ -153,12 +154,16 @@ public class UserDao {
             preparedStatement.setString(7, user.getCountryCode());
             preparedStatement.setString(8, user.getRegion());
             preparedStatement.setString(9, user.getCity());
-            preparedStatement.setInt(10, user.getLoginCounter());
-            if (user.getPicture_Id() == null)
-                preparedStatement.setNull(11, Types.INTEGER);
+            if (user.getNotificationType() == null)
+                preparedStatement.setNull(10, Types.INTEGER);
             else
-                preparedStatement.setInt(11, user.getPicture_Id());
-            preparedStatement.setInt(12, user.getId());
+                preparedStatement.setInt(10, user.getNotificationType());
+            preparedStatement.setInt(11, user.getLoginCounter());
+            if (user.getPicture_Id() == null)
+                preparedStatement.setNull(12, Types.INTEGER);
+            else
+                preparedStatement.setInt(12, user.getPicture_Id());
+            preparedStatement.setInt(13, user.getId());
             int res = preparedStatement.executeUpdate();
             //"UPDATE user SET name=?, surname=?, username=?, password=?, email=?, country=?, countryCode=?, region=?, city=?, picture_id=? WHERE id=?";
 
@@ -376,7 +381,7 @@ public class UserDao {
             preparedStatement.setInt(1, user.getId());
             ResultSet resultSet = preparedStatement.executeQuery();
             int id = -1;
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 id = resultSet.getInt("id");
             }
 

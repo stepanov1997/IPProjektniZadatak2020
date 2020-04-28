@@ -16,13 +16,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 @ManagedBean
 @ViewScoped
 public class AssistanceCallBean implements Serializable {
-    private static Map<Integer, String> ipAddressMap = new HashMap<>();
+    private static final Map<Integer, String> ipAddressMap = new HashMap<>();
 
     private AssistanceCall assistanceCall = new AssistanceCall();
     AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
@@ -36,13 +37,13 @@ public class AssistanceCallBean implements Serializable {
     }
 
     public void importAssistanceCalls() {
-        List<AssistanceCallBean> assistanceCallBeans = assistanceCallDao
+        assistanceCallList = assistanceCallDao
                 .getAll()
                 .stream()
                 .filter(e -> !e.isBlocked())
                 .map(AssistanceCallBean::new)
-                .collect(Collectors.toList());
-        assistanceCallList = assistanceCallBeans;
+                .sorted((a,b)-> a.assistanceCall.getDatetime().isBefore(b.assistanceCall.getDatetime())?1:-1)
+                .collect(toList());
     }
 
     public List<String> splitLocation() {
@@ -80,7 +81,7 @@ public class AssistanceCallBean implements Serializable {
 
     public String reportCall() {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        if (Stream.of(request.getCookies()).anyMatch(e -> e.getName().startsWith("LastReport") &&
+        if (request.getCookies()!=null && Stream.of(request.getCookies()).anyMatch(e -> e.getName().startsWith("LastReport") &&
                 e.getValue().equals(String.valueOf(assistanceCall.getId())))) {
             FacesContext.getCurrentInstance().addMessage("form"+assistanceCall.getId() + ":" +"report"+assistanceCall.getId(), new FacesMessage("You already reported this post!"));
             return "";

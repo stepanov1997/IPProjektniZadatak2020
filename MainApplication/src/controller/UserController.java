@@ -6,36 +6,38 @@ import model.dao.UserDao;
 import model.dto.User;
 import util.SHA1;
 
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URL;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class UserController extends HttpServlet implements Serializable {
 
     static HashMap<Integer, LocalDateTime> onlineUsers = new HashMap<>();
 
     static {
-        new Thread(() -> {
-            while (true) {
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException ignored) {
-                }
-                var userBeans = onlineUsers.entrySet().stream().filter(e -> {
-                    long seconds = Duration.between(e.getValue(), LocalDateTime.now()).getSeconds();
-                    return seconds > 10 || seconds < -10;
-                }).collect(Collectors.toList());
-                for (Map.Entry<Integer, LocalDateTime> userBean : userBeans) {
-                    UserDao userDao = new UserDao();
-                    userDao.logout(Objects.requireNonNull(userDao.get(userBean.getKey())));
-                    onlineUsers.remove(userBean.getKey());
-                }
-            }
-        }).start();
+//        new Thread(() -> {
+//            while (true) {
+//                try {
+//                    Thread.sleep(10000);
+//                } catch (InterruptedException ignored) {
+//                }
+//                var userBeans = onlineUsers.entrySet().stream().filter(e -> {
+//                    long seconds = Duration.between(e.getValue(), LocalDateTime.now()).getSeconds();
+//                    return seconds > 10 || seconds < -10;
+//                }).collect(Collectors.toList());
+//                for (Map.Entry<Integer, LocalDateTime> userBean : userBeans) {
+//                    UserDao userDao = new UserDao();
+//                    userDao.logout(Objects.requireNonNull(userDao.get(userBean.getKey())));
+//                    onlineUsers.remove(userBean.getKey());
+//                }
+//            }
+//        }).start();
     }
 
 
@@ -132,6 +134,7 @@ public class UserController extends HttpServlet implements Serializable {
                     user.setCountryCode(request.getParameter("countryCode"));
                     user.setRegion(request.getParameter("region"));
                     user.setCity(request.getParameter("city"));
+                    user.setNotificationType(Integer.parseInt(request.getParameter("notification")));
                     if (!Boolean.parseBoolean(request.getParameter("picture")))
                         user.setPicture_Id(null);
                     UserDao userDao = new UserDao();
@@ -253,11 +256,11 @@ public class UserController extends HttpServlet implements Serializable {
                     Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
                     List<City> citiesCollection = new ArrayList<>();
 
-                    String page = "http://battuta.medunes.net/api/region/" + user.getCountryCode() + "/all/?key=e5b09e49fe0202afb9f113fff493b701";
+                    String page = "http://battuta.medunes.net/api/region/" + user.getCountryCode() + "/all/?key=4b4933cdb372edc0f978e5d85a264fb6";
                     String json = getFromUrl(page);
                     JsonArray regions = JsonParser.parseString(json).getAsJsonArray();
                     for (JsonElement region : regions) {
-                        String page2 = "https://geo-battuta.net/api/city/" + user.getCountryCode() + "/search/?region=" + region.getAsJsonObject().get("region").getAsString().replace(" ", "+") + "&key=e5b09e49fe0202afb9f113fff493b701";
+                        String page2 = "https://geo-battuta.net/api/city/" + user.getCountryCode() + "/search/?region=" + region.getAsJsonObject().get("region").getAsString().replace(" ", "+") + "&key=4b4933cdb372edc0f978e5d85a264fb6";
                         String json2 = getFromUrl(page2);
                         JsonArray cities = JsonParser.parseString(json2).getAsJsonArray();
                         for (JsonElement cityElem : cities) {

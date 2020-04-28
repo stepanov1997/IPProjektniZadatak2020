@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @ViewScoped
 public class AdminUserBean implements Serializable {
     private List<AdminUserBean> users;
-    private AdminUserDao userDao = new AdminUserDao();
+    private final AdminUserDao userDao = new AdminUserDao();
     private User user = new User();
     private String numberOfActive = "0";
     private String numberOfRegistered = "0";

@@ -86,8 +86,8 @@
                 <h:outputText value="Phone number: #{call.assistanceCall.phone}"></h:outputText>
                 <br/><br/>
                 <h:commandButton id='report#{call.assistanceCall.id}' value="Report this post"
-                                 action="#{call.reportCall}" rendered="#{call.checkIsReported}"></h:commandButton>
-                <h:outputLabel rendered="#{!call.checkIsReported}">You already reported this post.</h:outputLabel>
+                                 action="#{call.reportCall}" rendered="#{!call.checkIsReported}"></h:commandButton>
+                <h:outputLabel rendered="#{call.checkIsReported}">You already reported this post.</h:outputLabel>
             </div>
     </ui:repeat>
 </div>

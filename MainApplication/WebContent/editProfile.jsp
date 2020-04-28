@@ -40,7 +40,7 @@
             showImageOfCountry();
             const selectCountries = document.getElementById("countries");
             const selectedOpt = selectCountries.options[selectCountries.selectedIndex];
-            const url = 'http://battuta.medunes.net/api/region/' + selectedOpt.value + '/all/?key=e5b09e49fe0202afb9f113fff493b701&callback=cb';
+            const url = 'http://battuta.medunes.net/api/region/' + selectedOpt.value + '/all/?key=4b4933cdb372edc0f978e5d85a264fb6&callback=cb';
 
             function JsonpHttpRequest(url, callback) {
                 const e = document.createElement('script');
@@ -76,7 +76,7 @@
             const selectRegions = document.getElementById("regions");
             const selectedCountry = selectCountries.options[selectCountries.selectedIndex];
             const selectedRegion = selectRegions.options[selectRegions.selectedIndex];
-            const url = "https://geo-battuta.net/api/city/" + selectedCountry.value.toString().replace(" ", "+") + "/search/?region=" + selectedRegion.value.toString().replace(" ", "+") + "&key=e5b09e49fe0202afb9f113fff493b701&callback=cb";
+            const url = "https://geo-battuta.net/api/city/" + selectedCountry.value.toString().replace(" ", "+") + "/search/?region=" + selectedRegion.value.toString().replace(" ", "+") + "&key=4b4933cdb372edc0f978e5d85a264fb6&callback=cb";
 
             function JsonpHttpRequest(url, callback) {
                 const e = document.createElement('script');
@@ -190,8 +190,10 @@
                 url += "&picture=" + false;
             } else {
                 url += "&picture=" + true;
-            }
 
+            }
+            let notificationSelect = document.getElementById("notification");
+            url += "&notification="+notificationSelect.options[notificationSelect.selectedIndex].value;
             xhr.open('POST', url, true);
             xhr.send();
             return false;
@@ -215,6 +217,10 @@
     <label for="cities"></label><select id="cities" name="cities" hidden="hidden">
     </select><br>
     <input id="file" type="file" enctype="multipart/form-data" onchange="saveProfilePicture()" name="file" accept="image/*" size="1"/>
+    Emergency notification:<label for="notification"></label><select id="notification" name="notification">
+        <option name="notification" value="0">in Application</option>
+        <option name="notification" value="1">on E-mail</option>
+    </select>
     <br/><br/><br/>
     <input type="submit" name="submit" value="Update profile"/>
 </form>

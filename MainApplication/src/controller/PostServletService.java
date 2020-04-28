@@ -115,7 +115,11 @@ public class PostServletService extends HttpServlet {
 				{
 					if(post.getLocation()!=null)
 						jsonObject.addProperty("location", post.getLocation());
-					jsonObject.addProperty("category", new DangerCategoryDao().get(post.getDangerCategory_id()).getName());
+					if(post.getDangerCategory_id()!=null)
+					{
+						var result = new DangerCategoryDao().get(post.getDangerCategory_id());
+						jsonObject.addProperty("category", result.getName());
+					}
 					jsonObject.addProperty("isEmergency", post.isEmergency());
 				}
 

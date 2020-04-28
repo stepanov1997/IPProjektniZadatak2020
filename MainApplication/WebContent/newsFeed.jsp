@@ -25,18 +25,18 @@
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
     <script src="https://vjs.zencdn.net/7.7.5/video.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet'/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
-<%--    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">--%>
-<%--    </script>--%>
+    <%--    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">--%>
+    <%--    </script>--%>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
     </script>
-<%--    <script src="scripts/google-maps.js"></script>--%>
+    <%--    <script src="scripts/google-maps.js"></script>--%>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="ICON"
           href="https://scontent.fbeg4-1.fna.fbcdn.net/v/t1.0-9/54255431_645793952539379_1611586770158223360_o.jpg?_nc_cat=110&_nc_sid=09cbfe&_nc_ohc=zDb83HnW2FoAX-AuhRZ&_nc_ht=scontent.fbeg4-1.fna&oh=da1701f4c2fa67f6a3bad35766e337e7&oe=5E9CEBBE"
@@ -129,21 +129,27 @@
                         <label for="text"></label><textarea id="text" rows=5 cols="50"></textarea>
                     </div>
                     <div id="attachment" class="insertAttachment">
-                        <label id="upload-image" for="file-input">
-                            <img id="picture-img" src="https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/6C1aT2Hm3x-.png"
-                                 alt=""
-                                 onclick="fileType='picture'">
-                            <img id="video-img"
-                                 src="https://secure.webtoolhub.com/static/resources/icons/set165/e81b28f7.png"
-                                 onclick="fileType='video'" alt="">
-                        </label>
-                        <input id="file-input" enctype="multipart/form-data" type="file" hidden="hidden">
-                        <img id="yt-link"
-                             src="https://icons-for-free.com/iconfiles/png/512/video+youtube+icon-1320192294490006733.png"
-                             onclick="addLink(true)" alt="">
-                        <img id="link" src="https://icon-library.net/images/website-link-icon/website-link-icon-23.jpg"
-                             onclick="addLink(false)" alt=""><br>
-                        <button type="submit">SHARE POST</button>
+                        <div class="buttons">
+                            <label id="upload-image" for="file-input">
+                                <img id="picture-img" src="https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/6C1aT2Hm3x-.png"
+                                     alt=""
+                                     onclick="fileType='picture'">
+                                <img id="video-img"
+                                    src="https://secure.webtoolhub.com/static/resources/icons/set165/e81b28f7.png"
+                                    onclick="fileType='video'" alt="">
+                            </label>
+                            <input id="file-input" enctype="multipart/form-data" type="file" hidden="hidden">
+
+                            <img id="yt-link"
+                                 src="https://icons-for-free.com/iconfiles/png/512/video+youtube+icon-1320192294490006733.png"
+                                 onclick="addLink(true)" alt="">
+                            <img id="link"
+                                 src="https://icon-library.net/images/website-link-icon/website-link-icon-23.jpg"
+                                 onclick="addLink(false)" alt=""><br>
+                        </div>
+                        <div class="button-wrapper">
+                            <button type="submit">SHARE POST</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -153,11 +159,11 @@
                     <a style="margin: auto">Choose category of potential danger:</a>
                     <label>
                         <select id="selectCategory">
-                            <%  DangerCategoryBean dangerCategoryBean = new DangerCategoryBean();
+                            <% DangerCategoryBean dangerCategoryBean = new DangerCategoryBean();
                                 dangerCategoryBean.importDangerCategories();
-                                for (DangerCategory dangerCategory : dangerCategoryBean.getDangerCategories())
-                                { %>
-                            <option name="category" value="<%=dangerCategory.getId()%>"><%=dangerCategory.getName()%></option>
+                                for (DangerCategory dangerCategory : dangerCategoryBean.getDangerCategories()) { %>
+                            <option name="category" value="<%=dangerCategory.getId()%>"><%=dangerCategory.getName()%>
+                            </option>
                             <% } %>
                         </select>
                     </label>
@@ -178,7 +184,7 @@
                             var map = new mapboxgl.Map({
                                 container: 'map', // container id
                                 style: 'mapbox://styles/mapbox/streets-v11',
-                                center: [ 17.1866667, 44.76638889], // starting position
+                                center: [17.1866667, 44.76638889], // starting position
                                 zoom: 15 // starting zoom
                             });
                             var marker = new mapboxgl.Marker({
@@ -198,8 +204,10 @@
                             // Add zoom and rotation controls to the map.
                             map.addControl(new mapboxgl.NavigationControl());
                         </script>
-                        <label for="lat"></label><input style="display: none" id="lat" type="text" onkeydown="changePosition1()">
-                        <label for="lng"></label><input style="display: none" id="lng" type="text" onkeydown="changePosition1()"><br><br>
+                        <label for="lat"></label><input style="display: none" id="lat" type="text"
+                                                        onkeydown="changePosition1()">
+                        <label for="lng"></label><input style="display: none" id="lng" type="text"
+                                                        onkeydown="changePosition1()"><br><br>
                         <button style="margin: auto" type="submit">Create post</button>
                     </div>
                 </form>

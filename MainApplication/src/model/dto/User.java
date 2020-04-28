@@ -14,6 +14,7 @@ public class User {
     private String countryCode;
     private String region;
     private String city;
+    private Integer notificationType;
     private int loginCounter;
     private boolean isOnline;
     private boolean isEnabled;
@@ -141,12 +142,21 @@ public class User {
         isEnabled = enabled;
     }
 
+    public Integer getNotificationType() {
+        return notificationType;
+    }
+
+    public void setNotificationType(Integer notificationType) {
+        this.notificationType = notificationType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
         return getId() == user.getId() &&
+                getNotificationType() == user.getNotificationType() &&
                 getLoginCounter() == user.getLoginCounter() &&
                 isOnline() == user.isOnline() &&
                 isEnabled() == user.isEnabled() &&
@@ -164,7 +174,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getSurname(), getUsername(), getPassword(), getEmail(), getPicture_Id(), getCountry(), getCountryCode(), getRegion(), getCity(), getLoginCounter(), isOnline(), isEnabled());
+        return Objects.hash(getId(), getName(), getSurname(), getUsername(), getPassword(), getEmail(), getPicture_Id(), getCountry(), getCountryCode(), getRegion(), getCity(), getNotificationType(), getLoginCounter(), isOnline(), isEnabled());
     }
 
     @Override
@@ -181,6 +191,7 @@ public class User {
                 ", countryCode='" + countryCode + '\'' +
                 ", region='" + region + '\'' +
                 ", city='" + city + '\'' +
+                ", notificationType=" + notificationType +
                 ", loginCounter=" + loginCounter +
                 ", isOnline=" + isOnline +
                 ", isEnabled=" + isEnabled +
