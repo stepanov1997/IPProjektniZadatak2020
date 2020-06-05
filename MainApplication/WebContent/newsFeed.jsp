@@ -47,8 +47,6 @@
     <script>
         function refresh() {
             const top = document.documentElement.scrollTop;
-            document.getElementById("postsDiv").innerHTML = "";
-            document.getElementById("postsDiv").remove();
             addPosts();
             setTimeout(function () {
                 document.documentElement.scrollTop = top;
@@ -144,7 +142,7 @@
                                  src="https://icons-for-free.com/iconfiles/png/512/video+youtube+icon-1320192294490006733.png"
                                  onclick="addLink(true)" alt="">
                             <img id="link"
-                                 src="https://icon-library.net/images/website-link-icon/website-link-icon-23.jpg"
+                                 src="https://cdn2.iconfinder.com/data/icons/pittogrammi/142/95-512.png"
                                  onclick="addLink(false)" alt=""><br>
                         </div>
                         <div class="button-wrapper">

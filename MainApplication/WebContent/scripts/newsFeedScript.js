@@ -111,23 +111,7 @@ function createPost1() {
         if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
             const result = JSON.parse(this.responseText);
             if (result.success) {
-                var div = document.createElement("div");
-                div.className = "card";
-                var html = "";
-                html += addPost(result);
-                var div2 = document.createElement("div");
-                div2.className = "card";
-                div2.style.background = "gray";
-                var div3 = document.createElement("div");
-                div3.className = "card";
-                div3.id = "commentDiv" + result.id;
-                div3.innerHTML = createCommentInput(result.id);
-                div2.innerHTML = div3.outerHTML;
-                html += div2.outerHTML;
-                div.innerHTML = html;
-                const createPost = document.getElementById("createDiv");
-                div.setAttribute("class", "card");
-                createPost.parentNode.insertBefore(div, createPost.nextSibling);
+                refresh();
             } else {
                 alert("greska");
             }
@@ -239,38 +223,42 @@ function addPost(elem) {
     html += pTag.outerHTML;
     let aTag;
 
+    let wrapper = document.createElement("div");
+    wrapper.width = "100%";
+    wrapper.className = "mediaWrapper";
     if (elem.withAttachment) {
         switch (elem.contentType) {
             case 'link':
                 aTag = document.createElement("a");
                 aTag.href = elem.value;
                 aTag.innerHTML = "Link";
-                html += aTag.outerHTML;
+                wrapper.innerHTML += aTag.outerHTML;
                 break;
             case 'ytLink':
                 const iframe = document.createElement("iframe");
-                iframe.style.alignSelf = "center";
-                iframe.style.width = "75%";
-                iframe.style.height = "300px";
+                iframe.className = "media";
                 iframe.src = "//www.youtube.com/embed/" + getId(elem.value);
                 iframe.setAttribute("frameborder", "0");
                 iframe.setAttribute("allowfullscreen", "true");
-                html += iframe.outerHTML;
+                wrapper.innerHTML += iframe.outerHTML;
                 break;
             case 'picture':
                 const pic = new Image();
                 pic.className = "fakeimg";
+                pic.className = "media";
                 pic.style.height = "300px";
-                pic.style.width = "533px";
+                pic.style.width = "75%";
                 pic.src = "pictures?id=" + elem.value;
-                html += pic.outerHTML;
+                wrapper.innerHTML += pic.outerHTML;
                 break;
             case 'video':
                 const video = document.createElement("video");
                 video.innerHTML = "Your browser does not support the video tag.";
                 video.controls = true;
+                video.className = "media";
                 video.setAttribute("id", "my-video");
                 video.setAttribute("class", "video-js");
+                video.style.width = "100%";
                 video.setAttribute("preload", "auto");
                 video.setAttribute("width", "640px");
                 video.setAttribute("height", "284");
@@ -288,11 +276,12 @@ function addPost(elem) {
                 aTag.innerText = "supports HTML5 video";
                 pTag.appendChild(aTag);
                 video.appendChild(pTag);
-                html += video.outerHTML;
+                wrapper.innerHTML += video.outerHTML;
                 break;
             default:
                 break;
         }
+        html += wrapper.outerHTML;
         date = document.createElement("h5");
         date.innerText = "Date: " + elem.date;
         html += date.outerHTML;
@@ -345,8 +334,7 @@ function addPost(elem) {
         }
     } else {
 
-        if (!(elem.location === undefined || elem.location === null || elem.location.length <= 0))
-        {
+        if (!(elem.location === undefined || elem.location === null || elem.location.length <= 0)) {
             const mapDiv = document.createElement("div");
             mapDiv.id = "map" + elem.id;
             mapDiv.style = "width: 60%; height: 300px; margin: auto;";
@@ -372,9 +360,6 @@ function addPost(elem) {
 
 function createComment(comment) {
     let commentHtml = "";
-    const name = document.createElement("a");
-    name.innerHTML = comment.nameSurname;
-    commentHtml += name.outerHTML;
 
     const pic = new Image(50, 50);
     pic.className = "fakeimg";
@@ -391,10 +376,18 @@ function createComment(comment) {
     }
     commentHtml += pic.outerHTML;
 
+    const name = document.createElement("a");
+    name.innerHTML = comment.nameSurname;
+    commentHtml += name.outerHTML;
+
     if (comment.Picture_id !== undefined && comment.Picture_id !== "" && comment.Picture_id !== null) {
-        const commentPicture = new Image(160, 90);
+        let picWrapper = document.createElement("div");
+        picWrapper.className = "mediaDiv";
+        const commentPicture = new Image();
+        commentPicture.className = "media";
         commentPicture.src = "pictures?id=" + comment.Picture_id;
-        commentHtml += commentPicture.outerHTML;
+        picWrapper.innerHTML = commentPicture.outerHTML;
+        commentHtml += picWrapper.outerHTML;
     }
 
     const commentText = document.createElement("h5");
@@ -410,15 +403,22 @@ function createComment(comment) {
 
 function createCommentInput(id) {
     const commentInput = document.createElement("form");
+    commentInput.className = "addCommentForm";
     let commentFormHtml = "";
 
     const text = document.createElement("p");
+    text.className = "addCommentP"
     text.innerHTML = "Type comment: ";
     commentFormHtml += text.outerHTML;
+
+    const commentTextWrapper = document.createElement("div");
+    commentTextWrapper.className = "addCommentTextWrapper"
     const commentText = document.createElement("input");
+    commentText.className = "addCommentText"
     commentText.id = "inputComment" + id;
     commentText.type = "text";
-    commentFormHtml += commentText.outerHTML;
+    commentTextWrapper.innerHTML += commentText.outerHTML;
+    commentFormHtml += commentTextWrapper.outerHTML;
 
     const inputPic = document.createElement("input");
     inputPic.id = "file" + id;
@@ -427,7 +427,8 @@ function createCommentInput(id) {
     inputPic.formEnctype = "multipart/form-data";
     commentFormHtml += inputPic.outerHTML;
 
-    const commPic = new Image(50, 50);
+    const commPic = new Image(15, 15);
+    commPic.className = "addCommentImg";
     commPic.id = "img";
     commPic.src = "https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/6C1aT2Hm3x-.png";
     commPic.setAttribute("onclick", "document.getElementById('" + inputPic.id + "').click()");
@@ -435,16 +436,32 @@ function createCommentInput(id) {
 
     commentInput.innerHTML = commentFormHtml;
 
+    const buttonWrapper = document.createElement('div');
+    buttonWrapper.className = "addCommentButtonWrapper";
     const sendButton = document.createElement("button");
     sendButton.id = "button" + id;
+    sendButton.className = "addCommentButton"
     sendButton.type = "button";
     sendButton.innerHTML = "Send comment";
     sendButton.setAttribute("onclick", "addComment(" + id + ");");
 
-    commentInput.appendChild(sendButton);
+    buttonWrapper.innerHTML = sendButton.outerHTML;
+    commentInput.appendChild(buttonWrapper);
 
     return commentInput.outerHTML;
 }
+
+const arr_diff = (a1, a2) => a2.filter(elem => !arr_contains(a1, elem));
+
+function arr_contains(array, elem) {
+    for (let i = 0; i < array.length; i++) {
+        if (JSON.stringify(array[i]) === JSON.stringify(elem))
+            return true;
+    }
+    return false;
+}
+
+let posts = [];
 
 function addPosts() {
     const xhttp = new XMLHttpRequest();
@@ -452,9 +469,21 @@ function addPosts() {
         if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
             const result = JSON.parse(this.responseText);
             let html = "";
-            const outterDiv = document.createElement("div");
-            outterDiv.id = "postsDiv";
-            result.forEach(function (elem) {
+            let outterDiv = null;
+            outterDiv = document.getElementById("postsDiv");
+            if (outterDiv == null || outterDiv === undefined || outterDiv === "") {
+                outterDiv = document.createElement("div");
+                outterDiv.id = "postsDiv";
+            }
+            let difference = arr_diff(posts, result).reverse();
+            difference.forEach(post => {
+                let oldPost = document.getElementById("post" + post.id);
+                if (oldPost !== null && oldPost !== undefined && oldPost !== "")
+                    oldPost.parentNode.removeChild(oldPost);
+            })
+            console.log(difference)
+            posts = JSON.parse(JSON.stringify(result));
+            difference.forEach(function (elem) {
                 let date;
                 let img;
                 html = "";
@@ -478,7 +507,7 @@ function addPosts() {
                     link.href = elem.link;
                     html += link.outerHTML;
                 } else {
-                    div.id = elem.id;
+                    div.id = "post" + elem.id;
                     html += addPost(elem);
 
                     const comments = document.createElement("div");
@@ -502,15 +531,15 @@ function addPosts() {
                     html += comments.outerHTML;
                 }
                 div.innerHTML = html;
-                div.id = elem.id;
-                outterDiv.appendChild(div);
+                outterDiv.insertBefore(div, outterDiv.firstChild);
             });
             const createPost = document.getElementById("posts");
             createPost.appendChild(outterDiv);
 
             mapAttributes.forEach(e => {
                 initMap(parseFloat(e.latt), parseFloat(e.lngg), parseInt(e.id));
-            })
+            });
+            mapAttributes = [];
         }
     };
     const url = "posts";

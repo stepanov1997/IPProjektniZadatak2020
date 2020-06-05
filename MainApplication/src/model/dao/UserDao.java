@@ -308,6 +308,11 @@ public class UserDao {
         return false;
     }
 
+    public void setAllUsersToOffline(){
+        List<User> users = getAll();
+        users.stream().filter(User::isOnline).forEach(this::logout);
+    }
+
     public boolean existsByEmail(String email) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;

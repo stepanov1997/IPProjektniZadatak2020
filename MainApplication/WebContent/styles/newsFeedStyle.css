@@ -99,8 +99,21 @@ body {
     margin-top: 20px;
 }
 
+.mediaWrapper {
+    text-align: center;
+    width: 100%;
+}
+
+.media {
+    width:80% !important;
+    box-sizing: border-box !important;
+}
+
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
+    body {
+        padding: 0;
+    }
     .leftcolumn, .midcolumn, .rightcolumn {
         width: 100%;
         padding: 0;
@@ -116,6 +129,10 @@ body {
     }
     #createPost2 {
         width: 100%;
+    }
+
+    .media {
+        width: 90% !important;
     }
 
     .italicAndBoldFont {
@@ -189,10 +206,9 @@ body {
 
 .removeChild {
     animation: slide-down 0.4s ease;
-    -webkit-transition: opacity 400ms linear, height 400ms linear;
-    transition: opacity 400ms linear, height 400ms linear;
+    /*-webkit-transition: opacity 400ms linear, height 400ms linear;*/
+    /*transition: opacity 400ms linear, height 400ms linear;*/
 }
-
 @keyframes slide-up {
     0% {
         opacity: 0;
@@ -205,18 +221,56 @@ body {
 }
 
 @keyframes slide-down {
-    100% {
-        transform: translateY(20px);
-        height: 100%;
-    }
     0% {
-        transform: translateY(0);
-        height: 0;
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
     }
 }
 
-#text {
+#text, #text2 {
     resize: vertical;
+    box-sizing:border-box;
+    font-size: 150%;
+    margin: auto;
+    width: 80%;
+}
+
+.addCommentForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.addCommentP {
+    justify-self: center;
+    width: 75%;
+}
+
+.addCommentButtonWrapper {
+    margin-top: 15px;
+    width: 100%;
+    align-items: center;
+}
+.addCommentButton {
+    width: 33%;
+    display: inline-block;
+}
+.addCommentImg {
+    justify-self: center;
+}
+.addCommentTextWrapper {
+    width: 100%;
+    align-items: center;
+    margin-bottom: 7px;
+}
+.addCommentText {
+    text-align: center;
 }
 
 .weathers {
@@ -324,3 +378,4 @@ body {
     vertical-align: center;
     align-items: center;
 }
+

@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="styles/login.css"/>
     <script>
         function login() {
+            document.getElementsByClassName("submit-button")[0].disabled = true;
             const xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
@@ -28,6 +29,7 @@
                         }, 5000);
                     }
                 }
+                document.getElementsByClassName("submit-button")[0].disabled = false;
             };
             let url = "Controller?controller=user&action=login";
             url += "&username=" + $('[name$="username"]').val();
@@ -66,7 +68,6 @@
                 <button class="submit-button" type="submit" name="submit">Log in</button>
               <p><a href="register.jsp">Register</a></p>
             </div>
-
         </form>
         <h2 id="result"></h2>
     </div>

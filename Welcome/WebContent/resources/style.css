@@ -10,6 +10,14 @@ body {
     background: #ffcd93;
 }
 
+.centered {
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    z-index:5;
+    transform: translate(-2%, -55%);
+}
+
 /* Header/Blog Title */
 .header {
     width: 100%;
@@ -18,7 +26,6 @@ body {
     z-index: 100;
     text-align: center;
     background: #ddd;
-    margin-top: 20px;
     margin-right: 20px;
     top: 0;
     position: fixed;
@@ -38,6 +45,17 @@ body {
     text-align: right;
     padding-top: 10px;
     padding-right: 30px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}
+
+.row div {
+    flex: 1;
 }
 
 /* Create two unequal columns that floats next to each other */
@@ -119,14 +137,23 @@ img:hover {
     background: #ddd;
     margin-top: 20px;
     margin-right: 20px;
+    z-index: 100;
     bottom: 0;
     position: fixed;
 }
 
 @media screen and (max-width: 800px) {
+    .centered {
+        width: 100%;
+        position: relative;
+        top: 0;
+        /* bring your own prefixes */
+        transform: none;
+    }
     .row {
         margin-top: 40px;
         margin-bottom: 80px;
+        flex-direction: column;
     }
 
     .leftcolumn, .midcolumn, .rightcolumn {
@@ -148,12 +175,20 @@ img:hover {
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-device-width: 800px) {
+    .centered {
+        width: 100%;
+        position: relative;
+        top: 0;
+        /* bring your own prefixes */
+        transform: none;
+    }
     * {
         font-size: 110%;
     }
     .row {
         margin-top: 80px;
         margin-bottom: 80px;
+        flex-direction: column;
     }
 
     .leftcolumn, .midcolumn, .rightcolumn {

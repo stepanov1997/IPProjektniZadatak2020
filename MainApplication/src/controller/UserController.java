@@ -21,6 +21,8 @@ public class UserController extends HttpServlet implements Serializable {
     static HashMap<Integer, LocalDateTime> onlineUsers = new HashMap<>();
 
     static {
+        UserDao userDao = new UserDao();
+        userDao.setAllUsersToOffline();
 //        new Thread(() -> {
 //            while (true) {
 //                try {
@@ -178,9 +180,16 @@ public class UserController extends HttpServlet implements Serializable {
                     UserDao userDao = new UserDao();
                     User user = userDao.getByUsername(username);
 
-                    if (user == null || !SHA1.encryptPassword(password).equals(user.getPassword()) || !user.isEnabled()) {
+                    boolean isValid = user != null && SHA1.encryptPassword(password).equals(user.getPassword());
+                    if (user == null || !isValid || !user.isEnabled()) {
                         inputMap.put("redirect", false);
-                        inputMap.put("message", user == null ? "Username or password are not valid." : (user.isOnline() ? "Username or password are not valid." : "User does not have access right."));
+                        if (user == null) {
+                            inputMap.put("message", "Username or password are not valid.");
+                        } else if (!isValid) {
+                            inputMap.put("message", "Username or password are not valid.");
+                        } else if (!user.isEnabled()) {
+                            inputMap.put("message", "User does not have access right.");
+                        }
                         String json = gson.toJson(inputMap);
                         out.print(json);
                         return;
@@ -225,15 +234,14 @@ public class UserController extends HttpServlet implements Serializable {
                     userDao.logout(user);
 
                     request.getSession().invalidate();
-                    response.sendRedirect("login.jsp");
+                    response.sendRedirect("login.html");
                 }
                 break;
                 case "online": {
                     UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
                     JsonObject jsonObject = new JsonObject();
                     response.setContentType("application/json");
-                    if(userBean==null || userBean.getUser()==null)
-                    {
+                    if (userBean == null || userBean.getUser() == null) {
                         request.getSession().invalidate();
                         jsonObject.addProperty("expires", true);
                         response.getOutputStream().print(jsonObject.toString());
@@ -256,11 +264,11 @@ public class UserController extends HttpServlet implements Serializable {
                     Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
                     List<City> citiesCollection = new ArrayList<>();
 
-                    String page = "http://battuta.medunes.net/api/region/" + user.getCountryCode() + "/all/?key=4b4933cdb372edc0f978e5d85a264fb6";
+                    String page = "http://battuta.medunes.net/api/region/" + user.getCountryCode() + "/all/?key=00000000000000000000000000000000";
                     String json = getFromUrl(page);
                     JsonArray regions = JsonParser.parseString(json).getAsJsonArray();
                     for (JsonElement region : regions) {
-                        String page2 = "https://geo-battuta.net/api/city/" + user.getCountryCode() + "/search/?region=" + region.getAsJsonObject().get("region").getAsString().replace(" ", "+") + "&key=4b4933cdb372edc0f978e5d85a264fb6";
+                        String page2 = "https://geo-battuta.net/api/city/" + user.getCountryCode() + "/search/?region=" + region.getAsJsonObject().get("region").getAsString().replace(" ", "+") + "&key=00000000000000000000000000000000";
                         String json2 = getFromUrl(page2);
                         JsonArray cities = JsonParser.parseString(json2).getAsJsonArray();
                         for (JsonElement cityElem : cities) {

@@ -1,17 +1,19 @@
 <%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" %>
 
-<%  if(session.getAttribute("userBean") == null)
-{   %>
+<% if (session.getAttribute("userBean") == null) { %>
 <h2>ACCESS DENIED</h2>
 <h3>Only logged in or registered user has access.</h3>
-<%      return;
-}   %>
+<% return;
+} %>
 
 <jsp:useBean id="userBean" scope="session" type="model.beans.UserBean"/>
 <html>
 <head>
     <title>EDIT PROFILE</title>
-    <link rel="ICON" href="https://scontent.fbeg4-1.fna.fbcdn.net/v/t1.0-9/54255431_645793952539379_1611586770158223360_o.jpg?_nc_cat=110&_nc_sid=09cbfe&_nc_ohc=zDb83HnW2FoAX-AuhRZ&_nc_ht=scontent.fbeg4-1.fna&oh=da1701f4c2fa67f6a3bad35766e337e7&oe=5E9CEBBE" type="image/jpg" />
+    <link rel="ICON"
+          href="https://scontent.fbeg4-1.fna.fbcdn.net/v/t1.0-9/54255431_645793952539379_1611586770158223360_o.jpg?_nc_cat=110&_nc_sid=09cbfe&_nc_ohc=zDb83HnW2FoAX-AuhRZ&_nc_ht=scontent.fbeg4-1.fna&oh=da1701f4c2fa67f6a3bad35766e337e7&oe=5E9CEBBE"
+          type="image/jpg"/>
+    <link rel="stylesheet" type="text/css" href="styles/login.css">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script>
         function fillContries() {
@@ -37,10 +39,9 @@
         fillContries();
 
         function fillRegions() {
-            showImageOfCountry();
             const selectCountries = document.getElementById("countries");
             const selectedOpt = selectCountries.options[selectCountries.selectedIndex];
-            const url = 'http://battuta.medunes.net/api/region/' + selectedOpt.value + '/all/?key=4b4933cdb372edc0f978e5d85a264fb6&callback=cb';
+            const url = 'http://battuta.medunes.net/api/region/' + selectedOpt.value + '/all/?key=00000000000000000000000000000000&callback=cb';
 
             function JsonpHttpRequest(url, callback) {
                 const e = document.createElement('script');
@@ -49,6 +50,9 @@
                 window[callback] = (regions) => {
                     console.log("callback");
                     let selectRegions = document.getElementById("regions");
+                    let selectCities = document.getElementById("cities");
+                    let regionsParagraph = document.getElementById("regionsParagraph");
+                    let citiesParagraph = document.getElementById("citiesParagraph");
                     selectRegions.innerHTML = "";
                     regions.forEach(elem => {
                         const option = document.createElement("option");
@@ -56,18 +60,19 @@
                         option.innerHTML = elem.region;
                         selectRegions.appendChild(option);
                     });
-                    let selectCities = document.getElementById("cities");
                     if (selectRegions.innerHTML === "") {
+                        citiesParagraph.hidden = true;
                         selectRegions.hidden = true;
-                        selectCities.hidden = true;
+                        regionsParagraph.hidden = true;
                     } else {
+                        citiesParagraph.hidden = false;
                         selectRegions.hidden = false;
                         selectCities.hidden = false;
+                        regionsParagraph.hidden = false;
                         fillCities();
                     }
                 }
             }
-
             JsonpHttpRequest(url, "cb");
         }
 
@@ -76,7 +81,7 @@
             const selectRegions = document.getElementById("regions");
             const selectedCountry = selectCountries.options[selectCountries.selectedIndex];
             const selectedRegion = selectRegions.options[selectRegions.selectedIndex];
-            const url = "https://geo-battuta.net/api/city/" + selectedCountry.value.toString().replace(" ", "+") + "/search/?region=" + selectedRegion.value.toString().replace(" ", "+") + "&key=4b4933cdb372edc0f978e5d85a264fb6&callback=cb";
+            const url = "https://geo-battuta.net/api/city/" + selectedCountry.value.toString().replace(" ", "+") + "/search/?region=" + selectedRegion.value.toString().replace(" ", "+") + "&key=00000000000000000000000000000000&callback=cb";
 
             function JsonpHttpRequest(url, callback) {
                 const e = document.createElement('script');
@@ -84,6 +89,7 @@
                 document.body.appendChild(e);
                 window[callback] = (regions) => {
                     let selectCities = document.getElementById("cities");
+                    let citiesParagraph = document.getElementById("citiesParagraph");
                     selectCities.innerHTML = "";
                     regions.forEach(elem => {
                         const option = document.createElement("option");
@@ -91,6 +97,7 @@
                         option.innerHTML = elem.city;
                         selectCities.appendChild(option);
                     });
+                    citiesParagraph.hidden = selectCities.innerHTML === "";
                     selectCities.hidden = selectCities.innerHTML === "";
                 }
             }
@@ -131,26 +138,26 @@
             return false;
         }
 
-        function showImageOfCountry() {
-            const selectCountries = document.getElementById("countries");
-            const selectedOpt = selectCountries.options[selectCountries.selectedIndex];
-            const xhttp = new XMLHttpRequest();
-            const url = 'https://restcountries.eu/rest/v2/region/europe';
-            xhttp.open('GET', url);
-            xhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    let result = JSON.parse(this.responseText);
-                    const link = result.find(elem => elem.alpha2Code === selectedOpt.value).flag;
-                    const img = document.createElement("img");
-                    img.setAttribute("src", link);
-                    img.setAttribute("height", "300px");
-                    img.setAttribute("width", "400px");
-                    const slikaPar = document.getElementById("slikaPar");
-                    slikaPar.appendChild(img);
-                }
-            };
-            xhttp.send();
-        }
+        // function showImageOfCountry() {
+        //     const selectCountries = document.getElementById("countries");
+        //     const selectedOpt = selectCountries.options[selectCountries.selectedIndex];
+        //     const xhttp = new XMLHttpRequest();
+        //     const url = 'https://restcountries.eu/rest/v2/region/europe';
+        //     xhttp.open('GET', url);
+        //     xhttp.onreadystatechange = function () {
+        //         if (this.readyState === 4 && this.status === 200) {
+        //             let result = JSON.parse(this.responseText);
+        //             const link = result.find(elem => elem.alpha2Code === selectedOpt.value).flag;
+        //             const img = document.createElement("img");
+        //             img.setAttribute("src", link);
+        //             img.setAttribute("height", "300px");
+        //             img.setAttribute("width", "400px");
+        //             const slikaPar = document.getElementById("slikaPar");
+        //             slikaPar.appendChild(img);
+        //         }
+        //     };
+        //     xhttp.send();
+        // }
 
         function editProfile() {
             const fileInput = document.getElementById('file');
@@ -161,7 +168,7 @@
                     $("#result").html(result.message);
                     if (result.redirect) {
                         setTimeout(function () {
-                            window.location = "login.jsp";
+                            window.location = "login.html";
                         }, 2000);
                     } else {
                         setTimeout(function () {
@@ -176,13 +183,12 @@
             url += "&country=" + country.innerHTML;
             url += "&countryCode=" + country.value;
             const selectRegions = document.getElementById("regions");
-            if(selectRegions.hidden===false)
-            {
+            if (selectRegions.hidden === false) {
                 const regionValue = selectRegions.options[selectRegions.selectedIndex].value;
                 url += "&region=" + regionValue;
             }
             const selectCities = document.getElementById("cities");
-            if(selectCities.hidden===false) {
+            if (selectCities.hidden === false) {
                 const cityValue = selectCities.options[selectCities.selectedIndex].value;
                 url += "&city=" + cityValue;
             }
@@ -193,7 +199,7 @@
 
             }
             let notificationSelect = document.getElementById("notification");
-            url += "&notification="+notificationSelect.options[notificationSelect.selectedIndex].value;
+            url += "&notification=" + notificationSelect.options[notificationSelect.selectedIndex].value;
             xhr.open('POST', url, true);
             xhr.send();
             return false;
@@ -202,32 +208,60 @@
 </head>
 <body>
 
-<p>Name: ${userBean.user.name}</p>
-<p>Surname: ${userBean.user.surname}</p>
-<p>Username: ${userBean.user.username}</p>
-<p>Email: ${userBean.user.email}</p>
-<p id="pic_id"></p>
-
-<form id="fileForm" method="post" onsubmit="return editProfile()">
-    <label for="countries">Choose a country:</label>
-    <select id="countries" name="countries" onchange="fillRegions()">
-    </select>
-    <label for="regions"></label><select id="regions" name="regions" hidden="hidden" onchange="fillCities()">
-    </select>
-    <label for="cities"></label><select id="cities" name="cities" hidden="hidden">
-    </select><br>
-    <input id="file" type="file" enctype="multipart/form-data" onchange="saveProfilePicture()" name="file" accept="image/*" size="1"/>
-    Emergency notification:<label for="notification"></label><select id="notification" name="notification">
-        <option name="notification" value="0">in Application</option>
-        <option name="notification" value="1">on E-mail</option>
-    </select>
-    <br/><br/><br/>
-    <input type="submit" name="submit" value="Update profile"/>
-</form>
-<p id="slikaPar"></p>
-<hr>
-<h2 id="upload"></h2>
-<hr>
-<h2 id="result"></h2>
+<div class="wrapper">
+    <div class="main">
+        <h1 class="title">EDIT YOUR PROFILE</h1>
+        <h4 class="description">Fill data</h4>
+        <hr class="lines"/>
+        <p>Name: ${userBean.user.name}</p>
+        <p>Surname: ${userBean.user.surname}</p>
+        <p>Username: ${userBean.user.username}</p>
+        <p>Email: ${userBean.user.email}</p>
+        <hr class="lines"/>
+        <form id="fileForm" method="post" onsubmit="return editProfile()">
+            <p id="countriesParagraph">
+                <a><label for="countries">Choose a country:</label></a>
+                <label>
+                    <select id="countries" name="countries" onchange="fillRegions()"></select>
+                </label>
+            </p>
+            <p id="regionsParagraph">
+                <a><label for="regions">Choose a region:</label></a>
+                <label>
+                    <select id="regions" name="regions" hidden="hidden" onchange="fillCities()"></select>
+                </label>
+            </p>
+            <p id="citiesParagraph">
+                <a><label for="cities">Choose a city:</label></a>
+                <label>
+                    <select id="cities" name="cities" hidden="hidden"></select>
+                </label>
+            </p>
+            <p>
+                <a><label for="file">Choose a profile picture: </label></a>
+                <label>
+                    <input id="file" type="file" enctype="multipart/form-data" onchange="saveProfilePicture()" name="file"
+                           accept="image/*" size="1"/>
+                </label>
+            </p>
+            <p>
+                <a><label for="notification">Emergency notification:</label></a>
+                <label>
+                    <select id="notification" name="notification">
+                        <option name="notification" value="0">in Application</option>
+                        <option name="notification" value="1">on E-mail</option>
+                    </select>
+                </label>
+            </p>
+            <hr class="lines"/>
+            <div class="commands">
+                <p>
+                    <input type="submit" name="submit" value="Update profile"/>
+                </p>
+            </div>
+            <h2 id="result"></h2>
+        </form>
+    </div>
+</div>
 </body>
 </html>
