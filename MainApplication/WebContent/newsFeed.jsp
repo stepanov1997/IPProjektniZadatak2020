@@ -48,6 +48,7 @@
         function refresh() {
             const top = document.documentElement.scrollTop;
             addPosts();
+            addNotifications();
             setTimeout(function () {
                 document.documentElement.scrollTop = top;
             }, 1000);
@@ -98,17 +99,14 @@
             </div>
         </div>
         <div class="card">
-            <h3>Popular Post</h3>
-            <div class="fakeimg">Image</div>
-            <br>
-            <div class="fakeimg">Image</div>
-            <br>
-            <div class="fakeimg">Image</div>
+            <h3>Notifications:</h3>
+            <div id="notificationDiv">
+            </div>
         </div>
-        <div class="card">
-            <h3>Follow Me</h3>
-            <p>Some text..</p>
-        </div>
+<%--        <div class="card">--%>
+<%--            <h3>Follow Me</h3>--%>
+<%--            <p>Some text..</p>--%>
+<%--        </div>--%>
     </div>
 
     <div id="posts" class="midcolumn">

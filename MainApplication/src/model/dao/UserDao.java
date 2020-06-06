@@ -210,6 +210,8 @@ public class UserDao {
                 user.setPicture_Id(picture_id);
                 user.setOnline(resultSet.getBoolean("isOnline"));
                 user.setEnabled(resultSet.getBoolean("isEnabled"));
+                user.setNotificationType(resultSet.getInt("notificationType"));
+
                 return user;
             }
         } catch (SQLException ex) {

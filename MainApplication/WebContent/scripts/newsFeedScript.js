@@ -15,6 +15,28 @@ function imAlive() {
 
 setInterval(imAlive, 5000);
 
+const addNotifications = () => {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = () => {
+        if (this.readyState == 4 && this.status == 200) {
+            let notifications = JSON.parse(this.responseText);
+            let htmlElement = document.getElementById('notificationDiv');
+            notifications.forEach((notification) => {
+                const text = notification.text;
+                const id = notification.id;
+                let notificationDiv = document.createElement('div');
+                notificationDiv.id = id;
+                let pTag = document.createElement("p");
+                ptag.innerHTML = `${text} <a href='Post${id}'>Fokusiraj post</a>`;
+                notificationDiv.innerHTML = pTag.outerHTML;
+                htmlElement.insertBefore(notificationDiv, htmlElement.firstChild);
+            })
+        }
+    }
+    xhttp.open('POST', 'Controller?controller=user&submit=submit&action=notification', true);
+    xhttp.send();
+}
+
 $(window).load(function () {
     imAlive();
 
@@ -239,6 +261,7 @@ function addPost(elem) {
                 iframe.className = "media";
                 iframe.src = "//www.youtube.com/embed/" + getId(elem.value);
                 iframe.setAttribute("frameborder", "0");
+                iframe.style.height = "400px";
                 iframe.setAttribute("allowfullscreen", "true");
                 wrapper.innerHTML += iframe.outerHTML;
                 break;
@@ -260,8 +283,6 @@ function addPost(elem) {
                 video.setAttribute("class", "video-js");
                 video.style.width = "100%";
                 video.setAttribute("preload", "auto");
-                video.setAttribute("width", "640px");
-                video.setAttribute("height", "284");
                 video.setAttribute("data-setup", "{}");
                 const src = document.createElement("source");
                 src.setAttribute("src", "videos?id=" + elem.value);

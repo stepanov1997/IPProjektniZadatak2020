@@ -1,6 +1,5 @@
 package model.dao;
 
-import model.dto.Comment;
 import model.dto.Notification;
 import model.dto.User;
 import org.jetbrains.annotations.NotNull;
@@ -136,15 +135,14 @@ public class NotificationDao {
         return false;
     }
 
-    public boolean remove(@NotNull Comment comment) {
+    public boolean remove(@NotNull Notification notification) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
         try {
             connection = ConnectionPool.getConnectionPool().checkOut();
             preparedStatement = connection.prepareStatement(deleteQuery);
-            preparedStatement.setInt(1, comment.getPost_id());
-            preparedStatement.setInt(2, comment.getUser_id());
+            preparedStatement.setInt(1, notification.getUser_id());
+            preparedStatement.setInt(2, notification.getPost_id());
 
             int rowsDeleted = preparedStatement.executeUpdate();
             return rowsDeleted > 0;
@@ -152,7 +150,6 @@ public class NotificationDao {
             ex.printStackTrace();
         } finally {
             try {
-                resultSet.close();
                 preparedStatement.close();
             } catch (SQLException e) {
                 e.printStackTrace();

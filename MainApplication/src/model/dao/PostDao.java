@@ -22,6 +22,7 @@ public class PostDao {
     private static final String deleteQuery = "DELETE FROM post WHERE id = ?";
     private static final String updateQuery = "UPDATE post SET User_id=?, text=?, link=?, Picture_id=?, Video_id=?, youtubeLink=?, dateTime=?, " +
             "withAttachment=?, location=?, isEmergency=?, DangerCategory_id=? WHERE id=?";
+    private static final String selectByIdQuery = "SELECT * FROM post WHERE id=?";
 
     public PostDao() {
     }
@@ -229,6 +230,60 @@ public class PostDao {
         try {
             connection = ConnectionPool.getConnectionPool().checkOut();
             preparedStatement = connection.prepareStatement(selectByUserQuery);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeQuery();
+
+            resultSet = preparedStatement.getResultSet();
+
+            if (resultSet.next()) {
+                post = new Post();
+                post.setId(resultSet.getInt("id"));
+                post.setUser_id(resultSet.getInt("User_id"));
+                post.setText(resultSet.getString("text"));
+                post.setLink(resultSet.getString("link"));
+                post.setPicture_id(resultSet.getInt("Picture_id"));
+                post.setVideo_id(resultSet.getInt("Video_id"));
+                post.setYoutubeLink(resultSet.getString("youtubeLink"));
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime dateTime = LocalDateTime.parse(resultSet.getString("dateTime"), formatter);
+                post.setDateTime(dateTime);
+
+                post.setWithAttachment(resultSet.getBoolean("withAttachment"));
+                var category_id = resultSet.getInt("DangerCategory_id");
+                if (resultSet.wasNull())
+                    post.setDangerCategory_id(null);
+                post.setEmergency(resultSet.getBoolean("isEmergency"));
+                var location = resultSet.getString("location");
+                if (resultSet.wasNull())
+                    post.setLocation(location);
+
+                return post;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                resultSet.close();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                ConnectionPool.getConnectionPool().checkIn(connection);
+            }
+        }
+        return post;
+    }
+
+    @Nullable
+    public Post getById(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Post post = null;
+        try {
+            connection = ConnectionPool.getConnectionPool().checkOut();
+            preparedStatement = connection.prepareStatement(selectByIdQuery);
             preparedStatement.setInt(1, id);
             preparedStatement.executeQuery();
 

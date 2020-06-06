@@ -2,7 +2,11 @@ package controller;
 
 import com.google.gson.*;
 import model.beans.UserBean;
+import model.dao.NotificationDao;
+import model.dao.PostDao;
 import model.dao.UserDao;
+import model.dto.Notification;
+import model.dto.Post;
 import model.dto.User;
 import util.SHA1;
 
@@ -12,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -318,6 +323,38 @@ public class UserController extends HttpServlet implements Serializable {
                         result.add(jsonObject);
                     }
                     response.getOutputStream().print(result.toString());
+                }
+                break;
+                case "notification": {
+                    UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
+                    response.setContentType("application/json");
+                    if (userBean != null && userBean.getUser() != null) {
+                        Integer type = userBean.getUser().getNotificationType();
+                        if (type != null && type == 0) {
+
+                            UserDao userDao = new UserDao();
+                            PostDao postDao = new PostDao();
+                            NotificationDao notificationDao = new NotificationDao();
+                            User user = userBean.getUser();
+                            JsonArray jsonArray = new JsonArray();
+
+                            List<Notification> notifications = notificationDao.selectAllForUser(user);
+                            for (Notification notification : notifications) {
+                                Post notificationPost = postDao.getById(notification.getPost_id());
+                                User postUser = userDao.get(notificationPost.getUser_id());
+
+                                JsonObject jsonObject = new JsonObject();
+                                jsonObject.addProperty("id", notification.getId());
+                                jsonObject.addProperty("text",
+                                        "User " + postUser.getName() +
+                                                postUser.getSurname() + " shared " + notificationPost.getContentTypeValue().left.replace("ytLink", "Youtube link") + " in " +
+                                                DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm:ss").format(notification.getDateTime()) + ", with text: " + notificationPost.getText());
+                                jsonArray.add(jsonObject);
+                            }
+                            notifications.forEach(notificationDao::remove);
+                            response.getWriter().println(jsonArray.toString());
+                        }
+                    }
                 }
                 break;
                 default:
