@@ -2,6 +2,7 @@ package controller;
 
 import com.google.gson.*;
 import model.beans.UserBean;
+import model.dao.DangerCategoryDao;
 import model.dao.NotificationDao;
 import model.dao.PostDao;
 import model.dao.UserDao;
@@ -331,9 +332,9 @@ public class UserController extends HttpServlet implements Serializable {
                     if (userBean != null && userBean.getUser() != null) {
                         Integer type = userBean.getUser().getNotificationType();
                         if (type != null && type == 0) {
-
                             UserDao userDao = new UserDao();
                             PostDao postDao = new PostDao();
+                            DangerCategoryDao dangerCategoryDao = new DangerCategoryDao();
                             NotificationDao notificationDao = new NotificationDao();
                             User user = userBean.getUser();
                             JsonArray jsonArray = new JsonArray();
@@ -342,19 +343,34 @@ public class UserController extends HttpServlet implements Serializable {
                             for (Notification notification : notifications) {
                                 Post notificationPost = postDao.getById(notification.getPost_id());
                                 User postUser = userDao.get(notificationPost.getUser_id());
-
                                 JsonObject jsonObject = new JsonObject();
                                 jsonObject.addProperty("id", notification.getId());
                                 jsonObject.addProperty("text",
-                                        "User " + postUser.getName() +
-                                                postUser.getSurname() + " shared " + notificationPost.getContentTypeValue().left.replace("ytLink", "Youtube link") + " in " +
-                                                DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm:ss").format(notification.getDateTime()) + ", with text: " + notificationPost.getText());
+                                        "User " + postUser.getName() + " " +
+                                                postUser.getSurname() + " shared a post about potential danger in "+
+                                                DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm:ss").format(notification.getDateTime()) + ", with potential danger: "+(notificationPost!=null?dangerCategoryDao.get(notificationPost.getDangerCategory_id()).getName():"none") +" and text: "+ notificationPost.getText());
+                                jsonObject.addProperty("post_id", notificationPost.getId());
                                 jsonArray.add(jsonObject);
                             }
-                            notifications.forEach(notificationDao::remove);
                             response.getWriter().println(jsonArray.toString());
                         }
                     }
+                }
+                break;
+                case "deleteNotification": {
+                    UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
+                    Integer post_id = Integer.parseInt(request.getParameter("post_id"));
+                    response.setContentType("application/json");
+                    if (userBean != null && userBean.getUser() != null) {
+                        Integer type = userBean.getUser().getNotificationType();
+                        if (type != null && type == 0) {
+                            NotificationDao notificationDao = new NotificationDao();
+                            notificationDao.removeSecond(userBean.getUser().getId(), post_id);
+                            response.getWriter().print("{\"success\":true}");
+                            return;
+                        }
+                    }
+                    response.getWriter().print("{\"success\":false}");
                 }
                 break;
                 default:

@@ -154,7 +154,7 @@ public class NewsFeedController extends HttpServlet {
                 jsonObject.addProperty("countryCode", user.getCountryCode());
                 jsonObject.addProperty("location", location);
                 jsonObject.addProperty("category", new DangerCategoryDao().get(category).getName());
-                jsonObject.addProperty("isEmergency", isEmergency);
+                jsonObject.addProperty("isEmergency", post.isEmergency());
             } else {
                 jsonObject.addProperty("success", false);
             }
@@ -166,6 +166,8 @@ public class NewsFeedController extends HttpServlet {
                 UserDao userDao = new UserDao();
                 List<User> allUsers = userDao.getAll();
                 allUsers.forEach(oneUser -> {
+                    if(oneUser.getUsername().equals(user.getUsername()))
+                        return;
                     if (oneUser.getNotificationType() == 0) {
                         NotificationDao notificationDao = new NotificationDao();
                         notificationDao.add(new Notification(null, oneUser.getId(), post.getId(), LocalDateTime.now()));
@@ -203,12 +205,19 @@ public class NewsFeedController extends HttpServlet {
             );
             message.setSubject("Administrator's application");
             DangerCategoryDao dangerCategoryDao = new DangerCategoryDao();
+            UserDao userDao = new UserDao();
             String[] location = {post.getLocation().split(" ")[0], post.getLocation().split(" ")[1]};
+            User postUser = userDao.get(post.getUser_id());
+            String type = post.getContentTypeValue()!=null?post.getContentTypeValue().left.replace("ytLink", "Youtube link"):"post";
             message.setText("Dear " + user.getName() + " " + user.getSurname() + ","
                     + "\n\nYou have new notification:"
+                    + " User " + postUser.getName() + " " +
+                            postUser.getSurname() + " shared a post about potential danger."
                     + (post.getDangerCategory_id() != null ?
                     ("\n\n Danger category: " + dangerCategoryDao.get(post.getDangerCategory_id()).getName()) : "")
-                    + "\n Text:" + post.getText()
+                    + "\n Datetime: " + DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm:ss").format(LocalDateTime.now())
+                    + "\n Text: " + post.getText()
+                    + "\n Location: " + "( "+post.getLocation().split(" ")[0]+" , "+post.getLocation().split(" ")[1]+" )"
                     + "\n\n Administrator");
 
             Transport.send(message);

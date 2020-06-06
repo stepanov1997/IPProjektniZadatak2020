@@ -253,6 +253,7 @@ public class PostDao {
                 var category_id = resultSet.getInt("DangerCategory_id");
                 if (resultSet.wasNull())
                     post.setDangerCategory_id(null);
+                else post.setDangerCategory_id(category_id);
                 post.setEmergency(resultSet.getBoolean("isEmergency"));
                 var location = resultSet.getString("location");
                 if (resultSet.wasNull())
@@ -307,6 +308,7 @@ public class PostDao {
                 var category_id = resultSet.getInt("DangerCategory_id");
                 if (resultSet.wasNull())
                     post.setDangerCategory_id(null);
+                else post.setDangerCategory_id(category_id);
                 post.setEmergency(resultSet.getBoolean("isEmergency"));
                 var location = resultSet.getString("location");
                 if (resultSet.wasNull())

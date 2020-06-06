@@ -15,22 +15,58 @@ function imAlive() {
 
 setInterval(imAlive, 5000);
 
-const addNotifications = () => {
+function refresh() {
+    const top = document.documentElement.scrollTop;
+    addPosts();
+    addNotifications();
+    setTimeout(function () {
+        document.documentElement.scrollTop = top;
+    }, 1000);
+}
+
+function deleteNotification(post_id) {
     const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = () => {
-        if (this.readyState == 4 && this.status == 200) {
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            if (JSON.parse(this.responseText).success) {
+                notificationsArray = notificationsArray.filter(notification => notification.post_id !== post_id);
+                if (notificationsArray.length === 0) {
+                    document.getElementById('notificationDiv').innerText = "You don't have notifications.";
+                }
+                let notification = document.getElementById(`notification${post_id}`);
+                notification.parentNode.removeChild(notification);
+            }
+        }
+    }
+    xhttp.open('POST', `Controller?controller=user&action=deleteNotification&submit=submit&post_id=${post_id}`, true);
+    xhttp.send();
+}
+
+let notificationsArray = [];
+
+function addNotifications() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
             let notifications = JSON.parse(this.responseText);
             let htmlElement = document.getElementById('notificationDiv');
-            notifications.forEach((notification) => {
+            if (notificationsArray.length === 0) htmlElement.innerHTML = "";
+            let difference = arr_diff(notificationsArray, notifications);
+            difference.forEach((notification) => {
+                notificationsArray.push(notification);
                 const text = notification.text;
                 const id = notification.id;
+                const post_id = notification.post_id;
                 let notificationDiv = document.createElement('div');
-                notificationDiv.id = id;
+                notificationDiv.id = `notification${post_id}`;
                 let pTag = document.createElement("p");
-                ptag.innerHTML = `${text} <a href='Post${id}'>Fokusiraj post</a>`;
+                pTag.innerHTML = `${text} <br><a id="a${post_id}" href='#post${post_id}' onclick="deleteNotification(${post_id});return true;">Focus post</a><br>`;
                 notificationDiv.innerHTML = pTag.outerHTML;
                 htmlElement.insertBefore(notificationDiv, htmlElement.firstChild);
             })
+            if (notificationsArray.length === 0) {
+                htmlElement.innerText = "You don't have notifications.";
+            }
         }
     }
     xhttp.open('POST', 'Controller?controller=user&submit=submit&action=notification', true);
@@ -40,6 +76,7 @@ const addNotifications = () => {
 $(window).load(function () {
     imAlive();
 
+    /* Facebook */
     (function (d, s, id) {
         let js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
@@ -170,41 +207,24 @@ function createPost2() {
         if (this.readyState === 4 && this.status === 200 && this.responseText !== "") {
             const result = JSON.parse(this.responseText);
             if (result.success) {
-                var div = document.createElement("div");
-                div.className = "card";
-                var html = "";
-                html += addPost(result);
-                var div2 = document.createElement("div");
-                div2.className = "card";
-                div2.style.background = "gray";
-                var div3 = document.createElement("div");
-                div3.className = "card";
-                div3.id = "commentDiv" + result.id;
-                div3.innerHTML = createCommentInput(result.id);
-                div2.innerHTML = div3.outerHTML;
-                html += div2.outerHTML;
-                div.innerHTML = html;
-                const createPost = document.getElementById("createDiv");
-                div.setAttribute("class", "card");
-                createPost.parentNode.insertBefore(div, createPost.nextSibling);
-
-                let latt = result.location.split(' ')[0];
-                let lngg = result.location.split(' ')[1];
-                initMap(parseFloat(latt), parseFloat(lngg), parseInt(result.id));
+                refresh();
             } else {
                 alert("greska");
             }
         }
     };
-    var lat = document.getElementById("lat");
-    var lng = document.getElementById("lng");
-    var isEmergency = document.getElementById("isEmergency");
-    var selectCategory = document.getElementById("selectCategory");
-    var category = selectCategory.options[selectCategory.selectedIndex].value;
+    let lat = document.getElementById("lat");
+    let lng = document.getElementById("lng");
+    let isEmergency = document.getElementById("isEmergency");
+    let selectCategory = document.getElementById("selectCategory");
+    let category = selectCategory.options[selectCategory.selectedIndex].value;
     // var url = "Controller?controller=newsFeed&action=createPost";
     let url = "NewsFeedController?";
     url += "withAttachment=" + false;
-    url += "&location=" + lat.value + "+" + lng.value;
+    if(document.getElementById("enableMap").checked)
+        url += "&location=" + lat.value + "+" + lng.value;
+    else
+        url += "&location=+";
     url += "&isEmergency=" + isEmergency.checked;
     url += "&category=" + category;
     url += "&text2=" + text2.value;
@@ -356,23 +376,24 @@ function addPost(elem) {
     } else {
 
         if (!(elem.location === undefined || elem.location === null || elem.location.length <= 0)) {
-            const mapDiv = document.createElement("div");
-            mapDiv.id = "map" + elem.id;
-            mapDiv.style = "width: 60%; height: 300px; margin: auto;";
-            html += mapDiv.outerHTML;
-
             var latt = elem.location.split(' ')[0];
             var lngg = elem.location.split(' ')[1];
 
-            mapAttributes.push({latt: latt, lngg: lngg, id: elem.id});
+            if (latt !== "" && lngg !== "") {
+                const mapDiv = document.createElement("div");
+                mapDiv.id = "map" + elem.id;
+                mapDiv.style = "width: 60%; height: 300px; margin: auto;";
+                html += mapDiv.outerHTML;
+                mapAttributes.push({latt: latt, lngg: lngg, id: elem.id});
+            }
         }
 
         const categoryDiv = document.createElement('div');
-        categoryDiv.innerText = elem.category;
+        categoryDiv.innerHTML = "<br><br>Category of potential danger : " + elem.category;
         html += categoryDiv.outerHTML;
 
         const isEmerDiv = document.createElement('div');
-        categoryDiv.innerHTML = "<b>" + elem.isEmergency ? "This danger is emergency!" : "" + "</b>";
+        categoryDiv.innerHTML = "<b>" + (elem.isEmergency ? "This danger is emergency!" : "") + "</b>";
         html += categoryDiv.outerHTML;
     }
 
@@ -398,7 +419,7 @@ function createComment(comment) {
     commentHtml += pic.outerHTML;
 
     const name = document.createElement("a");
-    name.innerHTML = comment.nameSurname;
+    name.innerHTML = "<br><b>" + comment.nameSurname+"</b>";
     commentHtml += name.outerHTML;
 
     if (comment.Picture_id !== undefined && comment.Picture_id !== "" && comment.Picture_id !== null) {
@@ -427,17 +448,13 @@ function createCommentInput(id) {
     commentInput.className = "addCommentForm";
     let commentFormHtml = "";
 
-    const text = document.createElement("p");
-    text.className = "addCommentP"
-    text.innerHTML = "Type comment: ";
-    commentFormHtml += text.outerHTML;
-
     const commentTextWrapper = document.createElement("div");
     commentTextWrapper.className = "addCommentTextWrapper"
-    const commentText = document.createElement("input");
-    commentText.className = "addCommentText"
+    const commentText = document.createElement("textarea");
+    commentText.className = "addCommentText creds";
+    commentText.placeholder = "Enter comment";
+    commentText.style.textAlign = "left"
     commentText.id = "inputComment" + id;
-    commentText.type = "text";
     commentTextWrapper.innerHTML += commentText.outerHTML;
     commentFormHtml += commentTextWrapper.outerHTML;
 
@@ -448,12 +465,15 @@ function createCommentInput(id) {
     inputPic.formEnctype = "multipart/form-data";
     commentFormHtml += inputPic.outerHTML;
 
+    const div = document.createElement("div");
+    div.className = "insertAttachment"
     const commPic = new Image(15, 15);
     commPic.className = "addCommentImg";
     commPic.id = "img";
     commPic.src = "https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/6C1aT2Hm3x-.png";
     commPic.setAttribute("onclick", "document.getElementById('" + inputPic.id + "').click()");
-    commentFormHtml += commPic.outerHTML;
+    div.innerHTML = commPic.outerHTML;
+    commentFormHtml += div.outerHTML;
 
     commentInput.innerHTML = commentFormHtml;
 
@@ -461,7 +481,7 @@ function createCommentInput(id) {
     buttonWrapper.className = "addCommentButtonWrapper";
     const sendButton = document.createElement("button");
     sendButton.id = "button" + id;
-    sendButton.className = "addCommentButton"
+    sendButton.className = "addCommentButton submit-button"
     sendButton.type = "button";
     sendButton.innerHTML = "Send comment";
     sendButton.setAttribute("onclick", "addComment(" + id + ");");
@@ -502,7 +522,6 @@ function addPosts() {
                 if (oldPost !== null && oldPost !== undefined && oldPost !== "")
                     oldPost.parentNode.removeChild(oldPost);
             })
-            console.log(difference)
             posts = JSON.parse(JSON.stringify(result));
             difference.forEach(function (elem) {
                 let date;
@@ -533,7 +552,7 @@ function addPosts() {
 
                     const comments = document.createElement("div");
                     comments.className = "card";
-                    comments.style.background = "gray";
+                    comments.style.background = "#dddddd";
                     elem.comments.forEach(function (comment) {
                         let commentDiv = document.createElement("div");
                         commentDiv.className = "card";
@@ -591,6 +610,8 @@ function addComment(id) {
             cmnt.className = "card";
             cmnt.innerHTML = createComment(comment);
             div.parentNode.insertBefore(cmnt, div);
+            document.getElementById('inputComment'+id).innerText="";
+            document.getElementById('file'+id).innerHTML="";
         }
     };
     let url = "comment?Post_Id=" + id + "&text=" + text;

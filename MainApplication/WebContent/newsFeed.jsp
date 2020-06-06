@@ -39,26 +39,15 @@
     <%--    <script src="scripts/google-maps.js"></script>--%>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="ICON"
-          href="https://scontent.fbeg4-1.fna.fbcdn.net/v/t1.0-9/54255431_645793952539379_1611586770158223360_o.jpg?_nc_cat=110&_nc_sid=09cbfe&_nc_ohc=zDb83HnW2FoAX-AuhRZ&_nc_ht=scontent.fbeg4-1.fna&oh=da1701f4c2fa67f6a3bad35766e337e7&oe=5E9CEBBE"
+          href="https://scontent.fbeg4-1.fna.fbcdn.net/v/t1.0-9/54255431_645793952539379_1611586770158223360_o.jpg?_nc_cat=110&_nc_sid=09cbfe&_nc_ohc=O_6vEe-9U_YAX8BmMCj&_nc_ht=scontent.fbeg4-1.fna&oh=c836f0a8be8392574286606a9af38790&oe=5EFFCC3E"
           type="image/jpg"/>
 
     <script src="scripts/newsFeedScript.js"></script>
     <script>addProfilePicture();</script>
     <script>
-        function refresh() {
-            const top = document.documentElement.scrollTop;
-            addPosts();
-            addNotifications();
-            setTimeout(function () {
-                document.documentElement.scrollTop = top;
-            }, 1000);
-        }
-
         addPosts();
-
+        addNotifications();
         setInterval(refresh, 30000);
-
-
     </script>
     <script>addWeatherForcast();</script>
 
@@ -73,7 +62,7 @@
     <h2 class="leftHeader">NEWS FEED</h2>
     <div class="rightHeader">
         <form method="post" action="Controller?controller=user&action=logout">
-            <button type="submit" name="submit">Log out</button>
+            <button type="submit" class="submit-button" name="submit">Log out</button>
         </form>
     </div>
 </div>
@@ -98,7 +87,7 @@
                 <a class="fakeimg" id="profilePic"></a>
             </div>
         </div>
-        <div class="card">
+        <div class="card" style="margin-bottom: 20px">
             <h3>Notifications:</h3>
             <div id="notificationDiv">
             </div>
@@ -112,7 +101,7 @@
     <div id="posts" class="midcolumn">
         <div id="createDiv">
             <div class="tab">
-                <button id="tab1" class="tablinks" onclick="showTab('tab1', 'createPost1')">Post with an attachment
+                <button id="tab1" class="tablinks active" onclick="showTab('tab1', 'createPost1')">Post with an attachment
                 </button>
                 <button id="tab2" class="tablinks" onclick="showTab('tab2', 'createPost2')">Post about a potential
                     danger
@@ -122,7 +111,7 @@
                 <form onsubmit="return createPost1()">
                     <div class="leftPost">
                         <label>Type text: </label><br>
-                        <label for="text"></label><textarea id="text" rows=5 cols="50"></textarea>
+                        <label for="text"></label><textarea id="text" placeholder="Type text!" rows=5 cols="50"></textarea>
                     </div>
                     <div id="attachment" class="insertAttachment">
                         <div class="buttons">
@@ -144,7 +133,7 @@
                                  onclick="addLink(false)" alt=""><br>
                         </div>
                         <div class="button-wrapper">
-                            <button type="submit">SHARE POST</button>
+                            <button type="submit" class="submit-button">SHARE A POST</button>
                         </div>
                     </div>
                 </form>
@@ -166,15 +155,19 @@
                     <br><br>
                     <div class="leftPost">
                         <label>Type text: </label><br>
-                        <label for="text2"></label><textarea id="text2" rows=5 cols="50"></textarea>
+                        <label for="text2"></label><textarea id="text2" placeholder="Type text!" rows=5 cols="50"></textarea>
                     </div>
                     <div id="attachment2">
                         <br><br>
                         <label style="margin: auto">
                             <input id="isEmergency" type="checkbox">
-                        </label><a> Is post emergency?</a><br><br>
+                        </label><a> Is post emergency?</a><br>
+                        <label for="enableMap"  style="margin: auto">
+                            <input type="checkbox" id="enableMap" onchange="document.getElementById('map').hidden=!document.getElementById('map').hidden">
+                        </label><a> Send map?</a><br><br>
+
                         <!--The div element for the map -->
-                        <div id="map" style="width: 75%; height: 300px; margin: auto;"></div>
+                        <div id="map" style="width: 75%; height: 300px; margin: auto;" hidden="true"></div>
                         <script>
                             mapboxgl.accessToken = 'pk.eyJ1Ijoia2lraWtpa2kxOTkyIiwiYSI6ImNrOHoza2ZqejBhbGQzZGxjeGIxNWM0YnoifQ.3FoukhI7DUYFqV4W63mi6w';
                             var map = new mapboxgl.Map({
@@ -204,7 +197,9 @@
                                                         onkeydown="changePosition1()">
                         <label for="lng"></label><input style="display: none" id="lng" type="text"
                                                         onkeydown="changePosition1()"><br><br>
-                        <button style="margin: auto" type="submit">Create post</button>
+                        <div class="button-wrapper">
+                            <button type="submit" class="submit-button">SHARE A POST</button>
+                        </div>
                     </div>
                 </form>
             </div>

@@ -159,4 +159,29 @@ public class NotificationDao {
         }
         return false;
     }
+
+    public boolean removeSecond(@NotNull Integer User_id, Integer Post_id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = ConnectionPool.getConnectionPool().checkOut();
+            preparedStatement = connection.prepareStatement(deleteQuery);
+            preparedStatement.setInt(1, User_id);
+            preparedStatement.setInt(2, Post_id);
+
+            int rowsDeleted = preparedStatement.executeUpdate();
+            return rowsDeleted > 0;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                ConnectionPool.getConnectionPool().checkIn(connection);
+            }
+        }
+        return false;
+    }
 }
