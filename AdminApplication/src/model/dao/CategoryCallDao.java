@@ -1,31 +1,32 @@
 package model.dao;
 
 import model.dto.AssistanceCall;
-import model.dto.Category;
+import model.dto.CategoryCall;
 import util.ConnectionPool;
 
+import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDao {
+public class CategoryCallDao implements Serializable {
     private static final String getAllQuery = "SELECT * FROM categoryofcall";
     private static final String insertQuery = "INSERT INTO categoryofcall SET name=?";
 
-    public List<Category> getAll() {
+    public List<CategoryCall> getAll() {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
-        List<Category> list = new ArrayList<>();
+        List<CategoryCall> list = new ArrayList<>();
         try {
             connection = ConnectionPool.getConnectionPool().checkOut();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(getAllQuery);
             while (resultSet.next()) {
-                Category category = new Category();
-                category.setId(resultSet.getInt("id"));
-                category.setName(resultSet.getString("name"));
-                list.add(category);
+                CategoryCall CategoryCall = new CategoryCall();
+                CategoryCall.setId(resultSet.getInt("id"));
+                CategoryCall.setName(resultSet.getString("name"));
+                list.add(CategoryCall);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -36,19 +37,19 @@ public class CategoryDao {
         return list;
     }
 
-    public Integer add(Category category) {
+    public Integer add(CategoryCall CategoryCall) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             connection = ConnectionPool.getConnectionPool().checkOut();
             preparedStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, category.getName());
+            preparedStatement.setString(1, CategoryCall.getName());
             preparedStatement.executeUpdate();
             resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
                 Integer id = resultSet.getInt(1);
-                category.setId(id);
+                CategoryCall.setId(id);
                 return id;
             }
         } catch (SQLException e) {

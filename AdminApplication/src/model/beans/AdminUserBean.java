@@ -2,6 +2,7 @@ package model.beans;
 
 import model.dao.AdminUserDao;
 import model.dto.User;
+import util.SHA1;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -77,11 +78,11 @@ public class AdminUserBean implements Serializable {
         System.out.println("access");
         if (userDao.giveAccess(user)) {
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage("admin_home:giveAccess", new FacesMessage("You successfully gave access to an account "+user.getUsername()));
+            context.addMessage("usersForm:giveAccess", new FacesMessage("You successfully gave access to an account "+user.getUsername()));
             return "";
         }
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage("admin_home:giveAccess", new FacesMessage("You unsuccessfully gave access to an account " + user.getUsername()));
+        context.addMessage("usersForm:giveAccess", new FacesMessage("You unsuccessfully gave access to an account " + user.getUsername()));
         return "";
     }
 
@@ -89,24 +90,26 @@ public class AdminUserBean implements Serializable {
         System.out.println("blockUser");
         FacesContext context = FacesContext.getCurrentInstance();
         if (userDao.blockUser(user)) {
-            context.addMessage("admin_home:blockUsr", new FacesMessage("You successfully blocked an account."));
+            context.addMessage("usersForm:blockUsr", new FacesMessage("You successfully blocked an account."));
         } else {
-            context.addMessage("admin_home:blockUsr", new FacesMessage("You unsuccessfully blocked an account."));
+            context.addMessage("usersForm:blockUsr", new FacesMessage("You unsuccessfully blocked an account."));
         }
         return "";
     }
 
     public String resetPassword() {
-        System.out.println("reset");
+        AdminUserDao adminUserDao = new AdminUserDao();
         String password = userDao.resetPassword(user);
         if (password != null && !password.isBlank()) {
             sentMailToUser(user, password);
+            user.setPassword(SHA1.encryptPassword(password));
+            adminUserDao.update(user);
             FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage("admin_home:resetPwd", new FacesMessage("Password changed and sent via mail to user."));
+            context.addMessage("usersForm:resetPwd", new FacesMessage("Password changed and sent via mail to user."));
             return "";
         }
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage("admin_home:resetPwd", new FacesMessage("Password has not changed."));
+        context.addMessage("usersForm:resetPwd", new FacesMessage("Password has not changed."));
         return "";
     }
 

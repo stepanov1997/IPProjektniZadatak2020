@@ -2,82 +2,172 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-<h:head/>
+<h:head>
+    <link rel="stylesheet" type="text/css" href="resources/css/login.css"/>
+    <h:outputStylesheet name="css/admin.css"/>
+    <h:outputScript library="scripts" name="admin.js" target="head" />
+</h:head>
 <h:body xmlns:f="http://java.sun.com/jsf/core">
     <f:metadata>
         <f:event type="preRenderView" listener="#{adminUserBean.importUsers}"/>
         <f:event type="preRenderView" listener="#{adminUserBean.getNumberOfActiveUsers}"/>
         <f:event type="preRenderView" listener="#{adminUserBean.getNumberOfRegistredUsers}"/>
+        <f:event type="preRenderView" listener="#{callBean.importAssistanceCalls}"/>
     </f:metadata>
 
-    Number of active users:
-    <h:form>
-        <h:outputText id="activeUsers" value="#{adminUserBean.numberOfActive}"></h:outputText><br/>
-        <p:poll async="true" interval="3" listener="#{adminUserBean.getNumberOfActiveUsers}" update="activeUsers" />
-    </h:form>
+    <div class="header">
+        <div class="leftHeader">
+            <h2><b>Administrator</b></h2>
+        </div>
+        <div class="rightHeader">
+            <h:form>
+                <h:commandButton action="#{adminBean.logout}" type="submit" value="Log out"></h:commandButton>
+            </h:form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="leftcolumn">
+            Number of active users:
+            <h:form>
+                <h:outputText id="activeUsers" value="#{adminUserBean.numberOfActive}"></h:outputText><br/>
+                <p:poll async="true" interval="3" listener="#{adminUserBean.getNumberOfActiveUsers}"
+                        update="activeUsers"/>
+            </h:form>
 
+            Number of registred users:
+            <h:form>
+                <h:outputText id="registredUsers" value="#{adminUserBean.numberOfRegistered}"></h:outputText><br/>
+                <p:poll async="true" interval="3" listener="#{adminUserBean.getNumberOfRegistredUsers}"
+                        update="registredUsers"/>
+            </h:form>
 
-    Number of registred users:
-    <h:form>
-        <h:outputText id="registredUsers" value="#{adminUserBean.numberOfRegistered}"></h:outputText><br/>
-        <p:poll async="true" interval="3" listener="#{adminUserBean.getNumberOfRegistredUsers}" update="registredUsers" />
-    </h:form>
+            <div class="sidenav">
+                <button id="userButton" onclick="prikaziUsera()">User managment</button>
+                <button id="callCall" onclick="prikaziCalls()">Assistence calls managment</button>
+            </div>
+        </div>
+        <div class="midcolumn">
+            <div class="container">
+                <div id="usersDiv">
+                    <h:form id="usersForm" styleClass="tableWrapper">
+                        <h:dataTable id="datatable" value="#{adminUserBean.users}" var="o"
+                                     styleClass="table"
+                                     headerClass="callHeader"
+                                     rowClasses="callOdd,callEven">
+                            <h:column>
+                                <f:facet name="header">Name</f:facet>
+                                #{o.user.name}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Surname</f:facet>
+                                #{o.user.surname}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Username</f:facet>
+                                #{o.user.username}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Email</f:facet>
+                                #{o.user.email}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Country</f:facet>
+                                #{o.user.country}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Is enabled?</f:facet>
+                                #{o.user.enabled?"Yes":"No"}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Is online?</f:facet>
+                                #{o.user.online?"Yes":"No"}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Give access</f:facet>
+                                <h:commandButton id="giveAccess" type="submit" value="Give access"
+                                                 action="#{o.giveAccess}"></h:commandButton>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Block user</f:facet>
+                                <h:commandButton id="blockUsr" type="submit" value="Block user"
+                                                 action="#{o.blockUser}"></h:commandButton>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Reset password</f:facet>
+                                <h:commandButton id="resetPwd" type="submit" value="Reset password"
+                                                 action="#{o.resetPassword}"></h:commandButton>
+                            </h:column>
+                        </h:dataTable>
+                        <p:poll async="true" interval="3" listener="#{adminUserBean.importUsers}" update="datatable"/>
+                    </h:form>
+                    <br></br><h:message for="giveAccess" style="color:red"></h:message>
+                    <br></br><h:message for="blockUsr" style="color:red"></h:message>
+                    <br></br><h:message for="resetPwd" style="color:red"></h:message>
+                    <h2>User's activity chart</h2>
+                    <h:form styleClass="tableWrapper">
+                        <p:chart id="chart" styleClass="graph" type="line" model="#{lineChartBean.lineModel}"
+                                 style="height:400px;width:600px"/>
+                        <p:poll interval="3" listener="#{lineChartBean.init}" update="chart"/>
+                    </h:form>
+                </div>
+                <div id="callsDiv" style="display: none">
+                    <h2>Assistance calls</h2>
+                    <h:form styleClass="tableWrapper">
+                        <h:dataTable id="calls" styleClass="table" value="#{callBean.assistanceCallList}" var="call"
+                                     headerClass="callHeader"
+                                     rowClasses="callOdd,callEven" style="border:1px solid gray;">
+                            <h:column>
+                                <f:facet name="header">Name</f:facet>
+                                #{call.assistanceCall.name}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Location</f:facet>
+                                #{call.assistanceCall.location}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Picture link</f:facet>
+                                <h:graphicImage style="width: 80px; max-height:300px; padding: 20px"
+                                                outcome="#{call.assistanceCall.urlPicture}"
+                                                value="#{call.assistanceCall.urlPicture}"></h:graphicImage>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Reports counter</f:facet>
+                                #{call.assistanceCall.reportsCounter}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Blocked</f:facet>
+                                #{call.assistanceCall.blocked?"Yes":"No"}
+                            </h:column>
 
-    <h:form>
-        <h:dataTable id="datatable" value="#{adminUserBean.users}" var="o">
-            <h:column>
-                <f:facet name="header">Name</f:facet>
-                #{o.user.name}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Surname</f:facet>
-                #{o.user.surname}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Username</f:facet>
-                #{o.user.username}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Email</f:facet>
-                #{o.user.email}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Country</f:facet>
-                #{o.user.country}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Is enabled?</f:facet>
-                #{o.user.enabled?"Yes":"No"}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Is online?</f:facet>
-                #{o.user.online?"Yes":"No"}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Give access</f:facet>
-                <h:commandLink id="giveAccess" type="submit" value="Give access" action="#{o.giveAccess}"></h:commandLink>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Block user</f:facet>
-                <h:commandButton id="blockUsr" type="submit" value="Block user" action="#{o.blockUser}"></h:commandButton>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Reset password</f:facet>
-                <h:commandButton id="resetPwd" type="submit" value="Reset password" action="#{o.resetPassword}"></h:commandButton>
-            </h:column>
-        </h:dataTable>
-        <p:poll async="true" interval="3" listener="#{adminUserBean.importUsers}" update="datatable" />
-    </h:form>
-
-    <h2>User's activity chart</h2>
-    <h:form>
-        <p:chart id="chart" type="line" model="#{lineChartBean.lineModel}" style="height:400px;width:600px"/>
-        <p:poll interval="3" listener="#{lineChartBean.init}" update="chart" />
-    </h:form>
-
-
-    <h:message for="giveAccess"></h:message>
-    <h:message for="blockUsr"></h:message>
-    <h:message for="resetPwd"></h:message>
+                            <h:column>
+                                <f:facet name="header">Phone</f:facet>
+                                #{call.assistanceCall.phone}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Author</f:facet>
+                                #{call.assistanceCall.author}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Give access</f:facet>
+                                <h:commandButton id="unblockCall" type="submit" value="Give access"
+                                                 action="#{call.unblockCall}"></h:commandButton>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Block call</f:facet>
+                                <h:commandButton id="blockCall" type="submit" value="Block"
+                                                 action="#{call.blockCall}"></h:commandButton>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Delete call</f:facet>
+                                <h:commandButton id="deleteCall" type="submit" value="Delete"
+                                                 action="#{call.deleteCall}"></h:commandButton>
+                            </h:column>
+                        </h:dataTable>
+                        <p:poll async="true" interval="3" listener="#{callBean.importAssistanceCalls}" update="calls"/>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </div>
 </h:body>
 </html>

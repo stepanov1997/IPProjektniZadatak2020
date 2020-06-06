@@ -1,7 +1,7 @@
 package model.beans;
 
-import model.dao.AssistanceCallDao;
-import model.dto.AssistanceCall;
+import model.dao.CallDao;
+import model.dto.Call;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -22,17 +22,17 @@ import static java.util.stream.Collectors.toList;
 
 @ManagedBean
 @ViewScoped
-public class AssistanceCallBean implements Serializable {
+public class CallBean implements Serializable {
     private static final Map<Integer, String> ipAddressMap = new HashMap<>();
 
-    private AssistanceCall assistanceCall = new AssistanceCall();
-    AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
-    private List<AssistanceCallBean> assistanceCallList;
+    private Call assistanceCall = new Call();
+    CallDao assistanceCallDao = new CallDao();
+    private List<CallBean> assistanceCallList;
 
-    public AssistanceCallBean() {
+    public CallBean() {
     }
 
-    public AssistanceCallBean(AssistanceCall assistanceCall) {
+    public CallBean(Call assistanceCall) {
         this.assistanceCall = assistanceCall;
     }
 
@@ -40,8 +40,7 @@ public class AssistanceCallBean implements Serializable {
         assistanceCallList = assistanceCallDao
                 .getAll()
                 .stream()
-                .filter(e -> !e.isBlocked())
-                .map(AssistanceCallBean::new)
+                .map(CallBean::new)
                 .sorted((a, b) -> a.assistanceCall.getDatetime().isBefore(b.assistanceCall.getDatetime()) ? 1 : -1)
                 .collect(toList());
     }
@@ -50,19 +49,19 @@ public class AssistanceCallBean implements Serializable {
         return Arrays.asList(assistanceCall.getLocation().split(" "));
     }
 
-    public AssistanceCall getAssistanceCall() {
+    public Call getAssistanceCall() {
         return assistanceCall;
     }
 
-    public void setAssistanceCall(AssistanceCall assistanceCall) {
+    public void setAssistanceCall(Call assistanceCall) {
         this.assistanceCall = assistanceCall;
     }
 
-    public List<AssistanceCallBean> getAssistanceCallList() {
+    public List<CallBean> getAssistanceCallList() {
         return assistanceCallList;
     }
 
-    public void setAssistanceCallList(List<AssistanceCallBean> assistanceCallList) {
+    public void setAssistanceCallList(List<CallBean> assistanceCallList) {
         this.assistanceCallList = assistanceCallList;
     }
 
@@ -108,14 +107,25 @@ public class AssistanceCallBean implements Serializable {
     }
 
     public String blockCall() {
-        return null;
+        CallDao callDao = new CallDao();
+        if (!assistanceCall.isBlocked()) {
+            assistanceCall.setBlocked(true);
+            callDao.update(assistanceCall.getId(), assistanceCall);
+        }
+        return "/admin_home.xhtml?faces-redirect=true";
     }
 
     public String unblockCall() {
-        return null;
+        CallDao callDao = new CallDao();
+        if (assistanceCall.isBlocked()) {
+            assistanceCall.setBlocked(false);
+            callDao.update(assistanceCall.getId(), assistanceCall);
+        }
+        return "/admin_home.xhtml?faces-redirect=true";
     }
-
     public String deleteCall() {
-        return null;
+        CallDao callDao = new CallDao();
+        callDao.delete(assistanceCall.getId());
+        return "/admin_home.xhtml?faces-redirect=true";
     }
 }

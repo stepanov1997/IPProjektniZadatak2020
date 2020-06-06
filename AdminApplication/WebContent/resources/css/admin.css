@@ -1,0 +1,229 @@
+.tableWrapper {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+}
+
+.table {
+    display: inline-block;
+    max-width:100%;
+    box-sizing: border-box;
+    background-color: black;
+}
+
+td {
+    text-align: center;
+    padding: 0 10px;
+    font-size: 120%;
+}
+
+.graph {
+    display: inline-block;
+}
+
+.callHeader {
+    background-color: #ffa33c;
+    color: whitesmoke;
+}
+
+.callOdd {
+    background-color: whitesmoke;
+}
+
+.callEven {
+    background-color: #f5d7b5;
+}
+
+body {
+    background-color: whitesmoke;
+}
+* {
+    box-sizing: border-box;
+    font-size: 115%;
+}
+
+/* Add a gray background color with some padding */
+body {
+    font-family: Arial, serif;
+    padding: 0 20px;
+    background: gray;
+}
+
+/* Header/Blog Title */
+.header {
+    padding: 10px;
+    display: grid;
+    margin-left: 20%;
+    grid-template-columns: 75% 25%;
+    grid-gap: 10px;
+    background: white;
+    text-align: center;
+}
+
+.leftHeader {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    margin-left: 25%;
+    text-align: center;
+    horiz-align: center;
+}
+
+.rightHeader {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 30px;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: whitesmoke;
+    overflow-x: hidden;
+    padding-top: 20px;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+button {
+    text-decoration: none;
+    background: #f5d7b5;
+    color: black;
+    margin-bottom: 10px;
+    width: 80%;
+    outline: none;
+    cursor: hand;
+}
+
+button:hover {
+    background: #fdf6ef;
+}
+
+button:active {
+    background: #f6cd9b;
+}
+
+/* Right column */
+.midcolumn {
+    float: right;
+    margin-left: 20%;
+    width: 80%;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+/* Fake image */
+.fakeimg img {
+    background-color: #aaa;
+    border-radius: 4px;
+    width: 100%;
+    padding: 20px;
+}
+
+.fakeimg > p {
+    background-color: #aaa;
+    border-radius: 4px;
+    vertical-align: center;
+    width: 100%;
+    height: 20px;
+    padding: 5px;
+}
+
+/* Add a card effect for articles */
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+    .leftcolumn, .midcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+    padding-top: 20px;
+    vertical-align: center;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    width: 100%;
+}
+
+.tabcontent.active {
+    display: flex;
+    width: 100%;
+}
+
+#map {
+    width: 100%;
+    height: 400px;
+    background-color: grey;
+}
+
+.insertAttachment2 {
+    text-align: center;
+    width: 100%;
+    vertical-align: center;
+    align-items: center;
+}
+
+.leftPost {
+    text-align: center;
+    width: 100%;
+    vertical-align: center;
+    align-items: center;
+}

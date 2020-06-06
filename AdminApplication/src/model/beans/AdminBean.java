@@ -2,6 +2,7 @@ package model.beans;
 
 import model.dao.AdministratorDao;
 import model.dto.Administrator;
+import util.SHA1;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -32,18 +33,23 @@ public class AdminBean implements Serializable {
     public String login() throws IOException {
         boolean success = authenticate(administrator);
         if (success) {
-            return "ok";
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage("login-form:login-btn", new FacesMessage("You successfully logged in."));
+            return "/admin_home.xhtml?faces-redirect=true";
         }
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage("login:login-btn", new FacesMessage("Pogresni parametri"));
+        context.addMessage("login-form:login-btn", new FacesMessage("Wrong credentials."));
         return "";
     }
 
     private boolean authenticate(Administrator a) {
         AdministratorDao administratorDao = new AdministratorDao();
         List<Administrator> admins = administratorDao.getAll();
-        Optional<Administrator> first = admins.stream().filter(e -> e.getUsername().equals(a.getUsername()) &&
-                e.getPassword().equals(a.getPassword())).findFirst();
+        Optional<Administrator> first = admins.stream().filter(e -> {
+            var ad = e.getUsername().equals(a.getUsername()) &&
+                    e.getPassword().equals(SHA1.encryptPassword(a.getPassword()));
+            return ad;
+        }).findFirst();
         Administrator admin = null;
         if(first.isPresent())
             admin = first.get();
@@ -51,7 +57,15 @@ public class AdminBean implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         administrator = admin;
-        session.setAttribute("adminBean", this);
+        session.setAttribute("imOnline", this);
         return true;
+    }
+
+    public String logout() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        session.setAttribute("imOnline",null);
+        administrator=null;
+        return "/login.xhtml?faces-redirect=true";
     }
 }

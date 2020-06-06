@@ -1,67 +1,63 @@
 package model.dao;
 
 import model.dto.Administrator;
+import util.ConnectionPool;
 
-import java.util.Arrays;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdministratorDao {
 
-    private static final String selectAllQuery = "SELECT * FROM user";
-    private static final String selectOneQuery = "SELECT * FROM user WHERE id=?";
-    private static final String selectByUsernameQuery = "SELECT * FROM user WHERE username=?";
-    private static final String addQuery = "INSERT INTO user (name, surname, username, password, email) VALUES (?, ?, ?, ?, ?)";
-    private static final String deleteQuery = "DELETE FROM user WHERE id = ?";
-    private static final String updateQuery = "UPDATE user SET name=?, surname=?, username=?, password=?, email=?, country=?, countryCode=?, region=?, city=?, loginCounter=?, picture_id=? WHERE id=?";
-    private static final String countByUsernameQuery = "SELECT COUNT(*) as number FROM user WHERE username=?";
-    private static final String countByEmailQuery = "SELECT COUNT(*) as number FROM user WHERE email=?";
+    private static final String selectAllQuery = "SELECT * FROM administrator";
+//    private static final String selectOneQuery = "SELECT * FROM user WHERE id=?";
+//    private static final String selectByUsernameQuery = "SELECT * FROM user WHERE username=?";
+//    private static final String addQuery = "INSERT INTO user (name, surname, username, password, email) VALUES (?, ?, ?, ?, ?)";
+//    private static final String deleteQuery = "DELETE FROM user WHERE id = ?";
+//    private static final String updateQuery = "UPDATE user SET name=?, surname=?, username=?, password=?, email=?, country=?, countryCode=?, region=?, city=?, loginCounter=?, picture_id=? WHERE id=?";
+//    private static final String countByUsernameQuery = "SELECT COUNT(*) as number FROM user WHERE username=?";
+//    private static final String countByEmailQuery = "SELECT COUNT(*) as number FROM user WHERE email=?";
 
 
     public AdministratorDao() {
     }
 
     public List<Administrator> getAll() {
-        return Arrays.asList(new Administrator("admin", "admin"));
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        List<Administrator> accounts = new ArrayList<>();
+        try {
+            connection = ConnectionPool.getConnectionPool().checkOut();
+            statement = connection.createStatement();
+            statement.executeQuery(selectAllQuery);
+
+            resultSet = statement.getResultSet();
+
+            if (resultSet.next()) {
+                Administrator administrator = new Administrator();
+                administrator.setUsername(resultSet.getString("username"));
+                administrator.setPassword(resultSet.getString("password"));
+                accounts.add(administrator);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return new ArrayList();
+        } finally {
+            try {
+                resultSet.close();
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                ConnectionPool.getConnectionPool().checkIn(connection);
+            }
+        }
+        return accounts;
     }
-//    public List<Administrator> getAll() {
-//        Connection connection = null;
-//        Statement statement = null;
-//        ResultSet resultSet = null;
-//        List<Administrator> accounts = new ArrayList<>();
-//        try {
-//            connection = ConnectionPool.getConnectionPool().checkOut();
-//            statement = connection.createStatement();
-//            statement.executeQuery(selectAllQuery);
-//
-//            resultSet = statement.getResultSet();
-//
-//            if (resultSet.next()) {
-//                Account account = new Account();
-//                account.setId(resultSet.getInt("id"));
-//                account.setName(resultSet.getString("name"));
-//                account.setSurname(resultSet.getString("surname"));
-//                account.setUsername(resultSet.getString("username"));
-//                account.setPassword(resultSet.getString("password"));
-//                account.setCountry(resultSet.getString("country"));
-//                account.setRegion(resultSet.getString("region"));
-//                account.setCity(resultSet.getString("city"));
-//                account.setPicture_Id(resultSet.getInt("picture_id"));
-//                accounts.add(account);
-//            }
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        } finally {
-//            try {
-//                resultSet.close();
-//                statement.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            } finally {
-//                ConnectionPool.getConnectionPool().checkIn(connection);
-//            }
-//        }
-//        return accounts;
-//    }
 //
 //    public int add(@NotNull Account account) {
 //        Connection connection = null;

@@ -3,6 +3,7 @@ package services;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.sun.mail.util.BASE64DecoderStream;
 import model.dao.AdminUserDao;
 import model.dao.AssistanceCallDao;
@@ -39,27 +40,35 @@ public class AssistanceService {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response post(AssistanceCall assistanceCall, @HeaderParam("authorization") String authString) {
+    public Response post(String assistanceCall, @HeaderParam("authorization") String authString) {
         if (authString==null || !isUserAuthenticated(authString)) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         } else {
             if (assistanceCall == null) return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+            Gson gson = new Gson();
+            Integer id = null;
+            try {
+                JsonObject callJson = JsonParser.parseString(assistanceCall).getAsJsonObject();
+                AssistanceCall ac = gson.fromJson(callJson, AssistanceCall.class);
+                AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
+                ac.setId(null);
+                id = assistanceCallDao.add(ac);
+                if (id == null) return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+            }catch(Exception ex){
+                return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+            }
+            JsonObject response = new JsonObject();
+            response.addProperty("success", true);
+            response.addProperty("id", id);
 
-            AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
-            Integer id = assistanceCallDao.add(assistanceCall);
-            if (id == null) return Response.status(Response.Status.NOT_ACCEPTABLE).build();
-            JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("success", true);
-            jsonObject.addProperty("id", id);
-
-            return Response.ok(jsonObject.toString()).build();
+            return Response.ok(response.toString()).build();
         }
     }
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response put(AssistanceCall assistanceCall, @HeaderParam("authorization") String authString) {
+    public Response put(String assistanceCall, @HeaderParam("authorization") String authString) {
         return post(assistanceCall, authString);
     }
 
