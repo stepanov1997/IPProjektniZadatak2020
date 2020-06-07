@@ -94,9 +94,10 @@
             </p>
             <hr class="lines"/>
             <div class="commands">
-                <p>
-                    <button class="submit-button" type="button" onclick="loadDoc()" name="submit">Register</button>
-                </p>
+                <div>
+                    <button class="submit-button" type="button" onclick="loadDoc()" name="submit">Register</button><br><br>
+                    <a href="${pageContext.request.contextPath}/">Log in</a>
+                </div>
             </div>
         </form>
         <h2 id="result"></h2>

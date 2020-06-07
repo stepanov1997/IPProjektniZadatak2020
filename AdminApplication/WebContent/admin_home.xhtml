@@ -5,7 +5,7 @@
 <h:head>
     <link rel="stylesheet" type="text/css" href="resources/css/login.css"/>
     <h:outputStylesheet name="css/admin.css"/>
-    <h:outputScript library="scripts" name="admin.js" target="head" />
+    <h:outputScript library="scripts" name="admin.js" target="head"/>
 </h:head>
 <h:body xmlns:f="http://java.sun.com/jsf/core">
     <f:metadata>
@@ -13,6 +13,8 @@
         <f:event type="preRenderView" listener="#{adminUserBean.getNumberOfActiveUsers}"/>
         <f:event type="preRenderView" listener="#{adminUserBean.getNumberOfRegistredUsers}"/>
         <f:event type="preRenderView" listener="#{callBean.importAssistanceCalls}"/>
+        <f:event type="preRenderView" listener="#{callCategoryBean.importCategories}"/>
+        <f:event type="preRenderView" listener="#{dngCategoryBean.importDangerCategories}"/>
     </f:metadata>
 
     <div class="header">
@@ -44,10 +46,54 @@
             <div class="sidenav">
                 <button id="userButton" onclick="prikaziUsera()">User managment</button>
                 <button id="callCall" onclick="prikaziCalls()">Assistence calls managment</button>
+                <button id="codebookCall" onclick="prikaziCodebook()">Codebook</button>
             </div>
         </div>
         <div class="midcolumn">
             <div class="container">
+                <div id="dangerDiv">
+                    <h1 style="width: 100%;display: inline-block; text-align: center"><b>Codebook</b></h1>
+                    <div class="wrapper">
+                        <h:form class="first" id="categoryOfCallsForm" styleClass="tableWrapper">
+                            <h:dataTable id="categoryOfCallsDatatable" value="#{callCategoryBean.categories}"
+                                         var="category"
+                                         styleClass="table"
+                                         headerClass="callHeader"
+                                         rowClasses="callOdd,callEven">
+                                <h:column>
+                                    <f:facet name="header">Categories of assistance calls</f:facet>
+                                    #{category.name}
+                                </h:column>
+                            </h:dataTable>
+                            <br/><br/>
+                            <h:inputText value="#{callCategoryBean.category.name}"
+                                         placeholder="Type category of assistance call"></h:inputText><br/>
+                            <h:commandButton action="#{callCategoryBean.addCategory}"
+                                             value="Add call category" update="@form"></h:commandButton>
+                            <p:poll async="true" interval="3" listener="#{callCategoryBean.importCategories}"
+                                    update="categoryOfCallsDatatable"/>
+                        </h:form>
+                        <h:form class="second">
+                            <h:dataTable id="dangerCategoriesDatatable" value="#{dngCategoryBean.dangerCategories}"
+                                         var="category"
+                                         styleClass="table"
+                                         headerClass="callHeader"
+                                         rowClasses="callOdd,callEven">
+                                <h:column>
+                                    <f:facet name="header">Categories of dangers</f:facet>
+                                    #{category.name}
+                                </h:column>
+                            </h:dataTable>
+                            <br/><br/>
+                            <h:inputText value="#{dngCategoryBean.dngCategory.name}"
+                                         placeholder="Type danger category"></h:inputText><br/>
+                            <h:commandButton action="#{dngCategoryBean.addCategory}"
+                                             value="Add category of dangers" update="@form"></h:commandButton>
+                            <p:poll async="true" interval="3" listener="#{dngCategoryBean.importDangerCategories}"
+                                    update="dangerCategoriesDatatable"/>
+                        </h:form>
+                    </div>
+                </div>
                 <div id="usersDiv">
                     <h:form id="usersForm" styleClass="tableWrapper">
                         <h:dataTable id="datatable" value="#{adminUserBean.users}" var="o"
@@ -85,24 +131,25 @@
                             <h:column>
                                 <f:facet name="header">Give access</f:facet>
                                 <h:commandButton id="giveAccess" type="submit" value="Give access"
-                                                 action="#{o.giveAccess}"></h:commandButton>
+                                                 action="#{o.giveAccess}" update="@form"></h:commandButton>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Block user</f:facet>
                                 <h:commandButton id="blockUsr" type="submit" value="Block user"
-                                                 action="#{o.blockUser}"></h:commandButton>
+                                                 action="#{o.blockUser}" update="@form"></h:commandButton>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Reset password</f:facet>
                                 <h:commandButton id="resetPwd" type="submit" value="Reset password"
-                                                 action="#{o.resetPassword}"></h:commandButton>
+                                                 action="#{o.resetPassword}" update="@form"></h:commandButton>
                             </h:column>
                         </h:dataTable>
                         <p:poll async="true" interval="3" listener="#{adminUserBean.importUsers}" update="datatable"/>
+                        <br></br><h:message for="giveAccess" style="color:red"></h:message>
+                        <br></br><h:message for="blockUsr" style="color:red"></h:message>
+                        <br></br><h:message for="resetPwd" style="color:red"></h:message>
                     </h:form>
-                    <br></br><h:message for="giveAccess" style="color:red"></h:message>
-                    <br></br><h:message for="blockUsr" style="color:red"></h:message>
-                    <br></br><h:message for="resetPwd" style="color:red"></h:message>
+
                     <h2>User's activity chart</h2>
                     <h:form styleClass="tableWrapper">
                         <p:chart id="chart" styleClass="graph" type="line" model="#{lineChartBean.lineModel}"
@@ -123,6 +170,10 @@
                             <h:column>
                                 <f:facet name="header">Location</f:facet>
                                 #{call.assistanceCall.location}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Datetime</f:facet>
+                                #{call.assistanceCall.datetimeConverted}
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Picture link</f:facet>

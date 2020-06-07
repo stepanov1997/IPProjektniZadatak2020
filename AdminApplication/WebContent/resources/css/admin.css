@@ -121,6 +121,38 @@ button:active {
     padding-top: 20px;
 }
 
+.wrapper {
+    width:100%;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-items: center;
+}
+
+
+
+.first {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.first * {
+    font-size: 110%;
+}
+.second {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.second * {
+    font-size:110%;
+}
+
 /* Fake image */
 .fakeimg img {
     background-color: #aaa;

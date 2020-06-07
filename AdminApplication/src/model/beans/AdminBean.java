@@ -20,6 +20,8 @@ public class AdminBean implements Serializable {
     private Administrator administrator = new Administrator();
 
     public AdminBean() {
+        administrator.setUsername("");
+        administrator.setPassword("");
     }
 
     public Administrator getAdministrator() {
@@ -43,6 +45,8 @@ public class AdminBean implements Serializable {
     }
 
     private boolean authenticate(Administrator a) {
+        if(a==null || a.getUsername()==null || a.getPassword()==null || "".equals(a.getUsername()) || "".equals(a.getPassword()))
+            return false;
         AdministratorDao administratorDao = new AdministratorDao();
         List<Administrator> admins = administratorDao.getAll();
         Optional<Administrator> first = admins.stream().filter(e -> {

@@ -19,6 +19,7 @@ public class AssistanceCallDao {
             "UPDATE AssistanceCall SET name=?, datetime=?, location=?, description=?, author=?, phone=?, isBlocked=?, " +
                     "reportsCounter=?, urlPicture=?, CategoryOfCalls_id=? WHERE id=?";
     private static final String reportQuery = "UPDATE AssistanceCall SET reportsCounter=reportsCounter+1 WHERE id=?";
+    private static final String blockQuery = "UPDATE AssistanceCall SET isBlocked=1 WHERE id=?";
     private static final String deleteQuery = "DELETE FROM AssistanceCall WHERE id=?";
 
 
@@ -183,6 +184,23 @@ public class AssistanceCallDao {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             connection = ConnectionPool.getConnectionPool().checkOut();
             preparedStatement = connection.prepareStatement(reportQuery);
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeUpdate()>0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            ConnectionPool.getConnectionPool().checkIn(connection);
+        }
+        return false;
+    }
+
+    public boolean block(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = ConnectionPool.getConnectionPool().checkOut();
+            preparedStatement = connection.prepareStatement(blockQuery);
             preparedStatement.setInt(1, id);
             return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {

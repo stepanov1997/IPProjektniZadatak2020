@@ -20,11 +20,15 @@
                     <h:outputText value="Password: "></h:outputText><h:inputSecret
                         value="#{adminBean.administrator.password}"></h:inputSecret>
                 </div>
+
                 <div>
-                    <h:commandButton id="login-btn" type="submit" action="#{adminBean.login}"
+                    <h:commandButton styleClass="submit-button" id="login-btn" type="submit" action="#{adminBean.login}"
                                      value="Log in"></h:commandButton>
                 </div>
-                <br></br><h:message for="login-btn" style="color:red"></h:message>
+                <br></br><div>
+                    <a href="/">Home</a>
+                </div>
+                <h:message for="login-btn" style="color:red"></h:message>
             </h:form>
         </div>
     </div>

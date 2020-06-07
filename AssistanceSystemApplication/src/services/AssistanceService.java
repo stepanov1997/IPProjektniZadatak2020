@@ -15,6 +15,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.nio.charset.Charset;
+import java.util.stream.Collectors;
 
 @Path("/")
 public class AssistanceService {
@@ -23,7 +24,8 @@ public class AssistanceService {
     public Response getAll() {
         Gson gson = new Gson();
         AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
-        JsonArray jsonArray = gson.toJsonTree(assistanceCallDao.getAll()).getAsJsonArray();
+        var collection = assistanceCallDao.getAll().stream().filter(e -> !e.isBlocked()).collect(Collectors.toList());
+        JsonArray jsonArray = gson.toJsonTree(collection).getAsJsonArray();
         return Response.ok(jsonArray.toString()).build();
     }
 
@@ -41,7 +43,7 @@ public class AssistanceService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response post(String assistanceCall, @HeaderParam("authorization") String authString) {
-        if (authString==null || !isUserAuthenticated(authString)) {
+        if (authString == null || !isUserAuthenticated(authString)) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         } else {
             if (assistanceCall == null) return Response.status(Response.Status.NOT_ACCEPTABLE).build();
@@ -54,7 +56,7 @@ public class AssistanceService {
                 ac.setId(null);
                 id = assistanceCallDao.add(ac);
                 if (id == null) return Response.status(Response.Status.NOT_ACCEPTABLE).build();
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 return Response.status(Response.Status.NOT_ACCEPTABLE).build();
             }
             JsonObject response = new JsonObject();
@@ -62,6 +64,53 @@ public class AssistanceService {
             response.addProperty("id", id);
 
             return Response.ok(response.toString()).build();
+        }
+    }
+
+    @POST
+    @Path("/report/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response report(@PathParam("id") int id) {
+        try {
+            AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
+            if (assistanceCallDao.reportCall(id)) {
+                JsonObject response = new JsonObject();
+                response.addProperty("success", true);
+                response.addProperty("id", id);
+                return Response.ok(response.toString()).build();
+            }
+            JsonObject response = new JsonObject();
+            response.addProperty("success", false);
+            response.addProperty("id", id);
+            return Response.ok(response.toString()).build();
+        } catch (Exception ex) {
+            return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+        }
+    }
+
+    @POST
+    @Path("/block/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response post(@PathParam("id") int id, @HeaderParam("authorization") String authString) {
+        JsonObject response = new JsonObject();
+        try {
+            if (!isUserAuthenticated(authString)) {
+                return Response.status(Response.Status.UNAUTHORIZED).build();
+            } else {
+                AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
+                if (assistanceCallDao.block(id)) {
+                    response = new JsonObject();
+                    response.addProperty("success", true);
+                    response.addProperty("id", id);
+                    return Response.ok(response.toString()).build();
+                }
+                response = new JsonObject();
+                response.addProperty("success", false);
+                response.addProperty("id", id);
+                return Response.ok(response.toString()).build();
+            }
+        } catch (Exception ex) {
+            return Response.status(Response.Status.NOT_ACCEPTABLE).build();
         }
     }
 
@@ -77,7 +126,7 @@ public class AssistanceService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response patch(AssistanceCall assistanceCall, @PathParam("id") int id, @HeaderParam("authorization") String authString) {
-        if (authString==null || !isUserAuthenticated(authString)) {
+        if (authString == null || !isUserAuthenticated(authString)) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         } else {
             AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
@@ -93,7 +142,7 @@ public class AssistanceService {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id, @HeaderParam("authorization") String authString) {
-        if (authString==null || !isUserAuthenticated(authString)) {
+        if (authString == null || !isUserAuthenticated(authString)) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         } else {
             AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
@@ -123,7 +172,7 @@ public class AssistanceService {
 
         AdminUserDao adminUserDao = new AdminUserDao();
         Administrator admin = adminUserDao.getAdminByUsername(username);
-        if(admin==null) return false;
+        if (admin == null) return false;
         return admin.getPassword().equals(SHA1.encryptPassword(password));
     }
 }

@@ -1,6 +1,7 @@
 package model.dto;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Call implements Serializable {
     private Integer id;
@@ -14,6 +15,7 @@ public class Call implements Serializable {
     private boolean isBlocked;
     private int reportsCounter = 0;
     private Integer categoryId;
+    private String datetimeConverted;
 
     public Call() {
     }
@@ -54,6 +56,7 @@ public class Call implements Serializable {
 
     public void setDatetime(LocalDateTime datetime) {
         this.datetime = datetime;
+        datetimeConverted = DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm:ss").format(datetime);
     }
 
     public String getLocation() {
@@ -118,5 +121,14 @@ public class Call implements Serializable {
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getDatetimeConverted() {
+        return DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm:ss").format(datetime);
+    }
+
+    public void setDatetimeConverted(String datetimeConverted) {
+        this.datetimeConverted = datetimeConverted;
+        this.datetime = (LocalDateTime) DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm:ss").parse(datetimeConverted);
     }
 }

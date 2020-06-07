@@ -16,7 +16,11 @@ public class RssServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AssistanceCallDao assistanceCallDao = new AssistanceCallDao();
         Feed rssFeeder = Feed.createStandardFeed();
-        assistanceCallDao.getAll().forEach(e -> rssFeeder.getMessages().add(e.mapToFeedMessage()));
+        assistanceCallDao
+                .getAll()
+                .stream()
+                .filter(e -> !e.isBlocked())
+                .forEach(e -> rssFeeder.getMessages().add(e.mapToFeedMessage()));
         RSSFeedWriter writer = new RSSFeedWriter(rssFeeder);
         byte[] bytes = null;
         try {

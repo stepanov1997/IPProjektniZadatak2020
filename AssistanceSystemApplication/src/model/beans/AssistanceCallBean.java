@@ -76,7 +76,7 @@ public class AssistanceCallBean implements Serializable {
         assistanceCall.setDatetime(LocalDateTime.now());
         assistanceCall.setReportsCounter(0);
         assistanceCallDao.add(assistanceCall);
-        return "mainPage.xhtml";
+        return "mainPage.xhtml?faces-redirect=true";
     }
 
     public String reportCall() {
@@ -105,17 +105,5 @@ public class AssistanceCallBean implements Serializable {
             return true;
         }
         return false;
-    }
-
-    public String blockCall() {
-        return null;
-    }
-
-    public String unblockCall() {
-        return null;
-    }
-
-    public String deleteCall() {
-        return null;
     }
 }

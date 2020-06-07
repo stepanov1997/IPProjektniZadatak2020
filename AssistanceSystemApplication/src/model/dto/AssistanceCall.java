@@ -17,6 +17,7 @@ public class AssistanceCall implements Serializable {
     private boolean isBlocked;
     private int reportsCounter = 0;
     private Integer categoryId;
+    private String datetimeConverted;
 
     public AssistanceCall() {
     }
@@ -56,6 +57,7 @@ public class AssistanceCall implements Serializable {
     }
 
     public void setDatetime(LocalDateTime datetime) {
+        this.datetimeConverted = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss").format(datetime);
         this.datetime = datetime;
     }
 
@@ -146,5 +148,14 @@ public class AssistanceCall implements Serializable {
                 lng,
                 phone
         );
+    }
+
+    public void setDatetimeConverted(String datetimeConverted) {
+        this.datetimeConverted = datetimeConverted;
+        datetime = (LocalDateTime) DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss").parse(datetimeConverted);
+    }
+
+    public String getDatetimeConverted() {
+        return DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss").format(datetime);
     }
 }

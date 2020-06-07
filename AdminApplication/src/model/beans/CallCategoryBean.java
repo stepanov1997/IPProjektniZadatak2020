@@ -39,4 +39,13 @@ public class CallCategoryBean implements Serializable {
     {
         categories = categoryDao.getAll();
     }
+
+    public String addCategory() {
+        CategoryCallDao categoryCallDao = new CategoryCallDao();
+        if(categoryCallDao.add(category)!=null){
+            return "/admin_home.xhtml?faces-redirect=true";
+        }else {
+            return "";
+        }
+    }
 }
