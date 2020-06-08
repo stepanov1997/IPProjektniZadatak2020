@@ -67,9 +67,8 @@ public class AdminBean implements Serializable {
 
     public String logout() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(false);
         session.setAttribute("imOnline",null);
-        administrator=null;
         return "/login.xhtml?faces-redirect=true";
     }
 }

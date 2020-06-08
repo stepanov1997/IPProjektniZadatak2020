@@ -331,7 +331,7 @@ function addPost(elem) {
             const tweet = document.createElement("a");
             tweet.href = "https://twitter.com/share";
             tweet.setAttribute("class", "twitter-share-button");
-            tweet.setAttribute("data-url", elem.link);
+            tweet.setAttribute("data-url", elem.value);
             tweet.setAttribute("data-hashtags", elem.text);
             tweet.innerText = "Tweet";
             html += tweet.outerHTML;
